@@ -9,7 +9,10 @@
 <body>
     <?php require_once(__DIR__ . '/templates/header.php'); ?>
 
-    <main></main>
+    <main>
+        <?php require_once(__DIR__ . '/templates/homepage.php'); ?>
+
+    </main>
 
     <?php require_once(__DIR__ . '/templates/footer.php'); ?>
 </body>

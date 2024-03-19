@@ -23,8 +23,40 @@ body {
 
 main {
     flex: 1;
-    background-color: aqua;
 }
+
+h1,
+h2 {
+    font-family: "Josefin Sans", sans-serif;
+}
+
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Inter", sans-serif;
+}
+
+p {
+    font-family: "Hind Siliguri", sans-serif;
+}
+
+html {
+    font-size: 100%;
+}
+
+@media screen and (max-width:1024px) {
+    html {
+        font-size: 90%;
+    }
+}
+
+@media screen and (max-width:650px) {
+    html {
+        font-size: 80%;
+    }
+}
+
 
 
 
@@ -50,18 +82,21 @@ main {
     padding: 0rem 1rem;
 }
 
+/*
 @media screen and (max-width:992px) {
     .header-link {
         padding: 0.4rem 0rem 0.4rem 0.5rem;
     }
-}
+}*/
+
+
 
 
 
 /* Footer */
 footer {
     width: 100%;
-    height: 13rem;
+    height: auto;
     background-color: var(--dark-color);
     color: white;
     display: flex;
@@ -73,6 +108,7 @@ footer {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    padding-top: 1rem;
 }
 
 .adresse-footer,
@@ -82,7 +118,6 @@ footer {
 
 .adresse-footer h6,
 .horaires-footer h6 {
-    font-family: "Inter", sans-serif;
     font-size: 0.9rem;
 }
 
@@ -104,4 +139,268 @@ footer {
     text-align: center;
     margin-bottom: 0.1rem;
     margin-top: 1rem;
+}
+
+@media screen and (max-width: 500px) {
+    .container-footer {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .horaires-footer table {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+
+
+
+/* Homepage */
+#carousel {
+    height: auto;
+}
+
+.carousel-img {
+    object-fit: cover;
+    height: 75vh;
+    width: 100vw;
+}
+
+.welcome-text {
+    height: auto;
+    background-color: white;
+    color: var(--dark-color);
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 2.5rem;
+    font-weight: 600;
+    text-align: center;
+    line-height: 3rem;
+    margin: 0;
+    padding: 0.5rem 0rem;
+}
+
+/*
+@media screen and (max-width: 620px) {
+    .welcome-text {
+        font-size: 1.5rem;
+    }
+}*/
+
+/* zoo presentation */
+.homepage-presentation {
+    height: auto;
+    width: 100%;
+    background-color: var(--secondary-color);
+    padding: 1.6rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+}
+
+.homepage-presentation p {
+    width: 515px;
+    font-size: 1.2rem;
+    color: white;
+}
+
+.homepage-presentation img {
+    object-fit: cover;
+    height: 40vh;
+    width: auto;
+    border-radius: 20px;
+}
+
+@media screen and (max-width: 1020px) {
+    .homepage-presentation {
+        /*flex-direction: column;*/
+        gap: 3rem;
+    }
+
+    /*
+    .homepage-presentation p {
+        font-size: 0.8rem;
+    }*/
+
+    .homepage-presentation img {
+        height: 20vh;
+    }
+}
+
+/* Habitat presentation */
+.homepage-habitat {
+    height: auto;
+    background-color: var(--primary-color);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+}
+
+.homepage-habitat h2 {
+    font-size: 2rem;
+}
+
+.homepage-habitat p {
+    width: 70%;
+    text-align: center;
+}
+
+.homepage-habitat p,
+.homepage-habitat h5 {
+    font-size: 1.2rem;
+}
+
+.hp-hab {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: row;
+    gap: 10rem;
+}
+
+.hp-marais,
+.hp-jungle,
+.hp-savane {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem
+}
+
+.homepage-habitat img {
+    object-fit: cover;
+    height: 19rem;
+    width: 13rem;
+    border-radius: 20px;
+}
+
+.hp-jungle img {
+    object-position: 60%;
+}
+
+@media screen and (max-width: 1020px) {
+
+    .hp-hab {
+        margin-top: 1rem;
+        gap: 5rem
+    }
+
+    .homepage-habitat img {
+        width: 10rem;
+        height: 4.5rem;
+    }
+
+    .hp-marais img {
+        object-position: 50% 85%;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .hp-hab {
+        margin-top: 1rem;
+        flex-direction: column;
+        gap: 0.3rem
+    }
+
+    /*
+    .homepage-habitat h2 {
+        font-size: 1.3rem;
+    }
+
+    .homepage-habitat p,
+    .homepage-habitat h5 {
+        text-align: center;
+        font-size: 0.8rem;
+    }
+*/
+    .homepage-habitat img {
+        width: 160px;
+        height: 70px;
+    }
+}
+
+/* Opinions */
+/* comment form */
+.opinions {
+    width: 100%;
+    font-family: "Hind Siliguri", sans-serif;
+    color: var(--dark-color);
+    padding-top: 2rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+
+.form-opinion {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem
+}
+
+#comment,
+#pseudo {
+    width: 100%;
+    max-width: 50rem;
+    border: none;
+    padding: 0.2rem 0.5rem;
+    background-color: rgb(227, 227, 227);
+    color: var(--dark-color)
+}
+
+#comment {
+    resize: none;
+}
+
+.form-opinion button {
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 1.2rem;
+    padding: 0.5rem 2.8rem;
+    border: none;
+    border-radius: 5px;
+
+}
+
+/* comment lists */
+.opinions-lists {
+    width: 80%;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.opinion {
+    width: 100%;
+    padding: 0.4rem 1.5rem;
+    border-top: 2px solid var(--dark-color);
+    display: grid;
+    grid-template: 50% 50%/ 1fr 1fr;
+}
+
+.pseudo {
+    grid-area: 1 / 1 / 2 / 2;
+    font-weight: 900;
+}
+
+.date {
+    grid-area: 1 / 2 / 2 / 3;
+    text-align: right;
+}
+
+.comment {
+    grid-area: 2 / 1 / 3 / 3;
+}
+
+.pseudo,
+.comment,
+.date {
+    margin: 0;
 }
