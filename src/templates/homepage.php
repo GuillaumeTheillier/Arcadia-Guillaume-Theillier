@@ -2,16 +2,16 @@
 <div id="carousel" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img src="images\carousel\lions-1660044_1280.jpg" class="carousel-img" alt="Deux lions allongé">
+            <img src="model\images\carousel\lions-1660044_1280.jpg" class="carousel-img" alt="Deux lions allongé">
         </div>
         <div class="carousel-item">
-            <img src="images\carousel\animal-2475743_1280.jpg" class="carousel-img" alt="Un bébé gorille qui pose sa main sur une vitre">
+            <img src="model\images\carousel\animal-2475743_1280.jpg" class="carousel-img" alt="Un bébé gorille qui pose sa main sur une vitre">
         </div>
         <div class="carousel-item">
-            <img src="images\carousel\pexels-nilina-584186.jpg" class="carousel-img" alt="Deux éléphants l'un en face de l'autre">
+            <img src="model\images\carousel\pexels-nilina-584186.jpg" class="carousel-img" alt="Deux éléphants l'un en face de l'autre">
         </div>
         <div class="carousel-item">
-            <img src="images\carousel\tigre-allonge-parquet.jpg" class="carousel-img" alt="Un tigre allongé">
+            <img src="model\images\carousel\tigre-allonge-parquet.jpg" class="carousel-img" alt="Un tigre allongé">
         </div>
     </div>
 </div>
@@ -27,7 +27,7 @@
         Depuis 1960, Arcadia vous convie à partir en voyage avec toute la famille.
         Venez explorer une partie de la diversité biologique présente sur notre planète.
     </p>
-    <img src="images\homepage\pexels-ricky-esquivel-1868861.jpg" alt="Un soigneur tenant un bébé crocodile dans ses mains">
+    <img src="model\images\homepage\pexels-ricky-esquivel-1868861.jpg" alt="Un soigneur tenant un bébé crocodile dans ses mains">
 </article>
 
 <!-- show the zoo's three habitat  -->
@@ -39,15 +39,15 @@
     </p>
     <div class="hp-hab">
         <div class="hp-savane">
-            <img src="images\homepage\suricate.jpg" alt="suricate">
+            <img src="model\images\homepage\suricate.jpg" alt="suricate">
             <h5>Savane</h5>
         </div>
         <div class="hp-marais">
-            <img src="images\homepage\pexels-henning-roettger-2100047.jpg" alt="Crocodile">
+            <img src="model\images\homepage\pexels-henning-roettger-2100047.jpg" alt="Crocodile">
             <h5>Marais</h5>
         </div>
         <div class="hp-jungle">
-            <img src="images\homepage\zoo-4007318_1280.jpg" alt="léopard">
+            <img src="model\images\homepage\zoo-4007318_1280.jpg" alt="léopard">
             <h5>Jungle</h5>
         </div>
     </div>
@@ -55,7 +55,7 @@
 
 <!-- second part of the zoo presentation -->
 <article class="homepage-presentation">
-    <img src="images\homepage\plan-vertical-foret-soignes-soleil-qui-brille-travers-branches.jpg" alt="Un soigneur tenant un bébé crocodile dans ses mains">
+    <img src="model\images\homepage\plan-vertical-foret-soignes-soleil-qui-brille-travers-branches.jpg" alt="Un soigneur tenant un bébé crocodile dans ses mains">
     <p>
         Nous sommes situés en Bretagne près de la forêt de Brocéliande, terre de mythe et
         de légende. Vous serez accueillie par nos guides pour une visites du parc.

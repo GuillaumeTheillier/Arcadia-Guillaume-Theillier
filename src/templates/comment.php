@@ -1,6 +1,6 @@
 <?php
 //Récupérer les variables venant de la base de donnée
-require_once(__DIR__ . '/variable.php');
+require_once('B:\Developpement\Projet\WEB\Projet\ArcadiaFront\src\model\variable.php');
 
 for ($i = 0; $i < count($opinions); $i++) {
     $pseudo = $opinions[$i]['pseudo'];
