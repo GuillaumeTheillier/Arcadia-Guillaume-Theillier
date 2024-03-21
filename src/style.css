@@ -53,9 +53,17 @@ html {
 
 @media screen and (max-width:650px) {
     html {
-        font-size: 80%;
+        font-size: 70%;
     }
 }
+
+.page-title {
+    font-size: 3.2rem;
+    padding: 2rem 0;
+    text-align: center;
+    color: var(--dark-color)
+}
+
 
 
 
@@ -403,4 +411,114 @@ footer {
 .comment,
 .date {
     margin: 0;
+}
+
+
+
+
+
+/* Services */
+.service {
+    margin: 2rem 0rem;
+    color: var(--dark-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.service-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 3rem;
+}
+
+.service:nth-of-type(even) .service-content {
+    flex-direction: row-reverse;
+}
+
+.service-title {
+    margin-bottom: 2rem;
+    font-weight: 700;
+}
+
+.service-description {
+    width: 40vw;
+    background-color: var(--tertiary-color);
+    height: auto;
+    color: white;
+    font-size: 1.2rem;
+    padding: 2rem;
+    border-radius: 5px;
+}
+
+.service-img {
+    width: 35vw;
+    height: auto;
+    align-self: center;
+}
+
+.service-description-additional {
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-align: center;
+    padding: 0.5rem 0.5rem 0rem 0.5rem;
+}
+
+@media screen and (max-width:1030px) {
+
+    .service-content,
+    .service:nth-of-type(even) .service-content {
+        flex-direction: column-reverse;
+        /*display: contents;*/
+
+    }
+
+    .service-img,
+    .service-description,
+    .service-description-additional {
+        width: 50vw;
+
+    }
+}
+
+@media screen and (max-width:600px) {
+
+    .service-img,
+    .service-description,
+    .service-description-additional {
+        width: 70vw;
+    }
+
+    .service-content {
+        gap: 1rem;
+    }
+}
+
+
+
+
+
+
+
+/* Habitats */
+.habitats-container {
+    margin: 0 20vw;
+    padding-top: 3rem;
+    display: grid;
+    grid-template: 1fr / repeat(3, 15vw);
+    column-gap: 4rem;
+}
+
+.habitat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.habitat img {
+    width: 15vw;
+    height: 40vh;
+    object-fit: cover;
+    border-radius: 20px;
 }

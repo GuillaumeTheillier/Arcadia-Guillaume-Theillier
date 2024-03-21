@@ -13,9 +13,9 @@
 
             <div class="collapse navbar-collapse" id="navbarNav">
                 <div class="navbar-nav">
-                    <a class="header-link" href="#">Accueil</a>
-                    <a class="header-link" href="#">Services</a>
-                    <a class="header-link" href="#">Habitats</a>
+                    <a class="header-link" href="?action=homepage">Accueil</a>
+                    <a class="header-link" href="?action=services">Services</a>
+                    <a class="header-link" href="?action=habitats">Habitats</a>
                     <a class="header-link" href="#">Infos pratiques</a>
                     <a class="header-link" href="#">Contact</a>
                     <a class="header-link" href="#">Espace du personnel</a>
