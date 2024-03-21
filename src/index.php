@@ -1,20 +1,17 @@
-<!DOCTYPE html>
-<html>
+<?php
 
-<head>
-    <?php require_once(__DIR__ . '/templates/head.php'); ?>
-    <title>Arcadia</title>
-</head>
+//require_once('templates/homepage.php');
+require_once('controllers/servicesController.php');
+require_once('controllers\homepageControllers.php');
+require_once('controllers/habitatsController.php');
 
-<body>
-    <?php require_once(__DIR__ . '/templates/header.php'); ?>
-
-    <main>
-        <?php require_once(__DIR__ . '/templates/homepage.php'); ?>
-
-    </main>
-
-    <?php require_once(__DIR__ . '/templates/footer.php'); ?>
-</body>
-
-</html>
+if (isset($_GET['action']) && $_GET['action'] !== '') {
+    $action = $_GET['action'];
+    try {
+        $action();
+    } catch (Error $e) {
+        echo 'Page Introuvable';
+    }
+} else {
+    homepage();
+}
