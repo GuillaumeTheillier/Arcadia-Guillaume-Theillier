@@ -331,7 +331,7 @@ footer {
     }
 }
 
-/* Opinions */
+/* Comments */
 /* comment form */
 .opinions {
     width: 100%;
@@ -387,10 +387,11 @@ footer {
 
 .opinion {
     width: 100%;
-    padding: 0.4rem 1.5rem;
+    padding: 1rem 1.5rem 1.2rem 1.5rem;
     border-top: 2px solid var(--dark-color);
     display: grid;
-    grid-template: 50% 50%/ 1fr 1fr;
+    grid-template: repeat(2, 50%)/ 85% 15%;
+    row-gap: 1rem;
 }
 
 .pseudo {
@@ -400,7 +401,7 @@ footer {
 
 .date {
     grid-area: 1 / 2 / 2 / 3;
-    text-align: right;
+    text-align: left;
 }
 
 .comment {

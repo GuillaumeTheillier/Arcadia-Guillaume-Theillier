@@ -1,10 +1,12 @@
 <?php
-//require_once('src/model.php');
+
+require_once('src/model/comment.php');
 
 function homepage()
 {
-    //Recuperer des informations de la base de donnée
-    //$posts = getposts();
+    //Get visitor comments from database
+    $commentRepository = new CommentRepository;
+    $comments = $commentRepository->getComments();
 
     require('templates/homepage.php');
 }

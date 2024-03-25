@@ -17,7 +17,7 @@ ob_start();
                 Ces stands sont ouverts toute la journée.
             </p>
             <div>
-                <img class="service-img" src="model\images\services\restaurant.jpg" alt="Salle du restaurant du zoo">
+                <img class="service-img" src="/src/model/images/services/restaurant.jpg" alt="Salle du restaurant du zoo">
                 <p class="service-description-additional">
                     Ouvert de 9h à 17h
                     Service déjeuner de 11h30 à 15h
@@ -41,7 +41,7 @@ ob_start();
                 avec l'un de nos guides gratuitement.
             </p>
             <div>
-                <img class="service-img" src="model\images\services\visite-guidee.jpg" alt="Salle du restaurant du zoo">
+                <img class="service-img" src="/src/model\images\services\visite-guidee.jpg" alt="Salle du restaurant du zoo">
                 <p class="service-description-additional"></p>
             </div>
         </div>
@@ -55,7 +55,7 @@ ob_start();
                 tout en vous commentant ce que vous observez.
             </p>
             <div>
-                <img class="service-img" src="model\images\services\petit-train.jpg" alt="Salle du restaurant du zoo">
+                <img class="service-img" src="/src/model\images\services\petit-train.jpg" alt="Salle du restaurant du zoo">
                 <p class="service-description-additional"></p>
             </div>
         </div>
