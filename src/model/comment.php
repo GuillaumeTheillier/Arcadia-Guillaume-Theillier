@@ -1,8 +1,12 @@
 <?php
 
+require_once('database.php');
+
 class CommentRepository
 {
-    function dbConnect()
+    private DatabaseConnection $connection;
+
+    /*function dbConnect()
     {
         try {
             $pdo = new PDO(
@@ -15,14 +19,21 @@ class CommentRepository
         }
 
         return $pdo;
+    }*/
+
+    function __construct()
+    {
+        //At a new instance initialize connection with the DatabaseConnection class
+        $this->connection = new DatabaseConnection;
     }
 
-    function getComments()
+    function getComments(): array
     {
         $i = 2;
         $min = (2 * ($i - 1));
         $max = 3;
-        $statement = $this->dbConnect()->prepare(
+
+        $statement = $this->connection->getConnection()->prepare(
             'Select pseudo, commentaire, DATE_FORMAT(date, \'%d/%m/%Y\') as date FROM avis WHERE isVisible = true ORDER BY date DESC LIMIT :min , :max'
         );
         $statement->bindValue(':min', $min, pdo::PARAM_INT);
@@ -37,7 +48,7 @@ class CommentRepository
 
     function createComment(string $pseudo, string $comment): bool
     {
-        $statement = $this->dbConnect()->prepare('INSERT INTO avis(pseudo, commentaire, date, isVisible) VALUES (?, ?, NOW(), false)');
+        $statement = $this->connection->getConnection()->prepare('INSERT INTO avis(pseudo, commentaire, date, isVisible) VALUES (?, ?, NOW(), false)');
         $success = $statement->execute([$pseudo, $comment]);
 
         return $success;

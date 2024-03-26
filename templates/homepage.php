@@ -69,7 +69,20 @@
     </article>
 
     <!-- Comment -->
-    <section class="opinions">
+    <section class="opinions" id="comments">
+
+        <?php if (isset($_COOKIE['COMMENT_SUCCESS'])) : ?>
+            <div class="alert alert-success" role="alert">
+                Votre avis a bien été pris en compte. Il sera vérifier avant d'être afficher.
+                <button type='button' class="btn-close ms-auto" data-bs-dismiss='alert'></button>
+            </div>
+        <?php elseif (isset($_COOKIE['COMMENT_ERROR'])) : ?>
+            <div class="alert alert-danger" role="alert">
+                <?php echo $_COOKIE['COMMENT_ERROR']; ?>
+                <button type='button' class="btn-close ms-auto" data-bs-dismiss='alert'></button>
+            </div>
+        <?php endif; ?>
+
         <form action="index.php?action=addComment" method="post" class="form-opinion">
             <h3>Avis</h3>
             <input type="text" name="pseudo" id="pseudo" placeholder="Entrer votre pseudo" min="5" maxlength="20" required>

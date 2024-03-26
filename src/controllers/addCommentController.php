@@ -9,15 +9,44 @@ function addComment(array $input)
 
     //check if the input are not only space
     if (ctype_space($pseudo) || ctype_space($comment)) {
-        throw new Exception('L\'avis est invalides');
+        setcookie(
+            'COMMENT_ERROR',
+            'Pseudo et/ou commentaire invalides',
+            [
+                'expires' => time() + 1,
+                'httponly' => true,
+                'secure' => true
+            ]
+        );
+        //throw new Exception('L\'avis est invalides');
     } else {
         $commentRepository = new CommentRepository;
         $comment = $commentRepository->createComment($pseudo, $comment);
 
         if (!$comment) {
-            throw new Exception('Impossible d\'ajouter l\'avis');
+            setcookie(
+                'COMMENT_ERROR',
+                'Impossible d\'ajouter l\'avis.<br> Veuillez réessayer ultérieurement',
+                [
+                    'expires' => time() + 1,
+                    'httponly' => true,
+                    'secure' => true
+                ]
+            );
+            //throw new Exception('Impossible d\'ajouter l\'avis');
         } else {
-            header('Location: index.php?action=homepage');
+
+            setcookie(
+                'COMMENT_SUCCESS',
+                true,
+                [
+                    'expires' => time() + 1,
+                    'httponly' => true,
+                    'secure' => true
+                ]
+            );
         }
     }
+
+    header('Location: index.php?action=homepage#comments');
 }
