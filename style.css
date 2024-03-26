@@ -57,6 +57,12 @@ html {
     }
 }
 
+@media screen and (min-width:2200px) {
+    html {
+        font-size: 140%;
+    }
+}
+
 .page-title {
     font-size: 3.2rem;
     padding: 2rem 0;
@@ -84,18 +90,18 @@ html {
 
 .header-link {
     font-family: "Josefin Sans", sans-serif;
-    font-size: 1em;
+    font-size: 1rem;
     text-decoration: none;
     color: white;
     padding: 0rem 1rem;
 }
 
-/*
-@media screen and (max-width:992px) {
+
+@media screen and (max-width:991px) {
     .header-link {
         padding: 0.4rem 0rem 0.4rem 0.5rem;
     }
-}*/
+}
 
 
 
@@ -454,14 +460,14 @@ footer {
 }
 
 .service-img {
-    width: 35vw;
+    width: 30vw;
     height: auto;
     align-self: center;
 }
 
 .service-description-additional {
-    font-size: 0.8rem;
-    font-weight: 500;
+    font-size: 1rem;
+    font-weight: 600;
     text-align: center;
     padding: 0.5rem 0.5rem 0rem 0.5rem;
 }
@@ -504,11 +510,13 @@ footer {
 
 /* Habitats */
 .habitats-container {
-    margin: 0 20vw;
+    margin: 0vh 20vw 10vh 20vw;
     padding-top: 3rem;
     display: grid;
-    grid-template: 1fr / repeat(3, 15vw);
-    column-gap: 4rem;
+    grid-template: 1fr / repeat(3, 1fr);
+    column-gap: 8rem;
+    row-gap: 4rem;
+    justify-content: center;
 }
 
 .habitat {
@@ -517,9 +525,37 @@ footer {
     align-items: center;
 }
 
-.habitat img {
-    width: 15vw;
+.habitat-img {
+    width: 16rem;
     height: 40vh;
     object-fit: cover;
     border-radius: 20px;
+
+}
+
+.habitat-label {
+    padding-top: 0.5rem;
+}
+
+@media screen and (max-width:1000px) {
+    .habitats-container {
+        grid-template: 1fr/ 1fr 1fr;
+    }
+
+    .habitat-img {
+        width: 14rem;
+        height: 35vh;
+    }
+}
+
+@media screen and (max-width:500px) {
+    .habitats-container {
+        grid-template: 1fr/ 1fr 1fr;
+        column-gap: 3rem;
+    }
+
+    .habitat-img {
+        width: 12rem;
+        height: 22vh;
+    }
 }
