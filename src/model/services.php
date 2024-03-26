@@ -10,7 +10,7 @@ class Service
     public string $descAdditional;
 }
 
-class servicesRepository
+class ServicesRepository
 {
 
     private DatabaseConnection $connection;
