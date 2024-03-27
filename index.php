@@ -5,6 +5,7 @@ require_once(__DIR__ . '/src/controllers/servicesController.php');
 require_once(__DIR__ . '/src/controllers/homepageControllers.php');
 require_once(__DIR__ . '/src/controllers/habitatsController.php');
 require_once(__DIR__ . '/src/controllers/addCommentController.php');
+require_once(__DIR__ . '/src/controllers/pageNotFoundController.php');
 
 if (isset($_GET['action']) && $_GET['action'] !== '') {
 
@@ -16,7 +17,8 @@ if (isset($_GET['action']) && $_GET['action'] !== '') {
         try {
             $action();
         } catch (Error $e) {
-            echo 'Page Introuvable';
+            pageNotFound();
+            //echo 'Page Introuvable';
         }
     }
 } else {

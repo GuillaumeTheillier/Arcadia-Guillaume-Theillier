@@ -45,18 +45,28 @@ html {
     font-size: 100%;
 }
 
+/* Small laptop screen */
 @media screen and (max-width:1024px) {
     html {
         font-size: 90%;
     }
 }
 
+/* Tablet screen*/
+@media screen and (max-width:850px) {
+    html {
+        font-size: 85%;
+    }
+}
+
+/* Mobile screen */
 @media screen and (max-width:650px) {
     html {
         font-size: 70%;
     }
 }
 
+/* 4K screen */
 @media screen and (min-width:2200px) {
     html {
         font-size: 140%;
@@ -167,6 +177,37 @@ footer {
         align-items: center;
     }
 }
+
+
+
+
+
+/* Page not found  */
+.unfound-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.unfound-text {
+    color: var(--dark-color);
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-top: 3rem;
+}
+
+.unfound-img {
+    width: 30vw;
+    height: auto;
+    margin-top: 5rem;
+}
+
+@media screen and (max-width:760px) {
+    .unfound-img {
+        width: 50vw;
+    }
+}
+
 
 
 
