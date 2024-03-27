@@ -13,10 +13,12 @@ class HabitatsRepository
 
     function getAllHabitats(): array
     {
-        $statement = $this->connection->getConnection()->prepare('SELECT nom, image 
-                                                                    FROM habitats 
-                                                                    LEFT JOIN image ON habitats.image_id = image.image_id
-                                                                ');
+        $statement = $this->connection->getConnection()
+            ->prepare('SELECT habitats.nom as nom, images.data as image
+                        FROM habitat_image
+                        LEFT JOIN habitats ON habitat_image.habitat_id = habitats.id
+                        LEFT JOIN images ON habitat_image.image_id = images.id
+                    ');
         $statement->execute();
         while ($habitat = $statement->fetch(pdo::FETCH_ASSOC)) {
             //We encode the image in base64 to display with img balise
@@ -29,10 +31,13 @@ class HabitatsRepository
 
     function getHabitat(string $habitat): array
     {
-        $statement = $this->connection->getConnection()->prepare('SELECT nom, description, image 
-                                                                    FROM habitats
-                                                                    LEFT JOIN image ON habitats.image_id = image.image_id
-                                                                    WHERE nom = ?');
+        $statement = $this->connection->getConnection()
+            ->prepare('SELECT habitats.nom as nom, images.data as image_id, habitats.description as description
+                        FROM habitat_image
+                        LEFT JOIN habitats ON habitat_image.habitat_id = habitats.id
+                        LEFT JOIN images ON habitat_image.image_id = images.id
+                        WHERE nom = ?
+                    ');
         $statement->execute([$habitat]);
 
         $habitat = $statement->fetch(pdo::FETCH_ASSOC);

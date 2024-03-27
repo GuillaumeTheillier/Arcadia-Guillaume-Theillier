@@ -6,19 +6,14 @@ ob_start();
     <h1 class="page-title">Nos habitats</h1>
 
     <div class="habitats-container">
-        <div class="habitat">
-            <img class="habitat-img" src="<?php echo $savaneImg ?>" alt="image d'un suricate">
-            <h4 class="habitat-label">Savane</h4>
-        </div>
-        <div class="habitat">
-            <img class="habitat-img" src="<?php echo $maraisImg ?>" alt="image d'un crocodile">
-            <h4 class="habitat-label">Marais</h4>
-        </div>
-        <div class="habitat">
-            <img class="habitat-img" src="<?php echo $jungleImg ?>" alt="image d'un léopard">
-            <h4 class="habitat-label">Jungle</h4>
-        </div>
-    </div>
+
+        <?php foreach ($habitats as $habitat) : ?>
+            <div class="habitat">
+                <img class="habitat-img" src="data:image/jpg;base64,<?php echo $habitat['image'] ?>" alt="">
+                <h4 class="habitat-label"><?php echo $habitat['nom'] ?></h4>
+            </div>
+        <?php endforeach; ?>
+
     </div>
 </main>
 
