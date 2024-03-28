@@ -15,7 +15,7 @@
                 <div class="navbar-nav">
                     <a class="header-link" href="index.php?action=homepage">Accueil</a>
                     <a class="header-link" href="index.php?action=services">Services</a>
-                    <a class="header-link" href="index.php?action=habitats">Habitats</a>
+                    <a class="header-link" href="index.php?action=habitatsList">Habitats</a>
                     <a class="header-link" href="#">Infos pratiques</a>
                     <a class="header-link" href="#">Contact</a>
                     <a class="header-link" href="#">Espace du personnel</a>

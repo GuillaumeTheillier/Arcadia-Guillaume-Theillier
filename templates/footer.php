@@ -45,6 +45,6 @@
     </div>
     <p class="copyright">
         © 2024 Copyright:
-        <a style="color: white;" href="#">Arcadia</a>
+        <a style="color: white;" href="index.php?action=homepage">Arcadia</a>
     </p>
 </footer>

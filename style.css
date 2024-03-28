@@ -45,6 +45,13 @@ html {
     font-size: 100%;
 }
 
+/* 4K screen */
+@media screen and (min-width:2200px) {
+    html {
+        font-size: 140%;
+    }
+}
+
 /* Small laptop screen */
 @media screen and (max-width:1024px) {
     html {
@@ -60,16 +67,9 @@ html {
 }
 
 /* Mobile screen */
-@media screen and (max-width:650px) {
+@media screen and (max-width:500px) {
     html {
-        font-size: 70%;
-    }
-}
-
-/* 4K screen */
-@media screen and (min-width:2200px) {
-    html {
-        font-size: 140%;
+        font-size: 65%;
     }
 }
 
@@ -79,6 +79,7 @@ html {
     text-align: center;
     color: var(--dark-color)
 }
+
 
 
 
@@ -236,13 +237,6 @@ footer {
     padding: 0.5rem 0rem;
 }
 
-/*
-@media screen and (max-width: 620px) {
-    .welcome-text {
-        font-size: 1.5rem;
-    }
-}*/
-
 /* zoo presentation */
 .homepage-presentation {
     height: auto;
@@ -257,31 +251,27 @@ footer {
 }
 
 .homepage-presentation p {
-    width: 515px;
+    width: 40vw;
     font-size: 1.2rem;
     color: white;
 }
 
 .homepage-presentation img {
     object-fit: cover;
-    height: 40vh;
+    height: 30vw;
+    min-height: 120px;
+    max-height: 560px;
     width: auto;
-    border-radius: 20px;
+    border-radius: 1.25rem;
 }
 
-@media screen and (max-width: 1020px) {
+@media screen and (max-width: 770px) {
     .homepage-presentation {
-        /*flex-direction: column;*/
-        gap: 3rem;
+        padding: 1.2rem 0;
     }
 
-    /*
     .homepage-presentation p {
-        font-size: 0.8rem;
-    }*/
-
-    .homepage-presentation img {
-        height: 20vh;
+        width: 50vw;
     }
 }
 
@@ -330,7 +320,7 @@ footer {
     object-fit: cover;
     height: 19rem;
     width: 13rem;
-    border-radius: 20px;
+    border-radius: 1.25rem;
 }
 
 .hp-jungle img {
@@ -361,17 +351,6 @@ footer {
         gap: 0.3rem
     }
 
-    /*
-    .homepage-habitat h2 {
-        font-size: 1.3rem;
-    }
-
-    .homepage-habitat p,
-    .homepage-habitat h5 {
-        text-align: center;
-        font-size: 0.8rem;
-    }
-*/
     .homepage-habitat img {
         width: 160px;
         height: 70px;
@@ -549,7 +528,7 @@ footer {
 
 
 
-/* Habitats */
+/* Habitats list */
 .habitats-container {
     margin: 0vh 20vw 10vh 20vw;
     padding-top: 3rem;
@@ -564,6 +543,7 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-decoration: none;
 }
 
 .habitat-img {
@@ -575,6 +555,7 @@ footer {
 }
 
 .habitat-label {
+    color: var(--dark-color);
     padding-top: 0.5rem;
 }
 
@@ -589,14 +570,104 @@ footer {
     }
 }
 
-@media screen and (max-width:500px) {
+@media screen and (max-width:530px) {
     .habitats-container {
-        grid-template: 1fr/ 1fr 1fr;
         column-gap: 3rem;
     }
 
     .habitat-img {
         width: 12rem;
         height: 22vh;
+    }
+}
+
+
+
+
+
+/* animals list in Habitat */
+.habitat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.habitat-description {
+    background-color: var(--primary-color);
+    color: white;
+    width: 80vw;
+    height: auto;
+    text-align: justify;
+    padding: 1.5rem 3rem;
+    font-size: 1.2rem;
+}
+
+.habitat-animals-list {
+    margin-top: 8rem;
+    margin-bottom: 10rem;
+    width: 80vw;
+    display: grid;
+    grid-template: 1fr / repeat(4, auto);
+    gap: 3rem;
+}
+
+.habitat-animal {
+    background-color: var(--secondary-color);
+    width: 15vw;
+    height: auto;
+    color: var(--dark-color);
+    text-decoration: none;
+    justify-self: center;
+}
+
+.habitat-animal-img {
+    object-fit: cover;
+    width: 100%;
+    height: 20vh;
+}
+
+.habitat-animal-name,
+.habitat-animal-race {
+    padding-left: 1rem;
+    margin-top: 0.5rem;
+}
+
+.habitat-animal-name {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.habitat-animal-race {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+@media screen and (max-width:1320px) {
+    .habitat-animals-list {
+        grid-template-columns: repeat(3, auto);
+    }
+
+    .habitat-animal {
+        width: 20vw;
+    }
+}
+
+@media screen and (max-width:830px) {
+    .habitat-animals-list {
+        grid-template-columns: repeat(2, auto);
+    }
+
+    .habitat-animal {
+        width: 30vw;
+    }
+}
+
+@media screen and (max-width:425px) {
+    .habitat-animals-list {
+        grid-template-columns: repeat(1, auto);
+    }
+
+    .habitat-animal {
+        width: 60vw;
     }
 }

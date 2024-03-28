@@ -2,7 +2,7 @@
 
 require_once('src/model/habitats.php');
 
-function habitats()
+function habitatsList()
 {
     $maraisImg = '/src/model\images\homepage\pexels-henning-roettger-2100047.jpg';
     $jungleImg = '/src/model\images\homepage\zoo-4007318_1280.jpg';
@@ -11,5 +11,5 @@ function habitats()
     $habitatsRepository = new HabitatsRepository;
     $habitats = $habitatsRepository->getAllHabitats();
 
-    require('templates/habitats.php');
+    require('templates/habitatsList.php');
 }

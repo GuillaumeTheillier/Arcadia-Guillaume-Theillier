@@ -8,10 +8,10 @@ ob_start();
     <div class="habitats-container">
 
         <?php foreach ($habitats as $habitat) : ?>
-            <div class="habitat">
+            <a href="index.php?action=habitat&name=<?php echo $habitat['nom'] ?>" class="habitat">
                 <img class="habitat-img" src="data:image/jpg;base64,<?php echo $habitat['image'] ?>" alt="">
                 <h4 class="habitat-label"><?php echo $habitat['nom'] ?></h4>
-            </div>
+            </a>
         <?php endforeach; ?>
 
     </div>
