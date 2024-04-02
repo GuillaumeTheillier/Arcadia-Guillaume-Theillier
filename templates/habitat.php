@@ -13,7 +13,7 @@ ob_start();
 
     <div class="habitat-animals-list">
         <?php foreach ($animals as $animal) : ?>
-            <a class="habitat-animal" href="index.php?action=animal">
+            <a class="habitat-animal" href="index.php?action=animal&animalName=<?php echo $animal['name'] ?>">
                 <img class="habitat-animal-img" src="data:img/jpg;base64,<?php echo $animal['image'] ?>" alt="">
                 <p class="habitat-animal-name"> <?php echo $animal['name'] ?> </p>
                 <p class="habitat-animal-race"> <?php echo $animal['race'] ?> </p>

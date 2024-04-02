@@ -22,18 +22,36 @@ require_once(__DIR__ . '/src/controllers/addCommentController.php');
 require_once(__DIR__ . '/src/controllers/pageNotFoundController.php');
 require_once(__DIR__ . '/src/controllers/habitatController.php');
 require_once(__DIR__ . '/src/controllers/animalController.php');
+require_once(__DIR__ . '/src/controllers/practicalInformationController.php');
+require_once(__DIR__ . '/src/controllers/contactController.php');
+require_once(__DIR__ . '/src/controllers/sendContactController.php');
 
 if (isset($_GET['action']) && $_GET['action'] !== '') {
 
     $action = $_GET['action'];
 
+    /*if ($action === 'addComment') {
+        addComment($_POST);
+    } elseif ($action === 'habitat' && isset($_GET['habitatName'])) {
+        $habitatName = $_GET['habitatName'];
+        habitat($habitatName);
+    } elseif ($action === 'animal' && isset($_GET['animalName'])) {
+        $animalName = $_GET['animalName'];
+        animal($animalName);
+    } else {
+        $action();
+    }*/
+
     //if there are an error return unfound page
     try {
         if ($action === 'addComment') {
             addComment($_POST);
-        } elseif ($action === 'habitat' && isset($_GET['name'])) {
-            $habitatName = $_GET['name'];
+        } elseif ($action === 'habitat' && isset($_GET['habitatName'])) {
+            $habitatName = $_GET['habitatName'];
             habitat($habitatName);
+        } elseif ($action === 'animal' && isset($_GET['animalName'])) {
+            $animalName = $_GET['animalName'];
+            animal($animalName);
         } else {
             $action();
         }

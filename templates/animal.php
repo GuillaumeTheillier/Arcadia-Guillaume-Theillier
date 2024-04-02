@@ -1,15 +1,16 @@
 <?php
-$titre = 'nom animal';
+$title = $animal['name'];
 ob_start();
 ?>
 
-<main>
-    <h1 class="page-title">Prenom</h1>
-    <img src="" alt="">
-    <div>
-        <p>habitat : Marais</p>
-        <p>Race : Tigre du méandre</p>
-        <p>Etat de l'animal : En bonne santé.</p>
+<main class="animal-container">
+    <h1 class="page-title"><?php echo $animal['name'] ?></h1>
+    <img class="animal-img" src="data:image/jpg;base64,<?php echo $animal['image'] ?>" alt="">
+
+    <div class="animal-description">
+        <p class="animal-habitat">habitat : <?php echo $animal['habitat'] ?> </p>
+        <p class="animal-race">Race : <?php echo $animal['race'] ?> </p>
+        <p class="animal-status">Etat de l'animal : <?php echo $animal['status'] ?></p>
     </div>
 </main>
 

@@ -38,16 +38,13 @@ class AnimalsRepository
                                                                   FROM animals 
                                                                   LEFT JOIN race ON animals.race_id = race.id
                                                                   LEFT JOIN habitats ON animals.habitat_id = habitats.id
-                                                                  WHERE name = ?  
+                                                                  WHERE name = ?
                                                                 ');
         $statement->execute([$animal]);
 
 
-        while ($animal = $statement->fetch(pdo::FETCH_ASSOC)) {
-            $animal['image'] = base64_encode($animal['image']);
-
-            $animals[] = $animal;
-        }
+        $animal = $statement->fetch(pdo::FETCH_ASSOC);
+        $animal['image'] = base64_encode($animal['image']);
 
         return $animal;
     }
