@@ -1,7 +1,7 @@
 <?php
 $title = 'Contact';
 ob_start();
-//index.php?action=sendContact
+//phpinfo();
 ?>
 
 <main>
@@ -9,7 +9,7 @@ ob_start();
 
     <?php
     if (isset($_COOKIE['CONTACT_SUCCESS'])) {
-        echo $_COOKIE['CONTACT_DESC'];
+        echo 'working';
     } elseif (isset($_COOKIE['CONTACT_ERROR'])) {
         echo $_COOKIE['CONTACT_ERROR'];
     }
@@ -24,11 +24,11 @@ ob_start();
 
         <div class="contact-form-input">
             <label for="contact-title">Titre</label>
-            <input type="text" name="titleContact" id="contact-title" placeholder="Titre de votre message" required>
+            <input type="text" name="titleContact" id="contact-title" placeholder="Titre de votre message" minlength="5" maxlength="50" required>
         </div>
         <div class="contact-form-input">
             <label for="contact-description">Description</label>
-            <textarea name="descriptionContact" id="contact-description" placeholder="Ecriver votre message" cols="40" rows="7" maxlength="300" required></textarea>
+            <textarea name="descriptionContact" id="contact-description" placeholder="Ecriver votre message" cols="40" rows="7" minlength="10" maxlength="300" required></textarea>
         </div>
         <button type="submit">Envoyer</button>
     </form>

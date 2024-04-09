@@ -6,21 +6,6 @@ class CommentRepository
 {
     private DatabaseConnection $connection;
 
-    /*function dbConnect()
-    {
-        try {
-            $pdo = new PDO(
-                'mysql:host=localhost;dbname=arcadia;charset=utf8',
-                'root',
-                ''
-            );
-        } catch (Exception $e) {
-            die('Erreur : ' . $e->getMessage());
-        }
-
-        return $pdo;
-    }*/
-
     function __construct()
     {
         //At a new instance initialize connection with the DatabaseConnection class

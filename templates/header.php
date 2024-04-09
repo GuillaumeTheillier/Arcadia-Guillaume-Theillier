@@ -18,7 +18,7 @@
                     <a class="header-link" href="index.php?action=habitatsList">Habitats</a>
                     <a class="header-link" href="index.php?action=practicalInformation">Infos pratiques</a>
                     <a class="header-link" href="index.php?action=contact">Contact</a>
-                    <a class="header-link" href="index.php?action=espacePersonnel">Espace du personnel</a>
+                    <a class="header-link" href="index.php?action=staffLogin">Espace du personnel</a>
                 </div>
             </div>
 

@@ -42,6 +42,15 @@ p {
     font-size: 1.2rem;
 }
 
+button {
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 1.2rem;
+    padding: 0.5rem 2.8rem;
+    border: none;
+    border-radius: 5px;
+}
+
 html {
     font-size: 100%;
 }
@@ -362,7 +371,7 @@ footer {
 /* comment form */
 .opinions {
     width: 100%;
-    font-family: "Hind Siliguri", sans-serif;
+    /* font-family: "Hind Siliguri", sans-serif;*/
     color: var(--dark-color);
     padding-top: 2rem;
 
@@ -395,6 +404,7 @@ footer {
     resize: none;
 }
 
+/*
 .form-opinion button {
     background-color: var(--primary-color);
     color: white;
@@ -403,7 +413,7 @@ footer {
     border: none;
     border-radius: 5px;
 
-}
+}*/
 
 /* comment lists */
 .opinions-lists {
@@ -737,11 +747,10 @@ footer {
     text-align: justify;
 }
 
-/*
-.infos-opening-hours {}
+.infos-parking {
+    width: 500px;
+}
 
-.infos-address {}
-*/
 .infos-parking h3 {
     padding-bottom: 1rem;
 }
@@ -756,6 +765,7 @@ footer {
 
 /* Contact */
 .contact-form {
+    /*font-family: "Hind Siliguri", sans-serif;*/
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -790,11 +800,42 @@ footer {
     color: var(--dark-color)
 }
 
-.contact-form button {
-    background-color: var(--primary-color);
-    color: white;
-    font-size: 1.2rem;
-    padding: 0.5rem 2.8rem;
+
+
+
+
+
+
+/* Connection page */
+.login-info {
+    text-align: center;
+    margin-bottom: 6rem;
+}
+
+.login .alert-primary {
+    width: 50vw;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+}
+
+.login-form-input {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/*.input-form*/
+#login-username,
+#login-password {
+    width: 80vw;
+    max-width: 400px;
     border: none;
-    border-radius: 5px;
+    padding: 0.4rem 0.6rem;
+    background-color: rgb(227, 227, 227);
+    color: var(--dark-color)
 }

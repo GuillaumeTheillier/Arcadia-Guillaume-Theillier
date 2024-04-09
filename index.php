@@ -25,12 +25,13 @@ require_once(__DIR__ . '/src/controllers/animalController.php');
 require_once(__DIR__ . '/src/controllers/practicalInformationController.php');
 require_once(__DIR__ . '/src/controllers/contactController.php');
 require_once(__DIR__ . '/src/controllers/sendContactController.php');
+require_once(__DIR__ . '/src/controllers/staffLoginController.php');
 
 if (isset($_GET['action']) && $_GET['action'] !== '') {
 
     $action = $_GET['action'];
-
-    /*if ($action === 'addComment') {
+    /*
+    if ($action === 'addComment') {
         addComment($_POST);
     } elseif ($action === 'habitat' && isset($_GET['habitatName'])) {
         $habitatName = $_GET['habitatName'];
