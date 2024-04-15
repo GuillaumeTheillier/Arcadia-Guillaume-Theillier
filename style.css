@@ -805,6 +805,80 @@ footer {
 
 /* Dashboard */
 .dashboard-container {
+    margin-bottom: 4rem;
+    display: grid;
+    grid-template: 1fr 1fr / repeat(3, 37rem);
+    gap: 3rem;
+}
+
+.dashboard-section:first-of-type {
+    grid-column: -1/1;
+    justify-self: center;
+}
+
+@media screen and (max-width:1320px) {
+    .dashboard-container {
+        grid-template-columns: repeat(2, 37rem);
+    }
+}
+
+@media screen and (max-width:830px) {
+    .dashboard-container {
+        grid-template-columns: repeat(1, 37rem);
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width:425px) {}
+
+.dashboard-section {
+    width: 80vw;
+    min-width: min-content;
+    max-width: max-content;
+    height: auto;
+    padding: 1rem 2rem;
     border: 2px solid var(--dark-color);
     border-radius: 5px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
+.dashboard-section h4 {
+    font-size: 1.5rem;
+    padding-top: 0.3rem;
+    padding-bottom: 0.7rem;
+}
+
+.dashboard-section button {
+    margin-top: 1rem;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+/* users list */
+.dashboard-users-list {
+    border-collapse: collapse;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.dashboard-users-list th {
+    font-weight: 700;
+}
+
+.dashboard-users-list tr:first-of-type td {
+    border-top: 2px solid black;
+}
+
+.dashboard-users-list td {
+    padding: 0.5rem 1rem;
+    text-align: left;
+}
+
+/* habitat consultations */

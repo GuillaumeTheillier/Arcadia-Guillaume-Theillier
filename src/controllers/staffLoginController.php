@@ -27,8 +27,8 @@ function login(): never
             redirectToUrl('index.php?action=staffLogin');
         } else {
 
-            //Instanciate login class
-            $login = new Login;
+            //Instanciate users class
+            $login = new Users;
             if (!$login->usernameExist($username)) {
                 //throw new Exception('Ce nom d\'utilisateur n\'existe pas');
                 setcookie(
