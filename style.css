@@ -42,15 +42,6 @@ p {
     font-size: 1.2rem;
 }
 
-button {
-    background-color: var(--primary-color);
-    color: white;
-    font-size: 1.2rem;
-    padding: 0.5rem 2.8rem;
-    border: none;
-    border-radius: 5px;
-}
-
 html {
     font-size: 100%;
 }
@@ -89,6 +80,63 @@ html {
     text-align: center;
     color: var(--dark-color)
 }
+
+/* Center alert message */
+.alert-container {
+    text-align: center;
+}
+
+.alert {
+    display: inline-flex;
+    width: 20vw;
+}
+
+/* Form */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    padding-top: 2rem;
+    margin-bottom: 3rem;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.label-input-form {
+    font-family: "Hind Siliguri", sans-serif;
+    font-size: 1rem;
+    font-weight: 450;
+}
+
+.input-form {
+    font-family: "Hind Siliguri", sans-serif;
+    width: 80vw;
+    max-width: 400px;
+    border: none;
+    padding: 0.4rem 0.6rem;
+    background-color: rgb(227, 227, 227);
+    color: var(--dark-color)
+}
+
+textarea {
+    resize: none;
+}
+
+button {
+    font-family: "Hind Siliguri", sans-serif;
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 1.2rem;
+    padding: 0.5rem 2.8rem;
+    border: none;
+    border-radius: 5px;
+}
+
 
 
 
@@ -371,16 +419,13 @@ footer {
 /* comment form */
 .opinions {
     width: 100%;
-    /* font-family: "Hind Siliguri", sans-serif;*/
     color: var(--dark-color);
     padding-top: 2rem;
-
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 2rem;
 }
-
 
 .form-opinion {
     width: 80%;
@@ -389,31 +434,6 @@ footer {
     align-items: center;
     gap: 1.2rem
 }
-
-#comment,
-#pseudo {
-    width: 100%;
-    max-width: 50rem;
-    border: none;
-    padding: 0.2rem 0.5rem;
-    background-color: rgb(227, 227, 227);
-    color: var(--dark-color)
-}
-
-#comment {
-    resize: none;
-}
-
-/*
-.form-opinion button {
-    background-color: var(--primary-color);
-    color: white;
-    font-size: 1.2rem;
-    padding: 0.5rem 2.8rem;
-    border: none;
-    border-radius: 5px;
-
-}*/
 
 /* comment lists */
 .opinions-lists {
@@ -450,6 +470,9 @@ footer {
 .date {
     margin: 0;
 }
+
+
+
 
 
 
@@ -509,14 +532,12 @@ footer {
     .service:nth-of-type(even) .service-content {
         flex-direction: column-reverse;
         /*display: contents;*/
-
     }
 
     .service-img,
     .service-description,
     .service-description-additional {
         width: 50vw;
-
     }
 }
 
@@ -532,6 +553,9 @@ footer {
         gap: 1rem;
     }
 }
+
+
+
 
 
 
@@ -591,6 +615,8 @@ footer {
         height: 22vh;
     }
 }
+
+
 
 
 
@@ -763,79 +789,22 @@ footer {
 
 
 
-/* Contact */
-.contact-form {
-    /*font-family: "Hind Siliguri", sans-serif;*/
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 3rem;
-    padding-top: 2rem;
+
+
+/* Login page */
+.login-info {
+    text-align: center;
     margin-bottom: 3rem;
 }
 
-.contact-form label {
-    font-size: 1.2rem;
-    font-weight: 450;
-}
-
-#contact-description {
-    resize: none;
-}
-
-.contact-form-input {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-#contact-title,
-#contact-description,
-#contact-email {
-    width: 80vw;
-    max-width: 400px;
-    border: none;
-    padding: 0.4rem 0.6rem;
-    background-color: rgb(227, 227, 227);
-    color: var(--dark-color)
-}
 
 
 
 
 
 
-
-/* Connection page */
-.login-info {
-    text-align: center;
-    margin-bottom: 6rem;
-}
-
-.login .alert-primary {
-    width: 50vw;
-}
-
-.login-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 3rem;
-}
-
-.login-form-input {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-/*.input-form*/
-#login-username,
-#login-password {
-    width: 80vw;
-    max-width: 400px;
-    border: none;
-    padding: 0.4rem 0.6rem;
-    background-color: rgb(227, 227, 227);
-    color: var(--dark-color)
+/* Dashboard */
+.dashboard-container {
+    border: 2px solid var(--dark-color);
+    border-radius: 5px;
 }

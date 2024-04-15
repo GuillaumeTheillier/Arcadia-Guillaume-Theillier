@@ -71,6 +71,8 @@
     <!-- Comment -->
     <section class="opinions" id="comments">
 
+        <h3>Avis</h3>
+
         <?php if (isset($_COOKIE['COMMENT_SUCCESS'])) : ?>
             <div class="alert alert-success" role="alert">
                 Votre avis a bien été pris en compte. Il sera vérifier avant d'être afficher.
@@ -84,9 +86,8 @@
         <?php endif; ?>
 
         <form action="index.php?action=addComment" method="post" class="form-opinion">
-            <h3>Avis</h3>
-            <input type="text" name="pseudo" id="pseudo" placeholder="Entrer votre pseudo" min="5" maxlength="20" required>
-            <textarea name="comment" id="comment" cols="40" rows="5" maxlength="255" placeholder="Ecriver votre commentaire" required></textarea>
+            <input type="text" class="input-form" name="pseudo" id="pseudo" placeholder="Entrer votre pseudo" min="5" maxlength="20" required>
+            <textarea class="input-form" name="comment" id="comment" cols="40" rows="5" maxlength="255" placeholder="Ecriver votre commentaire" required></textarea>
             <button type="submit">Envoyer</button>
         </form>
 

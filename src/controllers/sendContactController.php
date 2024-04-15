@@ -11,7 +11,7 @@ function sendContact()
 
         setcookie(
             'CONTACT_ERROR',
-            'email invalides',
+            'email invalide',
             [
                 'httponly' => true,
                 'secure' => true,

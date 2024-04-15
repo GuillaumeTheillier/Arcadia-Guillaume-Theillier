@@ -13,12 +13,19 @@
 
             <div class="collapse navbar-collapse" id="navbarNav">
                 <div class="navbar-nav">
-                    <a class="header-link" href="index.php?action=homepage">Accueil</a>
-                    <a class="header-link" href="index.php?action=services">Services</a>
-                    <a class="header-link" href="index.php?action=habitatsList">Habitats</a>
-                    <a class="header-link" href="index.php?action=practicalInformation">Infos pratiques</a>
-                    <a class="header-link" href="index.php?action=contact">Contact</a>
-                    <a class="header-link" href="index.php?action=staffLogin">Espace du personnel</a>
+                    <?php if (isset($_SESSION['LOGGED_USER'])) : ?>
+                        <a class="header-link" href="index.php?action=dashboard">Tableau de bord</a>
+                        <a class="header-link" href="index.php?action=services">Services</a>
+                        <a class="header-link" href="index.php?action=habitatsList">Habitats</a>
+                        <a class="header-link" href="index.php?action=logout">Déconnexion</a>
+                    <?php else : ?>
+                        <a class="header-link" href="index.php?action=homepage">Accueil</a>
+                        <a class="header-link" href="index.php?action=services">Services</a>
+                        <a class="header-link" href="index.php?action=habitatsList">Habitats</a>
+                        <a class="header-link" href="index.php?action=practicalInformation">Infos pratiques</a>
+                        <a class="header-link" href="index.php?action=contact">Contact</a>
+                        <a class="header-link" href="index.php?action=staffLogin">Espace du personnel</a>
+                    <?php endif; ?>
                 </div>
             </div>
 
