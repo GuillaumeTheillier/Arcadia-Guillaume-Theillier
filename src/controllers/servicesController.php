@@ -22,9 +22,7 @@ function editService()
 
 function deleteService()
 {
-    $id = $_POST['serviceTitle'];
-
-    var_dump($id);
+    $id = $_POST['deleteServiceId'];
 }
 
 function newService()
