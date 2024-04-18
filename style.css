@@ -526,6 +526,23 @@ footer {
     padding: 0.5rem 0.5rem 0rem 0.5rem;
 }
 
+/* services form */
+.service-form {
+    padding-bottom: 1rem;
+    border: 1px solid var(--dark-color);
+    margin: 3rem;
+}
+
+.service-form label {
+    font-weight: 600;
+    padding-bottom: 0.3rem;
+}
+
+.service-info-container {
+    display: flex;
+    flex-direction: column;
+}
+
 @media screen and (max-width:1030px) {
 
     .service-content,
@@ -553,6 +570,8 @@ footer {
         gap: 1rem;
     }
 }
+
+
 
 
 
@@ -803,33 +822,19 @@ footer {
 
 
 
+
+
+
+
+
 /* Dashboard */
 .dashboard-container {
     margin-bottom: 4rem;
     display: grid;
-    grid-template: 1fr 1fr / repeat(3, 37rem);
-    gap: 3rem;
+    grid-template: 1fr / repeat(3, min-content);
+    row-gap: 6rem;
+    justify-content: center;
 }
-
-.dashboard-section:first-of-type {
-    grid-column: -1/1;
-    justify-self: center;
-}
-
-@media screen and (max-width:1320px) {
-    .dashboard-container {
-        grid-template-columns: repeat(2, 37rem);
-    }
-}
-
-@media screen and (max-width:830px) {
-    .dashboard-container {
-        grid-template-columns: repeat(1, 37rem);
-        justify-content: center;
-    }
-}
-
-@media screen and (max-width:425px) {}
 
 .dashboard-section {
     width: 80vw;
@@ -845,8 +850,18 @@ footer {
     align-items: center;
 }
 
+.dashboard-section:first-of-type {
+    justify-self: center;
+    grid-column: 1/4;
+}
+
+.dashboard-section:nth-of-type(3) {
+    margin-left: 4rem
+}
+
 .dashboard-section h4 {
     font-size: 1.5rem;
+    text-align: center;
     padding-top: 0.3rem;
     padding-bottom: 0.7rem;
 }
@@ -858,6 +873,31 @@ footer {
 a {
     text-decoration: none;
     color: white;
+}
+
+@media screen and (max-width:1320px) {
+    .dashboard-container {
+        grid-template-columns: repeat(2, min-content);
+    }
+}
+
+@media screen and (max-width:830px) {
+    .dashboard-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width:370px) {
+    .dashboard-section {
+        padding: 0.5rem 1rem;
+        width: 80vw;
+    }
+
+    .dashboard-section h4 {
+        font-size: 1.2rem;
+    }
 }
 
 /* users list */
@@ -879,6 +919,19 @@ a {
 .dashboard-users-list td {
     padding: 0.5rem 1rem;
     text-align: left;
+}
+
+@media screen and (max-width:360px) {
+
+    .dashboard-users-list td,
+    .dashboard-users-list th {
+        font-size: 0.9rem;
+        padding: 0.3rem 0.6rem;
+    }
+
+    .dashboard-users-list tr:first-of-type td {
+        border-top: 1px solid black;
+    }
 }
 
 /* habitat consultations */

@@ -22,7 +22,7 @@ class ServicesRepository
 
     function getServices(): array
     {
-        $statement = $this->connection->getConnection()->prepare('SELECT nom, description, image, description_additional FROM services');
+        $statement = $this->connection->getConnection()->prepare('SELECT id, nom, description, image, description_additional FROM services');
         $statement->execute();
 
 
@@ -33,5 +33,12 @@ class ServicesRepository
         }
 
         return $services;
+    }
+
+    function deleteService(int $idService): bool
+    {
+        $statement = $this->connection->getConnection()->prepare('DELETE FROM `services` WHERE id = ?');
+
+        return $statement->execute([$idService]);
     }
 }

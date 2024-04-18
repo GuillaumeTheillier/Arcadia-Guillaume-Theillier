@@ -45,7 +45,7 @@ function login(): never
             }
 
 
-            if (!$login->verifyPassword($username, $password)) {
+            if (!$user = $login->verifyPassword($username, $password)) {
                 //throw new Exception('Mot de passe incorrect');
                 setcookie(
                     'LOGIN_ERROR',
@@ -60,7 +60,8 @@ function login(): never
                 redirectToUrl('index.php?action=staffLogin');
             }
 
-            $_SESSION['LOGGED_USER'] = $username;
+            $_SESSION['LOGGED_USER'] = $user['username'];
+            $_SESSION['ROLE_USER'] = $user['role_id'];
             redirectToUrl('index.php?action=dashboard');
         }
     }
