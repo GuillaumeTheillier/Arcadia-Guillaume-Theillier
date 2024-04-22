@@ -22,7 +22,7 @@ class ServicesRepository
 
     function getServices(): array
     {
-        $statement = $this->connection->getConnection()->prepare('SELECT id, nom, description, image, description_additional FROM services');
+        $statement = $this->connection->getConnection()->prepare('SELECT id, title, description, image, description_additional FROM services');
         $statement->execute();
 
 
@@ -40,5 +40,28 @@ class ServicesRepository
         $statement = $this->connection->getConnection()->prepare('DELETE FROM `services` WHERE id = ?');
 
         return $statement->execute([$idService]);
+    }
+
+    function editService(int $id, string $title, string $description, string $image, string $descAdd): bool
+    {
+        $statement = $this->connection->getConnection()->prepare('UPDATE \'services\' 
+                                                                  SET title = ?, description = ?, image = ?, description_additional = ? 
+                                                                  WHERE id = ?
+                                                                  ');
+
+        $success = $statement->execute([$title, $description, $image, $descAdd, $id]);
+
+        return $success;
+    }
+
+    function newService(string $title, string $description, string $image, string $descAdd): bool
+    {
+        $statement = $this->connection->getConnection()->prepare("INSERT INTO 'services'('title','description','image','description_additional')
+                                                                  VALUES (?, ?, ?, ?)
+                                                                ");
+
+        $success = $statement->execute([$title, $description, $image, $descAdd]);
+
+        return $success;
     }
 }

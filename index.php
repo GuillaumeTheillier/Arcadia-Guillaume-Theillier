@@ -32,7 +32,7 @@ require_once(__DIR__ . '/src/controllers/dashboardController.php');
 if (isset($_GET['action']) && $_GET['action'] !== '') {
 
     $action = $_GET['action'];
-    /* if ($action === 'addComment') {
+    if ($action === 'addComment') {
         addComment($_POST);
     } elseif ($action === 'habitat' && isset($_GET['habitatName'])) {
         $habitatName = $_GET['habitatName'];
@@ -42,7 +42,7 @@ if (isset($_GET['action']) && $_GET['action'] !== '') {
         animal($animalName);
     } else {
         $action();
-    }*/
+    }
 
     //if there are an error return unfound page
     try {

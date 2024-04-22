@@ -11,10 +11,11 @@ ob_start();
         <button type="button" class="service-add-button">Ajouter un service</button>
 
         <?php foreach ($services as $service) : ?>
-            <form method="post" class="service-form">
+            <form method="post" class="service-form" enctype='multipart/form-data'>
+
                 <h4 class="service-info-container">
                     <label for="service-title">Titre</label>
-                    <input type="text" name="serviceTitle" id="service-title" class="service-title" value="<?php echo $service['nom'] ?>">
+                    <input type="text" name="serviceTitle" id="service-title" class="service-title" value="<?php echo $service['title'] ?>">
                 </h4>
 
                 <div class="service-content">
@@ -25,6 +26,8 @@ ob_start();
                     <div>
                         <!-- "data:image/jpg;base64,.." convert base64 to jpg -->
                         <img class="service-img" src="data:image/jpg;base64,<?php echo $service['image'] ?>" alt="">
+                        <input type="file" name="serviceImage" id="service-image" accept="image/png, image/jpeg">
+
                         <p class="service-info-container">
                             <label for="service-desc-add">description additionnel (facultatif)</label>
                             <input type="text" name="serviceDescAdd" id="service-desc-add" class="service-description-additional" value="<?php echo $service['description_additional'] ?>">
@@ -32,8 +35,9 @@ ob_start();
                     </div>
                 </div>
 
-                <button type="submit" name="editServiceId" formaction="index.php?action=deleteService">Enregister les modifications</button>
+                <button type="submit" name="editServiceId" formaction="index.php?action=editService">Enregister les modifications</button>
                 <button type="submit" name="deleteServiceId" value="<?php echo $service['id'] ?>" formaction="index.php?action=deleteService">Supprimer ce service</button>
+
             </form>
 
         <?php endforeach ?>
@@ -43,7 +47,7 @@ ob_start();
 
         <?php foreach ($services as $service) : ?>
             <article class="service">
-                <h4 class="service-title"><?php echo nl2br(htmlspecialchars($service['nom'])); ?></h4>
+                <h4 class="service-title"><?php echo nl2br(htmlspecialchars($service['title'])); ?></h4>
                 <div class="service-content">
                     <p class="service-description"> <?php echo nl2br(htmlspecialchars($service['description'])); ?></p>
                     <div>
