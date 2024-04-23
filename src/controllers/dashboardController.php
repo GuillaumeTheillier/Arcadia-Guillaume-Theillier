@@ -2,7 +2,7 @@
 
 require_once('src/model/staffLogin.php');
 
-function dashboard(): never
+function dashboard()
 {
     $usersRepository = new Users;
     $users = $usersRepository->getAllUsers();

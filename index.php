@@ -45,7 +45,7 @@ if (isset($_GET['action']) && $_GET['action'] !== '') {
     }
 
     //if there are an error return unfound page
-    try {
+    /*try {
         if ($action === 'addComment') {
             addComment($_POST);
         } elseif ($action === 'habitat' && isset($_GET['habitatName'])) {
@@ -59,7 +59,7 @@ if (isset($_GET['action']) && $_GET['action'] !== '') {
         }
     } catch (Error $e) {
         pageNotFound();
-    }
+    }*/
 } else {
     homepage();
 }

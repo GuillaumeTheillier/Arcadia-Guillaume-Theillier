@@ -1,13 +1,14 @@
 <?php
 
 require_once('src/model/staffLogin.php');
+require_once('src/lib/functions.php');
 
-function staffLogin(): never
+function staffLogin()
 {
     require('templates/staffLogin.php');
 }
 
-function login(): never
+function login()
 {
     if (isset($_POST['loginUsername']) && isset($_POST['loginPassword'])) {
         $username = htmlspecialchars($_POST['loginUsername']);
@@ -67,7 +68,7 @@ function login(): never
     }
 }
 
-function logout(): never
+function logout()
 {
     //Destroy current session with session variables
     session_unset();
@@ -85,10 +86,4 @@ function logout(): never
     );
 
     redirectToUrl('index.php');
-}
-
-function redirectToUrl(string $url): never
-{
-    header('Location: ' . $url);
-    exit();
 }

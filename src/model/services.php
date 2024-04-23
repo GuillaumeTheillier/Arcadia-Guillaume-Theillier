@@ -22,13 +22,13 @@ class ServicesRepository
 
     function getServices(): array
     {
-        $statement = $this->connection->getConnection()->prepare('SELECT id, title, description, image, description_additional FROM services');
+        $statement = $this->connection->getConnection()->prepare('SELECT id, title, description, image, description_additional FROM services;');
         $statement->execute();
 
 
         while ($service = $statement->fetch(pdo::FETCH_ASSOC)) {
             //We encode the image in base64 to display with img balise
-            $service['image'] = base64_encode($service['image']);
+            //$service['image'] = base64_encode($service['image']);
             $services[] = $service;
         }
 
@@ -37,19 +37,30 @@ class ServicesRepository
 
     function deleteService(int $idService): bool
     {
-        $statement = $this->connection->getConnection()->prepare('DELETE FROM `services` WHERE id = ?');
+        $statement = $this->connection->getConnection()->prepare('DELETE FROM `services` WHERE id = ?;');
 
         return $statement->execute([$idService]);
     }
 
     function editService(int $id, string $title, string $description, string $image, string $descAdd): bool
     {
-        $statement = $this->connection->getConnection()->prepare('UPDATE \'services\' 
+        //var_dump([$id, $title, $description, $image, $descAdd]);
+
+        if ($image !== '') {
+            $statement = $this->connection->getConnection()->prepare('UPDATE `services`
                                                                   SET title = ?, description = ?, image = ?, description_additional = ? 
-                                                                  WHERE id = ?
+                                                                  WHERE id = ?;
                                                                   ');
 
-        $success = $statement->execute([$title, $description, $image, $descAdd, $id]);
+            $success = $statement->execute([$title, $description, $image, $descAdd, $id]);
+        } else {
+            $statement = $this->connection->getConnection()->prepare('UPDATE `services`
+                                                                  SET title = ?, description = ?, description_additional = ? 
+                                                                  WHERE id = ?;
+                                                                  ');
+
+            $success = $statement->execute([$title, $description, $descAdd, $id]);
+        }
 
         return $success;
     }
@@ -57,7 +68,7 @@ class ServicesRepository
     function newService(string $title, string $description, string $image, string $descAdd): bool
     {
         $statement = $this->connection->getConnection()->prepare("INSERT INTO 'services'('title','description','image','description_additional')
-                                                                  VALUES (?, ?, ?, ?)
+                                                                  VALUES (?, ?, ?, ?);
                                                                 ");
 
         $success = $statement->execute([$title, $description, $image, $descAdd]);

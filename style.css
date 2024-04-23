@@ -88,7 +88,7 @@ html {
 
 .alert {
     display: inline-flex;
-    width: 20vw;
+    width: fit-content;
 }
 
 /* Form */
@@ -528,9 +528,11 @@ footer {
 
 /* services form */
 .service-form {
-    padding-bottom: 1rem;
+    padding-top: 0;
+    padding-bottom: 1.4rem;
     border: 1px solid var(--dark-color);
-    margin: 3rem;
+    margin: 2rem 3rem;
+    row-gap: 0;
 }
 
 .service-form label {
@@ -541,6 +543,29 @@ footer {
 .service-info-container {
     display: flex;
     flex-direction: column;
+    padding-top: 1.5rem;
+}
+
+#service-form-img {
+    padding-top: 0.5rem;
+}
+
+.service-form-button {
+    display: inline-flex;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+}
+
+.service-add-container {
+    text-align: center;
+}
+
+.service-add-button {
+    display: inline-flex;
+}
+
+.service-add-button:last-of-type {
+    margin-bottom: 2rem;
 }
 
 @media screen and (max-width:1030px) {
@@ -548,7 +573,7 @@ footer {
     .service-content,
     .service:nth-of-type(even) .service-content {
         flex-direction: column-reverse;
-        /*display: contents;*/
+        gap: 0rem
     }
 
     .service-img,
@@ -567,7 +592,7 @@ footer {
     }
 
     .service-content {
-        gap: 1rem;
+        gap: 0rem;
     }
 }
 

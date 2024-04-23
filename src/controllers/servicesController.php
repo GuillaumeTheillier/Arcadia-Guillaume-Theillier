@@ -1,7 +1,6 @@
 <?php
 
-use function PHPSTORM_META\type;
-
+require_once('src/lib/functions.php');
 require_once('src/model/services.php');
 
 function servicesRepository()
@@ -20,55 +19,78 @@ function services()
 
 function editService()
 {
-    if (isset($_POST['editServiceId']) && isset($_POST['serviceTitle']) && isset($_POST['serviceDescription']) && isset($_POST['serviceDescAdd']) && isset($_FILES['serviceImage'])) {
-        $id = $_POST['editServiceId'];
-        $title = $_POST['serviceTitle'];
-        $description = $_POST['serviceDescription'];
-        $descAdd = $_POST['serviceDescAdd'];
+    if (isset($_POST['editServiceId']) && isset($_POST['serviceTitle']) && isset($_POST['serviceDescription'])) {
 
-        $imageFile = $_FILES['serviceImage'];
-        $imageExt = explode('/', $imageFile['type']);
-        $imageExt = $imageExt[1];
-        $extensions = ['jpg', 'png', 'jpeg'];
-        //Image max size 
-        $maxSize = 400000;
+        $id = (int)$_POST['editServiceId'];
+        var_dump($id);
+        $title = htmlspecialchars($_POST['serviceTitle']);
+        $description = nl2br(htmlspecialchars($_POST['serviceDescription']));
+        $descAdd = htmlspecialchars($_POST['serviceDescAdd']);
 
-        //var_dump($imageExt);
+        //initialize variable $data for image data
+        $data = '';
 
-        if (true) { //in_array($imageExt[0], $extensions)) && $imageFile['size'] <= $maxSize && $imageFile['error'] === 0) {
-            //move_uploaded_file($imageFile['tmp_name'], 'tmp/' . $imageFile['name']);
+        //check if user want upload an image to modify them
+        //$_Files[] Error code 4 : No file was uploaded
+        if ($_FILES['serviceImage']['error'] !== 4) {
+            $imageFile = $_FILES['serviceImage'];
+            $imageExt = pathinfo($_FILES['serviceImage']['name'], PATHINFO_EXTENSION);
+            $extensions = ['jpg', 'png', 'jpeg'];
 
-            $data = file_get_contents('B:\Etude\STUDI\DWWM\ECF\Images\Services\petit-train.jpg');
-            //var_dump(base64_encode($data));
-            $success = servicesRepository()->editService($id, $title, $description, $data, $descAdd);
-        } else {
-            setcookie(
-                'SERVICE_ERROR',
-                'Erreur lors du téléchargement de l\'image',
-                [
-                    'expires' => time() + 1,
-                    'httponly' => true,
-                    'secure' => true
-                ]
-            );
-            var_dump('fffffff');
+            //Image max size 
+            $maxSize = 400000;
+
+            if (in_array($imageExt, $extensions) && $imageFile['size'] <= $maxSize) {
+
+                //Move image to a tmp folder
+                move_uploaded_file($imageFile['tmp_name'], 'tmp/' . $imageFile['name']);
+                $data = file_get_contents('tmp/' . $imageFile['name']);
+                $data = base64_encode($data);
+                //var_dump($data);
+
+
+                //delete image saved in tmp folder
+                unlink('tmp/' . $imageFile['name']);
+            } else {
+                setcookie(
+                    'SERVICE_ERROR',
+                    'Erreur lors du téléchargement de l\'image',
+                    [
+                        'expires' => time() + 2,
+                        'httponly' => true,
+                        'secure' => true
+                    ]
+                );
+            }
         }
 
-        //var_dump([$id, $title, $description, $imageFile, $descAdd]);
+        //var_dump([$id, $title, $description, $data, $descAdd]);
+        //send information to modify them in database
+        $success = servicesRepository()->editService($id, $title, $description, $data, $descAdd);
 
         setcookie(
             'SERVICE_SUCCESS',
             $success,
             [
-                'expires' => time() + 1,
+                'expires' => time() + 2,
                 'httponly' => true,
                 'secure' => true
             ]
         );
-
-        //redirect to the service page
-        services();
+    } else {
+        setcookie(
+            'SERVICE_ERROR',
+            'Toutes les entrées obligatoires n\'ont pas été rempli',
+            [
+                'expires' => time() + 5,
+                'httponly' => true,
+                'secure' => true
+            ]
+        );
     }
+
+    //redirect to the service page
+    redirectToUrl('index.php?action=services');
 }
 
 function imageUpload()
@@ -80,18 +102,73 @@ function deleteService()
     $id = $_POST['deleteServiceId'];
 
     servicesRepository()->deleteService($id);
+
     //redirect to the service page
-    services();
+    redirectToUrl('index.php?action=services');
 }
 
 function newService()
 {
-    $title = $_POST['serviceTitle'];
-    $description = $_POST['serviceDescription'];
-    $descAdd = $_POST['serviceDescAdd'];
-    $image = '';
+    if (isset($_POST['serviceTitle']) && isset($_POST['serviceDescription']) && $_FILES['serviceImage']['error'] === 0) {
 
-    servicesRepository()->newService($title, $description, $image, $descAdd);
+        $title = htmlspecialchars($_POST['serviceTitle']);
+        $description = nl2br(htmlspecialchars($_POST['serviceDescription']));
+        $descAdd = htmlspecialchars($_POST['serviceDescAdd']);
+
+        $imageFile = $_FILES['serviceImage'];
+        $imageExt = pathinfo($_FILES['serviceImage']['name'], PATHINFO_EXTENSION);
+        $extensions = ['jpg', 'png', 'jpeg'];
+
+        //Image max size 
+        $maxSize = 400000;
+        //var_dump($imageExt);
+        //var_dump($imageFile['error']);
+
+        if (in_array($imageExt, $extensions) && $imageFile['size'] <= $maxSize) {
+
+            //Move image to a tmp folder
+            move_uploaded_file($imageFile['tmp_name'], 'tmp/' . $imageFile['name']);
+            $data = file_get_contents('tmp/' . $imageFile['name']);
+            $data = base64_encode($data);
+            //var_dump($data);
+            //var_dump([$id, $title, $description, $imageFile, $descAdd]);
+            $success = servicesRepository()->newService($title, $description, $data, $descAdd);
+
+            //delete image saved in tmp folder
+            unlink('tmp/' . $imageFile['name']);
+
+            setcookie(
+                'SERVICE_SUCCESS',
+                $success,
+                [
+                    'expires' => time() + 2,
+                    'httponly' => true,
+                    'secure' => true
+                ]
+            );
+        } else {
+            setcookie(
+                'SERVICE_ERROR',
+                'Erreur lors du téléchargement de l\'image',
+                [
+                    'expires' => time() + 5,
+                    'httponly' => true,
+                    'secure' => true
+                ]
+            );
+        }
+    } else {
+        setcookie(
+            'SERVICE_ERROR',
+            'Toutes les entrées obligatoires n\'ont pas été rempli',
+            [
+                'expires' => time() + 5,
+                'httponly' => true,
+                'secure' => true
+            ]
+        );
+    }
+
     //redirect to the service page
-    services();
+    redirectToUrl('index.php?action=services');
 }
