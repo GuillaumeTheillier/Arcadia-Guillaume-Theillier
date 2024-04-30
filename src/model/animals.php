@@ -48,4 +48,16 @@ class AnimalsRepository
 
         return $animal;
     }
+
+    function editAnimal()
+    {
+    }
+
+    function newAnimal()
+    {
+    }
+
+    function deleteAnimal()
+    {
+    }
 }

@@ -9,17 +9,48 @@ ob_start();
         Habitat : <?php echo $habitat['nom'] ?>
     </h1>
 
-    <p class="habitat-description"> <?php echo $habitat['description'] ?> </p>
+    <?php if (isset($_SESSION['LOGGED_USER']) && $_SESSION['ROLE_USER'] === 3) : ?>
 
-    <div class="habitat-animals-list">
-        <?php foreach ($animals as $animal) : ?>
-            <a class="habitat-animal" href="index.php?action=animal&animalName=<?php echo $animal['name'] ?>">
-                <img class="habitat-animal-img" src="data:img/jpg;base64,<?php echo $animal['image'] ?>" alt="">
-                <p class="habitat-animal-name"> <?php echo $animal['name'] ?> </p>
-                <p class="habitat-animal-race"> <?php echo $animal['race'] ?> </p>
-            </a>
-        <?php endforeach ?>
-    </div>
+        <p class="habitat-description"> <?php echo $habitat['description'] ?> </p>
+
+        <div class="button-container">
+            <button type="button" class="button-crud">Ajouter un animal</button>
+        </div>
+
+        <div class="habitat-animals-list">
+            <?php foreach ($animals as $animal) : ?>
+                <article class="habitat-animal">
+                    <a href="index.php?action=animal&animalName=<?php echo $animal['name'] ?>">
+                        <img class="habitat-animal-img" src="data:img/jpg;base64,<?php echo $animal['image'] ?>" alt="">
+                        <p class="habitat-animal-name"> <?php echo $animal['name'] ?> </p>
+                        <p class="habitat-animal-race"> <?php echo $animal['race'] ?> </p>
+                    </a>
+                    <div class="button-container">
+                        <button type="button" class="button-crud">Modifier</button>
+                    </div>
+                </article>
+            <?php endforeach ?>
+        </div>
+
+        <div class="button-container">
+            <button type="button" class="button-crud">Ajouter un animal</button>
+        </div>
+
+    <?php else : ?>
+
+        <p class="habitat-description"> <?php echo $habitat['description'] ?> </p>
+
+        <div class="habitat-animals-list">
+            <?php foreach ($animals as $animal) : ?>
+                <a class="habitat-animal" href="index.php?action=animal&animalName=<?php echo $animal['name'] ?>">
+                    <img class="habitat-animal-img" src="data:img/jpg;base64,<?php echo $animal['image'] ?>" alt="">
+                    <p class="habitat-animal-name"> <?php echo $animal['name'] ?> </p>
+                    <p class="habitat-animal-race"> <?php echo $animal['race'] ?> </p>
+                </a>
+            <?php endforeach ?>
+        </div>
+
+    <?php endif ?>
 
 </main>
 

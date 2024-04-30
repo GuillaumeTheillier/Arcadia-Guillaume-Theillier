@@ -22,8 +22,8 @@ ob_start();
             <?php endif; ?>
         </div>
 
-        <div class="service-add-container">
-            <button type="button" class="service-add-button">Ajouter un service</button>
+        <div class="button-container">
+            <button type="button" class="button-crud">Ajouter un service</button>
         </div>
 
 
@@ -60,8 +60,9 @@ ob_start();
             </form>
 
         <?php endforeach ?>
-        <div class="service-add-container">
-            <button type="button" class="service-add-button">Ajouter un service</button>
+
+        <div class="button-container">
+            <button type="button" class="button-crud">Ajouter un service</button>
         </div>
 
 

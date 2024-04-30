@@ -137,6 +137,17 @@ button {
     border-radius: 5px;
 }
 
+.button-container {
+    text-align: center;
+}
+
+.button-crud {
+    display: inline-flex;
+}
+
+.button-crud:last-of-type {
+    margin-bottom: 2rem;
+}
 
 
 
@@ -459,6 +470,7 @@ footer {
 .date {
     grid-area: 1 / 2 / 2 / 3;
     text-align: left;
+    font-size: 0.85rem;
 }
 
 .comment {
@@ -556,6 +568,7 @@ footer {
     margin-top: 1.5rem;
 }
 
+/*
 .service-add-container {
     text-align: center;
 }
@@ -566,7 +579,7 @@ footer {
 
 .service-add-button:last-of-type {
     margin-bottom: 2rem;
-}
+}*/
 
 @media screen and (max-width:1030px) {
 
