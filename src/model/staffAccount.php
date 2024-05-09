@@ -2,12 +2,7 @@
 
 require_once('database.php');
 
-/* 
- * if (password_verify('va7B6C!fm%Gd', '$2y$10$CJamkDcx.bbO1.ScdKMvbOEQbaBax/Rc9gzMMYGFbZ4V.YYo506yy')) {
- *    echo 'connexion réussie';
- * } else echo 'echec de la connexion';
- */
-class Users
+class AccountRepository
 {
     private DatabaseConnection $db_connect;
 
@@ -66,7 +61,7 @@ class Users
     /**
      * Checks if password given with input match with hash save in database
      * 
-     * Return false for wrong password or user array for correct prassword
+     * @return Bool false for wrong password or user array for correct prassword
      * */
     function verifyPassword(string $username, string $password): bool|array
     {
