@@ -18,9 +18,10 @@ ob_start();
                         <img class="habitat-img" src="data:image/jpg;base64,<?php echo $habitat['image'] ?>" alt="">
                         <h4 class="habitat-label"><?php echo $habitat['nom'] ?></h4>
                     </a>
-                    <div class="button-container">
-                        <button type="button" class="button-crud">Modifier</button>
-                    </div>
+                    <form method="post" class="button-container">
+                        <button type="button" name="habitatName" value="<?php echo $habitat['nom'] ?>" class="button-crud">Modifier</button>
+                        <button type="submit" name="habitatName" value="<?php echo $habitat['nom'] ?>" formaction="index.php?action=deleteHabitat" class="button-crud">Supprimer</button>
+                    </form>
                 </article>
             <?php endforeach; ?>
         </div>

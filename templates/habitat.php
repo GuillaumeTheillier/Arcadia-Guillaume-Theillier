@@ -25,9 +25,10 @@ ob_start();
                         <p class="habitat-animal-name"> <?php echo $animal['name'] ?> </p>
                         <p class="habitat-animal-race"> <?php echo $animal['race'] ?> </p>
                     </a>
-                    <div class="button-container">
-                        <button type="button" class="button-crud">Modifier</button>
-                    </div>
+                    <form method="post" class="button-container">
+                        <button type="button" name="animalName" value="<?php echo $habitat['nom'] ?>" class="button-crud">Modifier</button>
+                        <button type="submit" name="animalName" value="<?php echo $habitat['nom'] ?>" formaction="index.php?action=deleteAnimal" class="button-crud">Supprimer</button>
+                    </form>
                 </article>
             <?php endforeach ?>
         </div>
