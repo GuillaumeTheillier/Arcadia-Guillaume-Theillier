@@ -62,6 +62,11 @@ function login()
             }
 
             $_SESSION['LOGGED_USER'] = $user['username'];
+            /*
+                1 = employee
+                2 = veterinarian
+                3 = admin
+            */
             $_SESSION['ROLE_USER'] = $user['role_id'];
             redirectToUrl('index.php?action=dashboard');
         }

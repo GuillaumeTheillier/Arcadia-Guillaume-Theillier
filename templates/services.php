@@ -6,7 +6,7 @@ ob_start();
 <main>
     <h1 class="page-title"> Services </h1>
 
-    <?php if (isset($_SESSION['LOGGED_USER']) && $_SESSION['ROLE_USER'] === 3) : ?>
+    <?php if (isset($_SESSION['LOGGED_USER']) && ($_SESSION['ROLE_USER'] === 3 || $_SESSION['ROLE_USER'] === 1)) : ?>
 
         <div class="alert-container">
             <?php if (isset($_COOKIE['SERVICE_SUCCESS']) && $_COOKIE['SERVICE_SUCCESS'] === true) : ?>

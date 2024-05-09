@@ -138,6 +138,9 @@ button {
 }
 
 .button-container {
+    padding-top: 0.7rem;
+    margin: 0;
+    gap: 0;
     text-align: center;
 }
 
@@ -146,6 +149,7 @@ button {
 }
 
 .button-crud:last-of-type {
+    margin-top: 1rem;
     margin-bottom: 2rem;
 }
 
@@ -428,7 +432,7 @@ footer {
 
 /* Comments */
 /* comment form */
-.opinions {
+.comment-section {
     width: 100%;
     color: var(--dark-color);
     padding-top: 2rem;
@@ -438,7 +442,7 @@ footer {
     gap: 2rem;
 }
 
-.form-opinion {
+.form-comment {
     width: 80%;
     display: flex;
     flex-direction: column;
@@ -447,15 +451,15 @@ footer {
 }
 
 /* comment lists */
-.opinions-lists {
+.comments-lists {
     width: 80%;
     margin-top: 1rem;
     margin-bottom: 2rem;
 }
 
-.opinion {
+.comment-container {
     width: 100%;
-    padding: 1rem 1.5rem 1.2rem 1.5rem;
+    padding: 1rem 1.5rem 2rem 1.5rem;
     border-top: 2px solid var(--dark-color);
     display: grid;
     grid-template: repeat(2, 50%)/ 85% 15%;
@@ -973,3 +977,94 @@ a {
 }
 
 /* habitat consultations */
+
+
+
+
+
+
+
+
+
+/* Manage comment */
+.mana-comments-lists {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.mana-comment-container {
+    width: 80vw;
+    padding: 1rem 1.5rem 1.2rem 0.4rem;
+    border-top: 2px solid var(--dark-color);
+    display: grid;
+    grid-template: repeat(2, 3rem)/ 50% 10% 40%;
+    gap: 1.5rem;
+}
+
+.mana-comment-pseudo {
+    grid-area: 1 / 1 / 2 / 2;
+    font-weight: 900;
+}
+
+.mana-comment {
+    grid-area: 2 / 1 / 3 / 3;
+}
+
+.mana-comment-date {
+    grid-area: 1 / 2 / 2 / 3;
+    text-align: left;
+    font-size: 0.85rem;
+}
+
+.mana-comment-container form {
+    grid-area: 1 / 3 / 3 / 4;
+    justify-self: center;
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+}
+
+.mana-comment-radio {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-weight: 650;
+    font-size: 1.1rem;
+    font-family: "Josefin Sans", sans-serif;
+}
+
+@media screen and (max-width:800px) {
+    .mana-comment-container {
+        grid-template: repeat(3, 3rem)/ 80% 20%;
+        row-gap: 1rem;
+        column-gap: 0;
+    }
+
+    .mana-comment-pseudo {
+        grid-area: 1 / 1 / 2 / 2;
+    }
+
+    .mana-comment {
+        grid-area: 2 / 1 / 3 / 3;
+    }
+
+    .mana-comment-date {
+        grid-area: 1 / 2 / 2 / 3;
+    }
+
+    .mana-comment-container form {
+        grid-area: 3 / 1 / 4 / 4;
+        justify-self: center;
+        flex-direction: row;
+        justify-items: center;
+    }
+
+    .mana-comment-container form>div {
+        display: flex;
+        flex-direction: row;
+        gap: 2rem;
+    }
+}

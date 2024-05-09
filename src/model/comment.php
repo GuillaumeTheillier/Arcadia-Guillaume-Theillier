@@ -31,11 +31,30 @@ class CommentRepository
         return $comments;
     }
 
+    function getAll()
+    {
+        $statement = $this->connection->getConnection()->prepare(
+            'Select id, pseudo, commentaire, DATE_FORMAT(date, \'%d/%m/%Y\') as date, isVisible FROM avis'
+        );
+        $statement->execute();
+        while ($comment = $statement->fetch(pdo::FETCH_ASSOC)) {
+            $comments[] = $comment;
+        }
+
+        return $comments;
+    }
+
     function createComment(string $pseudo, string $comment): bool
     {
         $statement = $this->connection->getConnection()->prepare('INSERT INTO avis(pseudo, commentaire, date, isVisible) VALUES (?, ?, NOW(), false)');
         $success = $statement->execute([$pseudo, $comment]);
 
         return $success;
+    }
+
+    function validComment(bool $visible, int $id): bool
+    {
+        $statement = $this->connection->getConnection()->prepare('UPDATE avis SET isVisible = ? WHERE id = ?;');
+        return $statement->execute([$visible, $id]);
     }
 }

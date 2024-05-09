@@ -28,6 +28,7 @@ require_once(__DIR__ . '/src/controllers/contactController.php');
 require_once(__DIR__ . '/src/controllers/sendContactController.php');
 require_once(__DIR__ . '/src/controllers/staffLoginController.php');
 require_once(__DIR__ . '/src/controllers/dashboardController.php');
+require_once(__DIR__ . '/src/controllers/manageCommentController.php');
 
 if (isset($_GET['action']) && $_GET['action'] !== '') {
 

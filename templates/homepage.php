@@ -69,7 +69,7 @@
     </article>
 
     <!-- Comment -->
-    <section class="opinions" id="comments">
+    <section class="comment-section" id="comments">
 
         <h3>Avis</h3>
 
@@ -85,20 +85,19 @@
             </div>
         <?php endif; ?>
 
-        <form action="index.php?action=addComment" method="post" class="form-opinion">
+        <form action="index.php?action=addComment" method="post" class="form-comment">
             <input type="text" class="input-form" name="pseudo" id="pseudo" placeholder="Entrer votre pseudo" min="5" maxlength="20" required>
             <textarea class="input-form" name="comment" id="comment" cols="40" rows="5" maxlength="255" placeholder="Ecriver votre commentaire" required></textarea>
             <button type="submit">Envoyer</button>
         </form>
 
-        <article class="opinions-lists">
+        <article class="comments-lists">
             <!-- All visitor's comment -->
             <?php foreach ($comments as $comment) : ?>
-                <article class="opinion">
+                <article class="comment-container">
                     <p class="pseudo"><?php echo htmlspecialchars($comment['pseudo']); ?></p>
                     <p class="date">publié le <?php echo $comment['date']; ?></p>
                     <p class="comment"><?php echo nl2br(htmlspecialchars($comment['commentaire'])); ?></p>
-
                 </article>
             <?php endforeach; ?>
         </article>

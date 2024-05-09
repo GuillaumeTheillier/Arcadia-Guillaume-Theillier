@@ -14,10 +14,36 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <div class="navbar-nav">
                     <?php if (isset($_SESSION['LOGGED_USER'])) : ?>
-                        <a class="header-link" href="index.php?action=dashboard">Tableau de bord</a>
-                        <a class="header-link" href="index.php?action=services">Services</a>
-                        <a class="header-link" href="index.php?action=habitatsList">Habitats</a>
-                        <a class="header-link" href="index.php?action=logout">Déconnexion</a>
+                        <?php $role = $_SESSION['ROLE_USER']; ?>
+                        <?php
+                        switch ($role):
+                                //Employee
+                            case 1:
+                        ?>
+                                <a class="header-link" href="index.php?action=dashboard">Tableau de bord</a>
+                                <a class="header-link" href="index.php?action=services">Services</a>
+                                <a class="header-link" href="index.php?action=habitatsList">Habitats</a>
+                                <a class="header-link" href="index.php?action=manageComment">Avis</a>
+                                <a class="header-link" href="index.php?action=logout">Déconnexion</a>
+                                <?php break; ?>
+                            <?php
+                                //Veterinarian
+                            case 2:
+                            ?>
+                                <a class="header-link" href="index.php?action=dashboard">Tableau de bord</a>
+                                <a class="header-link" href="index.php?action=habitatsList">Habitats</a>
+                                <a class="header-link" href="index.php?action=logout">Déconnexion</a>
+                                <?php break; ?>
+                            <?php
+                                //Admin
+                            case 3:
+                            ?>
+                                <a class="header-link" href="index.php?action=dashboard">Tableau de bord</a>
+                                <a class="header-link" href="index.php?action=services">Services</a>
+                                <a class="header-link" href="index.php?action=habitatsList">Habitats</a>
+                                <a class="header-link" href="index.php?action=logout">Déconnexion</a>
+                                <?php break; ?>
+                        <?php endswitch; ?>
                     <?php else : ?>
                         <a class="header-link" href="index.php?action=homepage">Accueil</a>
                         <a class="header-link" href="index.php?action=services">Services</a>
@@ -25,7 +51,7 @@
                         <a class="header-link" href="index.php?action=practicalInformation">Infos pratiques</a>
                         <a class="header-link" href="index.php?action=contact">Contact</a>
                         <a class="header-link" href="index.php?action=staffLogin">Espace du personnel</a>
-                    <?php endif; ?>
+                    <?php endif ?>
                 </div>
             </div>
 
