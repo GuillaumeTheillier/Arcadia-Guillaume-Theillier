@@ -41,8 +41,8 @@ ob_start();
                                         <?php endfor ?>
                                 </tbody>
                         </table>
-                        <button type="button"><a href="index.php?action=userslist">Voir tous les comptes</a></button>
-                        <button type="button"><a href="index.php?action=userslist">Créer un compte</a></button>
+                        <button type="button"><a href="index.php?action=accountList">Voir tous les comptes</a></button>
+                        <button type="button"><a href="index.php?action=createAccount">Créer un compte</a></button>
                 </section>
 
                 <section class="dashboard-section">
