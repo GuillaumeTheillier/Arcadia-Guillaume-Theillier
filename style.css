@@ -1068,3 +1068,96 @@ a {
         gap: 2rem;
     }
 }
+
+
+
+
+
+
+
+
+/* Account list */
+.account-list-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.account-list {
+    table-layout: auto;
+    width: 60vw;
+    border-collapse: collapse;
+    font-size: 1rem;
+    margin: 1rem 0;
+    text-align: center;
+}
+
+.account-list th {
+    font-weight: 700;
+    padding-bottom: 1rem;
+    text-align: center;
+}
+
+.account-list tr:first-of-type td {
+    border-top: 2px solid black;
+}
+
+.account-list td {
+    text-align: center;
+    height: 50px;
+}
+
+.account-list .button-crud {
+    font-size: 80%;
+    width: min-content;
+}
+
+.account-list-button {
+    padding-top: 1.5rem;
+}
+
+@media screen and (max-width:1350px) {
+    .account-list {
+        width: 95vw;
+    }
+}
+
+@media screen and (max-width:630px) {
+
+    .account-list td,
+    .account-list th {
+        font-size: 0.9rem;
+    }
+
+    .account-list tr:first-of-type td {
+        border-top: 1px solid black;
+    }
+
+    .account-list .button-crud {
+        font-size: 60%;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+/* CRUD Window */
+#cadre {
+    position: absolute;
+    z-index: 1;
+    background-color: white;
+    padding: 0 4rem;
+    border: 1px solid var(--dark-color);
+}
+
+#btn-crud-close {
+    margin-top: 1.5rem;
+}

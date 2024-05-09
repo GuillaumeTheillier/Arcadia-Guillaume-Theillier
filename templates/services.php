@@ -23,8 +23,9 @@ ob_start();
         </div>
 
         <div class="button-container">
-            <button type="button" class="button-crud">Ajouter un service</button>
+            <button type="button" id="btn-crud-add" class="button-crud">Ajouter un service</button>
         </div>
+        <?php require_once('crudForm/accountCrud.php') ?>
 
 
         <?php foreach ($services as $service) : ?>
