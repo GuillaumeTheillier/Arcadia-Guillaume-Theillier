@@ -1,6 +1,6 @@
 <?php
 
-require_once('src/model/staffLogin.php');
+require_once('src/model/staffAccount.php');
 require_once('src/lib/functions.php');
 
 function staffLogin()
@@ -29,7 +29,7 @@ function login()
         } else {
 
             //Instanciate users class
-            $login = new Users;
+            $login = new AccountRepository;
             if (!$login->usernameExist($username)) {
                 //throw new Exception('Ce nom d\'utilisateur n\'existe pas');
                 setcookie(
@@ -68,6 +68,7 @@ function login()
                 3 = admin
             */
             $_SESSION['ROLE_USER'] = $user['role_id'];
+
             redirectToUrl('index.php?action=dashboard');
         }
     }
