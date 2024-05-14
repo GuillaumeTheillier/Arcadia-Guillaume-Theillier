@@ -76,4 +76,41 @@ class AccountRepository
             return $user;
         } else return false;
     }
+
+
+    /**
+     * Create new staff account in database
+     * 
+     * @return Bool true on success or false on failure
+     */
+    function createAccount(string $username, string $firstName, string $surname, string $hash, int $role)
+    {
+        $statement = $this->db_connect->getConnection()->prepare('INSERT INTO users(username, password, surname, first_name, role_id) 
+                                                                  VALUES (?,?,?,?,?)');
+        return $statement->execute([$username, $hash, $surname, $firstName, $role]);
+    }
+
+    /**
+     * Update staff account in database
+     * 
+     * @return Bool true on success or false on failure
+     */
+    function updateAccount(string $newUsername, string $oldUsername, string $firstName, string $surname, string $hash, int $role)
+    {
+        $statement = $this->db_connect->getConnection()->prepare('UPDATE users 
+                                                                  SET username=?, password=?, surname=?, first_name=?, role_id=? 
+                                                                  WHERE username=?');
+        return $statement->execute([$newUsername, $hash, $surname, $firstName, $role, $oldUsername]);
+    }
+
+    /**
+     * Delete staff account in database
+     * 
+     * @return Bool True on success or False on failure
+     */
+    function deleteAccount(string $username)
+    {
+        $statement = $this->db_connect->getConnection()->prepare('DELETE FROM users where username=?;');
+        return $statement->execute([$username]);
+    }
 }
