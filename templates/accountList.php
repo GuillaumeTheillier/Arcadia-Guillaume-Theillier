@@ -7,8 +7,11 @@ ob_start();
     <h1 class="page-title">Listes des comptes</h1>
     <div class="account-list-container">
 
-        <button type="button" id="btn-crud-add" class="button-crud">Ajouter un compte</button>
-        <?php require_once('crudForm/accountCrud.php') ?>
+        <script src="script/crudScript.js"></script>
+
+        <button type="button" id="btn-crud-add" class="button-crud" onclick="openCreateAccount()">Ajouter un compte</button>
+        <?php require_once('crudForm/createAccountForm.php') ?>
+        <?php require_once('crudForm/updateAccountForm.php') ?>
 
         <table class="account-list">
             <thead>
@@ -28,10 +31,10 @@ ob_start();
                         <td> <?php echo $account['first_name'] ?> </td>
                         <td> <?php echo $account['role'] ?> </td>
                         <td>
-                            <div class="account-list-button">
-                                <button type="button" name="accountName" value="<?php echo $account['username'] ?>" class="button-crud">Modifier</button>
-                                <button type="button" name="accountName" value="<?php echo $account['username'] ?>" formaction="index.php?action=deleteHabitat" class="button-crud">Supprimer</button>
-                            </div>
+                            <form method="post" class="account-list-button">
+                                <button type="button" name="username" value="<?php echo $account['username'] ?>" class="button-crud" onclick="openUpdateAccount()">Modifier</button>
+                                <button type="submit" name="username" value="<?php echo $account['username'] ?>" formaction="index.php?action=deleteStaffAccount" class="button-crud">Supprimer</button>
+                            </form>
                         </td>
                     </tr>
                 <?php endforeach ?>
