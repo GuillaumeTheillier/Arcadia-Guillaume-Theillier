@@ -8,12 +8,11 @@ function createStaffAccount()
     $surname = htmlspecialchars($_POST['surname']);
     $firstName = htmlspecialchars($_POST['firstName']);
     $role = $_POST['role'];
-    //$password = htmlspecialchars($_POST['password']);
-    $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+    $password = htmlspecialchars($_POST['password']);
 
     if (!filter_var($username, FILTER_VALIDATE_EMAIL)) {
         setcookie(
-            'ACCOUNT_ERROR',
+            'CREATE_ACCOUNT_ERROR',
             'email invalide',
             [
                 'httponly' => true,
@@ -23,11 +22,11 @@ function createStaffAccount()
         );
         redirectToUrl('index.php?action=accountList');
     }
-    if (ctype_space($surname) && ctype_space($firstName)) {
+    if (ctype_space($surname) || ctype_space($firstName)) {
 
         setcookie(
-            'ACCOUNT_ERROR',
-            'Le prénom et|ou le nom sont invalides',
+            'CREATE_ACCOUNT_ERROR',
+            'Le prénom et/ou le nom sont invalides',
             [
                 'httponly' => true,
                 'secure' => true,
@@ -36,40 +35,63 @@ function createStaffAccount()
         );
         redirectToUrl('index.php?action=accountList');
     }
-    /*if ($message = checkStrengthPassword($password) !== null) {
+
+    $messagePassword = checkStrengthPassword($password);
+
+    if ($messagePassword !== true) {
         setcookie(
-            'ACCOUNT_ERROR',
-            $message,
+            'CREATE_ACCOUNT_ERROR',
+            $messagePassword,
             [
                 'httponly' => true,
                 'secure' => true,
                 'expires' => time() + 1
             ]
         );
-        var_dump(checkStrengthPassword($password));
-        //redirectToUrl('index.php?action=accountList');
-    }*/
+        //var_dump(checkStrengthPassword($password));
+        redirectToUrl('index.php?action=accountList');
+    }
+
 
     $accountRepository = new AccountRepository;
-    $accountRepository->createAccount($username, $firstName, $surname, $password, $role);
+    $password = password_hash($password, PASSWORD_BCRYPT);
+    $success = $accountRepository->createAccount($username, $firstName, $surname, $password, $role);
 
+    setcookie(
+        'CREATE_ACCOUNT_SUCCESS',
+        $success,
+        [
+            'httponly' => true,
+            'secure' => true,
+            'expires' => time() + 1
+        ]
+    );
 
     redirectToUrl('index.php?action=accountList');
 }
 
-function checkStrengthPassword($password)
+/**
+ * Check if the password contains at least eigth caractere, one lowercase, one uppercase and one digit
+ * 
+ * @return bool|string True on strong password or string with the reason of the password weakness  
+ */
+function checkStrengthPassword($password): string|bool
 {
     if (strlen($password) < 8) {
         return 'Mot de passe trop court';
     }
 
-    $masque = "/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/";
+    $masque1 = "/[A-Z].*?[a-z]|[a-z].*?[A-Z]/";
+    $masque2 = "/[a-zA-z].[0-9]|[0-9].[a-zA-z]/";
 
-    if (preg_match($masque, $password) === 0) {
-        return 'Veuillez vérifier que le mot de passe possède au moins 1 majuscule, 1 minuscule et 1 chiffre';
+    if (preg_match($masque1, $password) === 0) {
+        return 'Veuillez vérifier que le mot de passe possède au moins 1 majuscule, 1 minuscule et 1 chiffre.';
+    }
+    if (preg_match($masque2, $password) === 0) {
+        return 'Veuillez vérifier que le mot de passe possède au moins 1 chiffre.';
     }
 
-    return null;
+    return true;
 }
 
 function deleteStaffAccount()

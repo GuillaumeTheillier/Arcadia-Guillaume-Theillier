@@ -91,6 +91,10 @@ html {
     width: fit-content;
 }
 
+.alert .btn-close {
+    padding-left: 2rem;
+}
+
 /* Form */
 form {
     display: flex;
@@ -1157,24 +1161,37 @@ a {
 
 
 /* CRUD Window */
-#createAccountFrame {
+.crud-frame {
+    max-width: 90vw;
     display: none;
     position: absolute;
     z-index: 1;
     background-color: white;
-    padding: 0 4rem;
+    padding: 2rem 3rem 0 3rem;
     border: 1px solid var(--dark-color);
 }
 
-#updateAccountFrame {
-    display: none;
+.crud-frame form {
+    box-sizing: content-box;
+}
+
+#btn-close-add-account,
+#btn-close-update-account {
     position: absolute;
-    z-index: 1;
-    background-color: white;
-    padding: 0 4rem;
-    border: 1px solid var(--dark-color);
+    top: -0.5%;
+    left: 2.5%;
+    margin-top: 1rem;
 }
 
-#btn-crud-close {
-    margin-top: 1.5rem;
+.display-form-password {
+    display: inline-flex;
+}
+
+#checkbox-display-password,
+#label-display-password {
+    width: max-content;
+}
+
+#label-display-password {
+    padding-left: 1rem;
 }
