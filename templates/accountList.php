@@ -11,15 +11,42 @@ ob_start();
         <?php require_once('crudForm/updateAccountForm.php'); ?>
 
         <div class="alert-container">
+            <!-- Alert for account creation -->
             <?php if (isset($_COOKIE['CREATE_ACCOUNT_SUCCESS'])) : ?>
-                <div class="alert alert-success" role="alert">
-                    Le compte a été créé avec succès.
-                    <button type='button' class="btn-close ms-auto" data-bs-dismiss='alert'></button>
-                </div>
+                <?php if ($_COOKIE['CREATE_ACCOUNT_SUCCESS']) : ?>
+                    <div class="alert alert-success" role="alert">
+                        Le compte a été créé avec succès.
+                        <button type='button' class="btn-close ms-auto" data-bs-dismiss='alert'></button>
+                    </div>
+                <?php else : ?>
+                    <div class="alert alert-success" role="alert">
+                        Une erreur est survenue avec le serveur.
+                        <button type='button' class="btn-close ms-auto" data-bs-dismiss='alert'></button>
+                    </div>
+                <?php endif; ?>
             <?php elseif (isset($_COOKIE['CREATE_ACCOUNT_ERROR'])) : ?>
                 <script>
                     createAccountFrame.style.display = 'block';
                 </script>
+            <?php endif; ?>
+            <!-- Alert for account update -->
+            <?php if (isset($_COOKIE['UPDATE_ACCOUNT_SUCCESS'])) : ?>
+                <?php if ($_COOKIE['UPDATE_ACCOUNT_SUCCESS']) : ?>
+                    <div class="alert alert-success" role="alert">
+                        Le compte a été modifié avec succès.
+                        <button type='button' class="btn-close ms-auto" data-bs-dismiss='alert'></button>
+                    </div>
+                <?php else : ?>
+                    <div class="alert alert-success" role="alert">
+                        Une erreur est survenue avec le serveur.
+                        <button type='button' class="btn-close ms-auto" data-bs-dismiss='alert'></button>
+                    </div>
+                <?php endif; ?>
+            <?php elseif (isset($_COOKIE['UPDATE_ACCOUNT_ERROR'])) : ?>
+                <div class="alert alert-danger" role="alert">
+                    <?php echo $_COOKIE['UPDATE_ACCOUNT_ERROR']; ?>
+                    <button type='button' class="btn-close ms-auto" data-bs-dismiss='alert'></button>
+                </div>
             <?php endif; ?>
         </div>
 
@@ -44,7 +71,10 @@ ob_start();
                         <td> <?php echo $account['role'] ?> </td>
                         <td>
                             <form method="post" class="account-list-button">
-                                <button type="button" name="username" value="<?php echo $account['username'] ?>" class="button-crud" id="btn-open-update-account">Modifier</button>
+                                <!-- <button type="button" name="username" value="<?php //echo $account['username'] 
+                                                                                    ?>" class="button-crud btn-open-update-account">Modifier</button>-->
+
+                                <button type="submit" name="username" value="<?php echo $account['username'] ?>" formaction="index.php?action=account" class="button-crud">Modifier</button>
                                 <button type="submit" name="username" value="<?php echo $account['username'] ?>" formaction="index.php?action=deleteStaffAccount" class="button-crud">Supprimer</button>
                             </form>
                         </td>
@@ -53,7 +83,7 @@ ob_start();
             </tbody>
         </table>
     </div>
-    <script src="script/crudScript.js"></script>
+    <script src="script/addAccountScript.js"></script>
 </main>
 
 <?php

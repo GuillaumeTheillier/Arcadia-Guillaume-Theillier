@@ -25,8 +25,8 @@
             <label for="update-password" class="label-input-form">Mot de passe</label>
             <input type="password" class="input-form" name="password" id="update-password" minlength="8" required>
             <div class="display-form-password">
-                <input type="checkbox" id="checkbox-display-password" onclick="showPassword()">
-                <label for="checkbox-display-password" id="label-display-password">Afficher mot de passe</label>
+                <input type="checkbox" onclick="showPassword(passwordInputUpdate)"><!--id="checkbox-display-password"-->
+                <label id="label-display-password">Afficher mot de passe</label>
             </div>
             <p class="input-password-instruction">Le mot de passe doit contenir au moins 8 caractères, 1 minuscule, 1 majuscule et 1 chiffre.</p>
         </div>

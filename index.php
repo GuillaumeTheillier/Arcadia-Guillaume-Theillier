@@ -31,6 +31,7 @@ require_once(__DIR__ . '/src/controllers/dashboardController.php');
 require_once(__DIR__ . '/src/controllers/manageCommentController.php');
 require_once(__DIR__ . '/src/controllers/accountListController.php');
 require_once(__DIR__ . '/src/controllers/crudStaffAccountController.php');
+require_once(__DIR__ . '/src/controllers/accountController.php');
 
 if (isset($_GET['action']) && $_GET['action'] !== '') {
 

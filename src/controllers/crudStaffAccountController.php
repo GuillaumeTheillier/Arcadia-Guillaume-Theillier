@@ -71,6 +71,77 @@ function createStaffAccount()
 }
 
 /**
+ * Update staff account
+ */
+function updateStaffAccount()
+{
+    $oldUsername = htmlspecialchars($_POST['oldUsername']);
+    $newUsername = htmlspecialchars($_POST['newUsername']);
+    $surname = htmlspecialchars($_POST['surname']);
+    $firstName = htmlspecialchars($_POST['firstName']);
+    $role = $_POST['role'];
+    $password = htmlspecialchars($_POST['password']);
+    var_dump($password);
+    if (!filter_var($newUsername, FILTER_VALIDATE_EMAIL)) {
+        setcookie(
+            'UPDATE_ACCOUNT_ERROR',
+            'email invalide',
+            [
+                'httponly' => true,
+                'secure' => true,
+                'expires' => time() + 1
+            ]
+        );
+        redirectToUrl('index.php?action=accountList');
+    }
+    if (ctype_space($surname) || ctype_space($firstName)) {
+
+        setcookie(
+            'UPDATE_ACCOUNT_ERROR',
+            'Le prénom et/ou le nom sont invalides',
+            [
+                'httponly' => true,
+                'secure' => true,
+                'expires' => time() + 1
+            ]
+        );
+        redirectToUrl('index.php?action=accountList');
+    }
+
+    if ($password !== NULL && $password !== '') {
+        $messagePassword = checkStrengthPassword($password);
+        if ($messagePassword !== true) {
+            setcookie(
+                'UPDATE_ACCOUNT_ERROR',
+                $messagePassword,
+                [
+                    'httponly' => true,
+                    'secure' => true,
+                    'expires' => time() + 1
+                ]
+            );
+            redirectToUrl('index.php?action=accountList');
+        }
+        $password = password_hash($password, PASSWORD_BCRYPT);
+    }
+
+    $accountRepository = new AccountRepository;
+    $success = $accountRepository->updateAccount($oldUsername, $newUsername, $firstName, $surname, $password, $role);
+
+    setcookie(
+        'UPDATE_ACCOUNT_SUCCESS',
+        $success,
+        [
+            'httponly' => true,
+            'secure' => true,
+            'expires' => time() + 1
+        ]
+    );
+
+    redirectToUrl('index.php?action=accountList');
+}
+
+/**
  * Check if the password contains at least eigth caractere, one lowercase, one uppercase and one digit
  * 
  * @return bool|string True on strong password or string with the reason of the password weakness  

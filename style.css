@@ -938,9 +938,13 @@ a {
         flex-direction: column;
         align-items: center;
     }
+
+    .dashboard-section:nth-of-type(3) {
+        margin-left: 0rem;
+    }
 }
 
-@media screen and (max-width:370px) {
+@media screen and (max-width:385px) {
     .dashboard-section {
         padding: 0.5rem 1rem;
         width: 80vw;
@@ -953,6 +957,7 @@ a {
 
 /* users list */
 .dashboard-users-list {
+    table-layout: fixed;
     border-collapse: collapse;
     font-size: 1rem;
     margin-bottom: 1rem;
@@ -972,12 +977,15 @@ a {
     text-align: left;
 }
 
-@media screen and (max-width:360px) {
+@media screen and (max-width:575px) {
 
     .dashboard-users-list td,
     .dashboard-users-list th {
         font-size: 0.9rem;
         padding: 0.3rem 0.6rem;
+        max-width: 25vw;
+        text-overflow: ellipsis;
+        overflow: hidden;
     }
 
     .dashboard-users-list tr:first-of-type td {

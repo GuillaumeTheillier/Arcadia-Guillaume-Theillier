@@ -33,10 +33,18 @@ ob_start();
 
                                         <?php for ($i = 0; $i < $len; $i++) : ?>
                                                 <tr>
-                                                        <td> <?php echo $users[$i]['username'] ?> </td>
-                                                        <td> <?php echo $users[$i]['surname'] ?> </td>
-                                                        <td> <?php echo $users[$i]['first_name'] ?> </td>
-                                                        <td> <?php echo $users[$i]['role'] ?> </td>
+                                                        <td>
+                                                                <?php echo $users[$i]['username'] ?>
+                                                        </td>
+                                                        <td>
+                                                                <?php echo $users[$i]['surname'] ?>
+                                                        </td>
+                                                        <td>
+                                                                <?php echo $users[$i]['first_name'] ?>
+                                                        </td>
+                                                        <td>
+                                                                <?php echo $users[$i]['role'] ?>
+                                                        </td>
                                                 </tr>
                                         <?php endfor ?>
                                 </tbody>

@@ -32,7 +32,7 @@ class AccountRepository
 
     function getUser(string $username): array
     {
-        $statement = $this->db_connect->getConnection()->prepare('SELECT username, password, surname, first_name, role_id
+        $statement = $this->db_connect->getConnection()->prepare('SELECT username, password, surname, first_name as firstName, role_id as role
                                                                   FROM users
                                                                   WHERE username = ?
                                                                 ');
@@ -95,12 +95,19 @@ class AccountRepository
      * 
      * @return Bool true on success or false on failure
      */
-    function updateAccount(string $newUsername, string $oldUsername, string $firstName, string $surname, string $hash, int $role)
+    function updateAccount(string $oldUsername, string $newUsername, string $firstName, string $surname, string $hash, int $role)
     {
-        $statement = $this->db_connect->getConnection()->prepare('UPDATE users 
+        if ($hash !== '') {
+            $statement = $this->db_connect->getConnection()->prepare('UPDATE users 
                                                                   SET username=?, password=?, surname=?, first_name=?, role_id=? 
-                                                                  WHERE username=?');
-        return $statement->execute([$newUsername, $hash, $surname, $firstName, $role, $oldUsername]);
+                                                                  WHERE users.username=?');
+            return $statement->execute([$newUsername, $hash, $surname, $firstName, $role, $oldUsername]);
+        } else {
+            $statement = $this->db_connect->getConnection()->prepare('UPDATE users
+                                                                  SET username=?, surname=?, first_name=?, role_id=? 
+                                                                  WHERE users.username=?');
+            return $statement->execute([$newUsername, $surname, $firstName, $role, $oldUsername]);
+        }
     }
 
     /**
