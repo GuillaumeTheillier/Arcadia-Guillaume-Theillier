@@ -4,7 +4,6 @@ require_once('src/model/staffAccount.php');
 
 function dashboard()
 {
-
     switch ($_SESSION['ROLE_USER']) {
         case 1:
             require('templates/dashboardEmployee.php');

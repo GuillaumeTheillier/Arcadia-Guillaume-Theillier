@@ -8,7 +8,13 @@ ob_start();
 
     <?php if (isset($_SESSION['LOGGED_USER']) && ($_SESSION['ROLE_USER'] === 3 || $_SESSION['ROLE_USER'] === 1)) : ?>
 
+        <div class="create-service-form-container">
+            <?php require('crudForm/createServiceForm.php'); ?>
+        </div>
+
+
         <div class="alert-container">
+            <!-- Update service -->
             <?php if (isset($_COOKIE['SERVICE_SUCCESS']) && $_COOKIE['SERVICE_SUCCESS'] === true) : ?>
                 <div class="alert alert-success" role="alert">
                     Les modifications ont bien été effectué.
@@ -20,10 +26,21 @@ ob_start();
                     <button type='button' class="btn-close ms-auto" data-bs-dismiss='alert'></button>
                 </div>
             <?php endif; ?>
+            <!-- Create service -->
+            <?php if (isset($_COOKIE['CREATE_SERVICE_SUCCESS']) && $_COOKIE['CREATE_SERVICE_SUCCESS'] === true) : ?>
+                <div class="alert alert-success" role="alert">
+                    Les modifications ont bien été effectué.
+                    <button type='button' class="btn-close ms-auto" data-bs-dismiss='alert'></button>
+                </div>
+            <?php elseif (isset($_COOKIE['CREATE_SERVICE_ERROR'])) : ?>
+                <script>
+                    createServiceFrame.style.display = 'block';
+                </script>
+            <?php endif; ?>
         </div>
 
         <div class="button-container">
-            <button type="button" id="btn-crud-add" class="button-crud">Ajouter un service</button>
+            <button type="button" id="btn-open-add-service" class="button-crud">Ajouter un service</button>
         </div>
 
         <?php foreach ($services as $service) : ?>
@@ -64,6 +81,7 @@ ob_start();
             <button type="button" class="button-crud">Ajouter un service</button>
         </div>
 
+        <script src="script/addServiceScript.js"></script>
 
     <?php else : ?>
 
@@ -83,9 +101,6 @@ ob_start();
         <?php endforeach ?>
 
     <?php endif ?>
-
-
-
 
 </main>
 

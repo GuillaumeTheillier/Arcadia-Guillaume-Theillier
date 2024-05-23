@@ -113,12 +113,13 @@ form {
 
 .label-input-form {
     font-family: "Hind Siliguri", sans-serif;
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: 450;
 }
 
 .input-form {
     font-family: "Hind Siliguri", sans-serif;
+    font-size: 1rem;
     width: 80vw;
     max-width: 400px;
     border: none;
@@ -1179,10 +1180,19 @@ a {
     border: 1px solid var(--dark-color);
 }
 
+.crud-frame-title {
+    font-size: 1.85rem;
+    font-weight: 550;
+    text-align: center;
+    padding-bottom: 1rem;
+}
+
 .crud-frame form {
+    padding-top: 1rem;
     box-sizing: content-box;
 }
 
+/* Account CRUD */
 #btn-close-add-account,
 #btn-close-update-account {
     position: absolute;
@@ -1202,4 +1212,27 @@ a {
 
 #label-display-password {
     padding-left: 1rem;
+}
+
+/* Services */
+.create-service-form-container {
+    display: flex;
+    justify-content: center;
+}
+
+.input-container:has(.service-add-img-container) {
+    align-self: start;
+}
+
+.service-add-img-container {
+    padding-top: 0.6rem;
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    gap: 1rem;
+}
+
+.img-form-add {
+    width: 8rem;
+    height: auto;
 }

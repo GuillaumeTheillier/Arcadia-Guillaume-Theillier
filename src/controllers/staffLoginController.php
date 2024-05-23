@@ -67,7 +67,7 @@ function login()
                 2 = veterinarian
                 3 = admin
             */
-            $_SESSION['ROLE_USER'] = $user['role_id'];
+            $_SESSION['ROLE_USER'] = $user['role'];
 
             redirectToUrl('index.php?action=dashboard');
         }

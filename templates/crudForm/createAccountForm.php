@@ -1,6 +1,8 @@
 <div class="crud-frame" id="createAccountFrame">
     <button type='button' class="btn-close" id="btn-close-add-account"></button>
 
+    <h4 class="crud-frame-title">Créer un compte</h4>
+
     <div class="alert-container">
         <?php if (isset($_COOKIE['CREATE_ACCOUNT_ERROR'])) : ?>
             <div class="alert alert-danger" role="alert">

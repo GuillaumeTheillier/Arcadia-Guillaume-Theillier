@@ -32,6 +32,7 @@ require_once(__DIR__ . '/src/controllers/manageCommentController.php');
 require_once(__DIR__ . '/src/controllers/accountListController.php');
 require_once(__DIR__ . '/src/controllers/crudStaffAccountController.php');
 require_once(__DIR__ . '/src/controllers/accountController.php');
+require_once(__DIR__ . '/src/controllers/crudServiceController.php');
 
 if (isset($_GET['action']) && $_GET['action'] !== '') {
 
@@ -48,7 +49,7 @@ if (isset($_GET['action']) && $_GET['action'] !== '') {
         $action();
     }
 
-    //if there are an error return unfound page
+    //if there are an error return unfound page 
     /*try {
         if ($action === 'addComment') {
             addComment($_POST);
