@@ -8,5 +8,9 @@ function services()
     $servicesRepository = new ServicesRepository;
     $services = $servicesRepository->getServices();
 
-    require('templates/services.php');
+    if (isset($_SESSION['LOGGED_USER']) && ($_SESSION['ROLE_USER'] === 3 || $_SESSION['ROLE_USER'] === 1)) {
+        require('templates/serviceManager.php');
+    } else {
+        require('templates/services.php');
+    }
 }

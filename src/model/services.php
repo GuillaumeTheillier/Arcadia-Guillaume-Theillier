@@ -42,7 +42,7 @@ class ServicesRepository
         return $statement->execute([$idService]);
     }
 
-    function editService(int $id, string $title, string $description, string $image, string $descAdd): bool
+    function updateService(int $id, string $title, string $description, string $image, string $descAdd): bool
     {
         //var_dump([$id, $title, $description, $image, $descAdd]);
 
@@ -65,9 +65,9 @@ class ServicesRepository
         return $success;
     }
 
-    function newService(string $title, string $description, string $image, string $descAdd): bool
+    function createService(string $title, string $description, string $image, string $descAdd): bool
     {
-        $statement = $this->connection->getConnection()->prepare("INSERT INTO 'services'('title','description','image','description_additional')
+        $statement = $this->connection->getConnection()->prepare("INSERT INTO services(title,description,image,description_additional)
                                                                   VALUES (?, ?, ?, ?);
                                                                 ");
 
