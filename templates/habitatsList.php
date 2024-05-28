@@ -7,8 +7,23 @@ ob_start();
 
     <?php if (isset($_SESSION['LOGGED_USER']) && $_SESSION['ROLE_USER'] === 3) : ?>
 
+        <div class="create-form-container">
+            <?php require('crudForm/createHabitatForm.php'); ?>
+        </div>
+
+        <!-- Alert -->
+        <?php if (isset($_COOKIE['CREATE_HABITAT_SUCCESS']) && $_COOKIE['CREATE_HABITAT_SUCCESS'] == true) : ?>
+            <div class="alert alert-success" role="alert">
+                l'habitat a bient été créé.
+                <button type='button' class="btn-close ms-auto" data-bs-dismiss='alert'></button>
+            </div>
+        <?php elseif (isset($_COOKIE['CREATE_HABITAT_ERROR'])) : ?>
+            <script>
+                createHabitatFrame.style.display = 'block';
+            </script>
+        <?php endif; ?>
         <div class="button-container">
-            <button type="button" class="button-crud">Ajouter un habitat</button>
+            <button type="button" class="button-crud" id="btn-open-add-habitat">Ajouter un habitat</button>
         </div>
 
         <div class="habitats-container">
@@ -25,6 +40,7 @@ ob_start();
                 </article>
             <?php endforeach; ?>
         </div>
+        <script src="script/addHabitatScript.js"></script>
     <?php else : ?>
         <div class="habitats-container">
             <?php foreach ($habitats as $habitat) : ?>

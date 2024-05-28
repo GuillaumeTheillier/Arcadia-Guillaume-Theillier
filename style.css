@@ -1173,11 +1173,18 @@ a {
 .crud-frame {
     max-width: 90vw;
     display: none;
-    position: absolute;
+    position: fixed;
+    overflow: auto;
+    top: 10rem;
     z-index: 1;
     background-color: white;
     padding: 2rem 3rem 0 3rem;
     border: 1px solid var(--dark-color);
+}
+
+.create-form-container {
+    display: flex;
+    justify-content: center;
 }
 
 .crud-frame-title {
@@ -1185,6 +1192,10 @@ a {
     font-weight: 550;
     text-align: center;
     padding-bottom: 1rem;
+}
+
+.input-container:has(input[type='file']) {
+    align-self: start;
 }
 
 .crud-frame form {
@@ -1212,27 +1223,4 @@ a {
 
 #label-display-password {
     padding-left: 1rem;
-}
-
-/* Services */
-.create-service-form-container {
-    display: flex;
-    justify-content: center;
-}
-
-.input-container:has(.service-add-img-container) {
-    align-self: start;
-}
-
-.service-add-img-container {
-    padding-top: 0.6rem;
-    display: flex;
-    flex-direction: row;
-    align-items: end;
-    gap: 1rem;
-}
-
-.img-form-add {
-    width: 8rem;
-    height: auto;
 }

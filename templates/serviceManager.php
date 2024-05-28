@@ -6,7 +6,7 @@ ob_start();
 <main>
     <h1 class="page-title">Services</h1>
 
-    <div class="create-service-form-container">
+    <div class="create-form-container">
         <?php require('crudForm/createServiceForm.php'); ?>
     </div>
 

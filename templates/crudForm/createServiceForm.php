@@ -23,10 +23,7 @@
         </section>
         <section class="input-container">
             <label for="service-form-img" class="label-input-form">Image</label>
-            <div class="service-add-img-container">
-                <img src="src\model\images\services\boissons-froides.jpg" alt="previsuel de l'image" class="img-form-add">
-                <input type="file" name="createServiceImage" id="service-form-img" accept="image/png, image/jpeg" required>
-            </div>
+            <input type="file" name="createServiceImage" id="service-form-img" accept="image/png, image/jpeg" required>
         </section>
         <section class="input-container">
             <label for="service-desc-add" class="label-input-form">Description additionnel (facultatif)</label>
