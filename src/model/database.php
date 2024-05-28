@@ -1,6 +1,11 @@
 <?php
 
-class DatabaseConnection
+namespace DatabaseConnection;
+
+use Exception;
+use PDO;
+
+class RelationnalDatabaseConnection
 {
     public ?PDO $database = null;
 

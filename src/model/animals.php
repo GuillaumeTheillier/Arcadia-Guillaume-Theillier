@@ -1,14 +1,14 @@
 <?php
 
-require_once('database.php');
+use DatabaseConnection\RelationnalDatabaseConnection;
 
 class AnimalsRepository
 {
-    private DatabaseConnection $connection;
+    private RelationnalDatabaseConnection $connection;
 
     function __construct()
     {
-        $this->connection = new DatabaseConnection;
+        $this->connection = new RelationnalDatabaseConnection;
     }
 
     function getAllAnimalsInHabitat(string $habitat): array

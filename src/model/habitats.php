@@ -1,14 +1,14 @@
 <?php
 
-require_once('database.php');
+use DatabaseConnection\RelationnalDatabaseConnection;
 
 class HabitatsRepository
 {
-    private DatabaseConnection $connection;
+    private RelationnalDatabaseConnection $connection;
 
     function __construct()
     {
-        $this->connection = new DatabaseConnection;
+        $this->connection = new RelationnalDatabaseConnection;
     }
 
     function getAllHabitats(): array
@@ -68,7 +68,7 @@ class HabitatsRepository
         }
     }
 
-    function newHabitat(string $name, string $description, string $image)
+    function createHabitat(string $name, string $description, string $image)
     {
         $statement = $this->connection->getConnection()->prepare('INSERT INTO habitats(nom, description) VALUES (?,?);
                                                                   INSERT INTO images(id, data) VALUES (?,?);
@@ -79,11 +79,11 @@ class HabitatsRepository
         $idHabitatQuery = $this->connection->getConnection()->prepare('SELECT id FROM habitats WHERE nom=?');
         $idHabitatQuery->execute([$name]);
         $idHabitat = $idHabitatQuery->fetch(pdo::FETCH_ASSOC);
-
+        var_dump($idHabitat);
         //FORMAT id image : 31, first digit is for habitat id and the second for image
         //exemple : $idhabitat * 10 + 1 = 21
-        $idImage = $idHabitat * 10 + 1;
-
+        $idImage = $idHabitat['id'] * 10 + 1;
+        var_dump($idImage);
         $statement->execute([$name, $description, $idImage, $image, $idHabitat['id'], $idImage]);
     }
 

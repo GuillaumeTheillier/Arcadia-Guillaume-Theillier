@@ -1,15 +1,15 @@
 <?php
 
-require_once('database.php');
+use DatabaseConnection\RelationnalDatabaseConnection;
 
 class AccountRepository
 {
-    private DatabaseConnection $db_connect;
+    private RelationnalDatabaseConnection $db_connect;
 
 
     function __construct()
     {
-        $this->db_connect = new DatabaseConnection;
+        $this->db_connect = new RelationnalDatabaseConnection;
     }
 
     function getAllUsers(): array

@@ -1,15 +1,15 @@
 <?php
 
-require_once('database.php');
+use DatabaseConnection\RelationnalDatabaseConnection;
 
 class CommentRepository
 {
-    private DatabaseConnection $connection;
+    private RelationnalDatabaseConnection $connection;
 
     function __construct()
     {
         //At a new instance initialize connection with the DatabaseConnection class
-        $this->connection = new DatabaseConnection;
+        $this->connection = new RelationnalDatabaseConnection;
     }
 
     function getComments(): array
