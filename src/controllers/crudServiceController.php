@@ -35,7 +35,7 @@ function createService()
                 'CREATE_SERVICE_SUCCESS',
                 $success,
                 [
-                    'expires' => time() + 10,
+                    'expires' => time() + 1,
                     'httponly' => true,
                     'secure' => true
                 ]
@@ -89,7 +89,7 @@ function updateService()
                 'UPDATE_SERVICE_SUCCESS',
                 $success,
                 [
-                    'expires' => time() + 2,
+                    'expires' => time() + 1,
                     'httponly' => true,
                     'secure' => true
                 ]
@@ -99,7 +99,7 @@ function updateService()
                 'UPDATE_SERVICE_ERROR',
                 $e->getMessage(),
                 [
-                    'expires' => time() + 2,
+                    'expires' => time() + 1,
                     'httponly' => true,
                     'secure' => true
                 ]
@@ -110,7 +110,7 @@ function updateService()
             'UPDATE_SERVICE_ERROR',
             'Toutes les entrées requises n\'ont pas été remplies',
             [
-                'expires' => time() + 2,
+                'expires' => time() + 1,
                 'httponly' => true,
                 'secure' => true
             ]

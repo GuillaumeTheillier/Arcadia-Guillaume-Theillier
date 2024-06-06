@@ -6,7 +6,7 @@ require_once('src/lib/functions.php');
 
 function habitatRepository()
 {
-    return $habitatRepository = new HabitatsRepository();
+    return new HabitatsRepository();
 }
 
 function createHabitat()

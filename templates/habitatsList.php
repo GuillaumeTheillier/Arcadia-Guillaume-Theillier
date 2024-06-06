@@ -6,7 +6,7 @@ ob_start();
     <h1 class="page-title">Nos habitats</h1>
 
     <?php if (isset($_SESSION['LOGGED_USER']) && $_SESSION['ROLE_USER'] === 3) : ?>
-
+        <!-- Display habitat for admin and employee -->
         <div class="create-form-container">
             <?php require('crudForm/createHabitatForm.php'); ?>
         </div>
@@ -34,7 +34,7 @@ ob_start();
                         <h4 class="habitat-label"><?php echo $habitat['nom'] ?></h4>
                     </a>
                     <form method="post" class="button-container">
-                        <button type="button" name="habitatName" value="<?php echo $habitat['nom'] ?>" class="button-crud">Modifier</button>
+                        <button type="submit" name="habitatName" value="<?php echo $habitat['nom'] ?>" formaction="index.php?action=updateHabitatForm" class="button-crud">Modifier</button>
                         <button type="submit" name="habitatName" value="<?php echo $habitat['nom'] ?>" formaction="index.php?action=deleteHabitat" class="button-crud">Supprimer</button>
                     </form>
                 </article>
@@ -42,6 +42,7 @@ ob_start();
         </div>
         <script src="script/addHabitatScript.js"></script>
     <?php else : ?>
+        <!-- Display habitat for visitor -->
         <div class="habitats-container">
             <?php foreach ($habitats as $habitat) : ?>
                 <a href="index.php?action=habitat&habitatName=<?php echo $habitat['nom'] ?>" class="habitat">

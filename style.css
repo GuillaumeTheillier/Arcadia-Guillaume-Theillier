@@ -137,6 +137,12 @@ textarea {
     resize: none;
 }
 
+.input-container-image {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
 button {
     font-family: "Hind Siliguri", sans-serif;
     background-color: var(--primary-color);
@@ -692,7 +698,6 @@ footer {
 
 
 
-
 /* animals list in Habitat */
 .habitat {
     display: flex;
@@ -1175,7 +1180,7 @@ a {
     display: none;
     position: fixed;
     overflow: auto;
-    top: 10rem;
+    top: 5rem;
     z-index: 1;
     background-color: white;
     padding: 2rem 3rem 0 3rem;
@@ -1195,7 +1200,7 @@ a {
 }
 
 .input-container:has(input[type='file']) {
-    align-self: start;
+    align-self: baseline;
 }
 
 .crud-frame form {

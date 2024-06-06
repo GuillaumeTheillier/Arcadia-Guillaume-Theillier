@@ -47,7 +47,7 @@ class HabitatsRepository
         return $habitat;
     }
 
-    function editHabitat(int $id, string $name, string $description, string $image, string $comment): bool
+    function updateHabitat(int $id, string $name, string $description, string $image, string $comment): bool
     {
         if ($image === '') {
             $statement = $this->connection->getConnection()->prepare('UPDATE habitat_image 
