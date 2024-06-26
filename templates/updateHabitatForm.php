@@ -28,9 +28,10 @@ ob_start();
             </div>
             <div class="input-container">
                 <label for="habitat-form-img" class="label-input-form">Image</label>
-                <input type="file" class="input-image" name="updateHabitatImage" id="service-form-img" accept="image/png, image/jpeg" required>
+                <input type="file" class="input-image" name="updateHabitatImage" id="service-form-img" accept="image/png, image/jpeg">
             </div>
         </section>
+        <input type="text" name="updateHabitatId" value="<?php echo $habitat['id']; ?>" hidden>
         <button type="submit">Confirmer</button>
     </form>
 </main>

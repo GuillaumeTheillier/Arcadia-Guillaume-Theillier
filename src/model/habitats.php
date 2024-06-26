@@ -2,6 +2,8 @@
 
 use DatabaseConnection\RelationnalDatabaseConnection;
 
+require_once('database.php');
+
 class HabitatsRepository
 {
     private RelationnalDatabaseConnection $connection;
@@ -14,7 +16,7 @@ class HabitatsRepository
     function getAllHabitats(): array
     {
         $statement = $this->connection->getConnection()
-            ->prepare('SELECT habitats.nom as nom, images.data as image
+            ->prepare('SELECT habitats.nom as nom, images.data as image, habitats.id as habitat_id
                         FROM habitat_image
                         LEFT JOIN habitats ON habitat_image.habitat_id = habitats.id
                         LEFT JOIN images ON habitat_image.image_id = images.id
@@ -32,7 +34,7 @@ class HabitatsRepository
     function getHabitat(string $habitat): array
     {
         $statement = $this->connection->getConnection()
-            ->prepare('SELECT habitats.nom as nom, images.data as image, habitats.description as description
+            ->prepare('SELECT habitats.nom as nom, images.data as image, habitats.description as description, habitats.id as id
                         FROM habitat_image
                         LEFT JOIN habitats ON habitat_image.habitat_id = habitats.id
                         LEFT JOIN images ON habitat_image.image_id = images.id
@@ -47,52 +49,55 @@ class HabitatsRepository
         return $habitat;
     }
 
-    function updateHabitat(int $id, string $name, string $description, string $image, string $comment): bool
+    function updateHabitat(int $id, string $name, string $description, string|null $image): bool
     {
-        if ($image === '') {
+        if ($image == NULL) {
             $statement = $this->connection->getConnection()->prepare('UPDATE habitat_image 
                                                                       LEFT JOIN habitats ON habitat_image.habitat_id = habitats.id
                                                                       LEFT JOIN images ON habitat_image.image_id = images.id
-                                                                      SET habitats.nom = ?, habitats.description = ?, images.data = ?,habitats.commentaire_habitat = ?                                                                  
+                                                                      SET habitats.nom = ?, habitats.description = ?                                                                
                                                                       WHERE habitat_id = ?
                                                                     ');
-            return $statement->execute([$name, $description, $comment, $id]);
+            return $statement->execute([$name, $description, $id]);
         } else {
             $statement = $this->connection->getConnection()->prepare('UPDATE habitat_image 
                                                                       LEFT JOIN habitats ON habitat_image.habitat_id = habitats.id
                                                                       LEFT JOIN images ON habitat_image.image_id = images.id
-                                                                      SET habitats.nom = ?, habitats.description = ?, images.data = ?,habitats.commentaire_habitat = ?                                                                  
+                                                                      SET habitats.nom = ?, habitats.description = ?, images.data = ?                                                                  
                                                                       WHERE habitat_id = ?
                                                                     ');
-            return $statement->execute([$name, $description, $comment, $id]);
+            return $statement->execute([$name, $description, $image, $id]);
         }
     }
 
-    function createHabitat(string $name, string $description, string $image)
+    function createHabitat(string $name, string $description, string $image): bool
     {
-        $statement = $this->connection->getConnection()->prepare('INSERT INTO habitats(nom, description) VALUES (?,?);
-                                                                  INSERT INTO images(id, data) VALUES (?,?);
-                                                                  INSERT INTO habitat_image(habitat_id, image_id) VALUES (?,?);
-                                                                ');
-
+        //Insert new habitat before insert image and the connection between them
+        $statement = $this->connection->getConnection()->prepare('INSERT INTO habitats(nom, description) VALUES (?,?);');
+        $statement->execute([$name, $description]);
         //We retrieve the habitat id to match him with the image id
-        $idHabitatQuery = $this->connection->getConnection()->prepare('SELECT id FROM habitats WHERE nom=?');
+        $idHabitatQuery = $this->connection->getConnection()->prepare('SELECT id FROM habitats WHERE nom=?;');
         $idHabitatQuery->execute([$name]);
         $idHabitat = $idHabitatQuery->fetch(pdo::FETCH_ASSOC);
-        var_dump($idHabitat);
+        //var_dump($idHabitat['id']);
         //FORMAT id image : 31, first digit is for habitat id and the second for image
         //exemple : $idhabitat * 10 + 1 = 21
         $idImage = $idHabitat['id'] * 10 + 1;
-        var_dump($idImage);
-        $statement->execute([$name, $description, $idImage, $image, $idHabitat['id'], $idImage]);
+        //var_dump($idImage);
+        //Insert image and connection between habitat and image database
+        $statement = $this->connection->getConnection()->prepare('INSERT INTO images(id, data) VALUES (?,?);
+                                                                  INSERT INTO habitat_image(habitat_id, image_id) VALUES (?,?);
+                                                                ');
+        return  $statement->execute([$idImage, $image, $idHabitat['id'], $idImage]);
     }
 
-    function deleteHabitat(int $id): bool
+    function deleteHabitat(int $idHabitat): bool
     {
         $statement = $this->connection->getConnection()->prepare('DELETE FROM habitat_image WHERE habitat_id = ?;
-                                                                  DELETE FROM habitat WHERE id = ?;                                                                  
+                                                                  DELETE FROM habitats WHERE id = ?;     
+                                                                  DELETE FROM images WHERE id = ?;                                                             
                                                                 ');
         //Delete all images are starting by the id habitat digit 
-        return $statement->execute([$id, $id * 10]);
+        return $statement->execute([$idHabitat, $idHabitat, $idHabitat * 10 + 1]);
     }
 }

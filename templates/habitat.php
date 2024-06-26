@@ -33,10 +33,6 @@ ob_start();
             <?php endforeach ?>
         </div>
 
-        <div class="button-container">
-            <button type="button" class="button-crud">Ajouter un animal</button>
-        </div>
-
     <?php else : ?>
 
         <p class="habitat-description"> <?php echo $habitat['description'] ?> </p>

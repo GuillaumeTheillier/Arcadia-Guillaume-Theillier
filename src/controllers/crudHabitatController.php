@@ -18,6 +18,7 @@ function createHabitat()
         try {
             $data = imageVerification($_FILES['createHabitatImage']);
             $success = habitatRepository()->createHabitat($name, $description, $data);
+            var_dump($success);
             setcookie(
                 'CREATE_HABITAT_SUCCESS',
                 $success,
@@ -28,6 +29,7 @@ function createHabitat()
                 ]
             );
         } catch (Exception $e) {
+            //var_dump($e->getMessage());
             setcookie(
                 'CREATE_HABITAT_ERROR',
                 $e->getMessage(),
@@ -40,5 +42,74 @@ function createHabitat()
         }
     }
     //Redirect to habitats list page
-    //redirectToUrl('index.php?action=habitatsList');
+    redirectToUrl('index.php?action=habitatsList');
+}
+
+function deleteHabitat()
+{
+    $id = $_POST['habitatId'];
+    try {
+        $success = habitatRepository()->deleteHabitat($id);
+        setcookie(
+            'DELETE_HABITAT_SUCCESS',
+            $success,
+            [
+                'expires' => time() + 1,
+                'httponly' => true,
+                'secure' => true
+            ]
+        );
+    } catch (Error $e) {
+        setcookie(
+            'DELETE_HABITAT_ERROR',
+            $e->getMessage(),
+            [
+                'expires' => time() + 1,
+                'httponly' => true,
+                'secure' => true
+            ]
+        );
+    }
+    //redirect to the service page
+    redirectToUrl('index.php?action=habitatsList');
+}
+
+function updateHabitat()
+{
+    if (isset($_POST['updateHabitatName']) && isset($_POST['updateHabitatDescription'])) {
+        $name = htmlspecialchars($_POST['updateHabitatName']);
+        $description = nl2br(htmlspecialchars($_POST['updateHabitatDescription']));
+        $id = $_POST['updateHabitatId'];
+        $data = NULL;
+
+        try {
+            if (isset($_FILES['updateHabitatImage']) && !is_null($_FILES['updateHabitatImage'])) {
+                $data = imageVerification($_FILES['updateHabitatImage']);
+            }
+            $success = habitatRepository()->updateHabitat($id, $name, $description, $data);
+            var_dump($success);
+            setcookie(
+                'UPDATE_HABITAT_SUCCESS',
+                $success,
+                [
+                    'expires' => time() + 1,
+                    'httponly' => true,
+                    'secure' => true
+                ]
+            );
+        } catch (Exception $e) {
+            //var_dump($e->getMessage());
+            setcookie(
+                'UPDATE_HABITAT_ERROR',
+                $e->getMessage(),
+                [
+                    'expires' => time() + 1,
+                    'httponly' => true,
+                    'secure' => true
+                ]
+            );
+        }
+    }
+    //Redirect to habitats list page
+    redirectToUrl('index.php?action=habitatsList');
 }

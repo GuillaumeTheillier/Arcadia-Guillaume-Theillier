@@ -29,7 +29,6 @@ function createService()
 
         try {
             $data = imageVerification($_FILES['createServiceImage']);
-
             $success = servicesRepository()->createService($title, $description, $data, $descAdd);
             setcookie(
                 'CREATE_SERVICE_SUCCESS',

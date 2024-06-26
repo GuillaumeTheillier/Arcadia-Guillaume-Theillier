@@ -74,10 +74,6 @@ ob_start();
         </form>
     <?php endforeach ?>
 
-    <div class="button-container">
-        <button type="button" class="button-crud">Ajouter un service</button>
-    </div>
-
     <script src="script/addServiceScript.js"></script>
 </main>
 

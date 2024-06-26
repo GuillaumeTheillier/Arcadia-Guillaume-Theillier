@@ -7,7 +7,6 @@ const body = document.getElementById('body');
 btnOpen.addEventListener('click', () => {
     createHabitatFrame.style.display = 'block';
     body.style.overflow = 'hidden';
-
 });
 
 btnClose.addEventListener('click', () => {
@@ -15,3 +14,6 @@ btnClose.addEventListener('click', () => {
     body.style.overflow = 'auto';
 });
 
+if (createHabitatFrame.style.display == 'block') {
+    body.style.overflow = 'hidden';
+}

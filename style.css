@@ -83,6 +83,7 @@ html {
 
 /* Center alert message */
 .alert-container {
+    margin-top: 1rem;
     text-align: center;
 }
 
