@@ -22,9 +22,7 @@ ob_start();
         <section class="input-container-image">
             <div class="input-container">
                 <label for="update-habitat-description" class="label-input-form">Description</label>
-                <textarea class="input-form" name="updateHabitatDescription" id="update-habitat-description" cols="30" rows="10" maxlength="500" required>
-                <?php echo $habitat['description']; ?>
-            </textarea>
+                <textarea class="input-form" name="updateHabitatDescription" id="update-habitat-description" cols="30" rows="10" maxlength="500" required><?php echo $habitat['description']; ?></textarea>
             </div>
             <div class="input-container">
                 <label for="habitat-form-img" class="label-input-form">Image</label>

@@ -45,15 +45,14 @@ ob_start();
                 </div>
             <?php endif; ?>
             <!--Update habitat alert-->
-            <?php if (isset($_COOKIE['DELETE_HABITAT_SUCCESS']) && $_COOKIE['DELETE_HABITAT_SUCCESS'] == true) : ?>
+            <?php if (isset($_COOKIE['UPDATE_HABITAT_SUCCESS']) && $_COOKIE['UPDATE_HABITAT_SUCCESS'] == true) : ?>
                 <div class="alert alert-success" role="alert">
                     L'habitat a bien été modifié.
                     <button type='button' class="btn-close ms-auto" data-bs-dismiss='alert'></button>
                 </div>
-            <?php elseif (isset($_COOKIE['DELETE_HABITAT_ERROR'])) : ?>
+            <?php elseif (isset($_COOKIE['UPDATE_HABITAT_ERROR'])) : ?>
                 <div class="alert alert-danger" role="alert">
-                    Une erreur est survenue lors de la modification de l'habitat.
-                    Réessayez plus tard.
+                    Une erreur est survenue lors de la modification de l'habitat, réessayez.
                     <button type='button' class="btn-close ms-auto" data-bs-dismiss='alert'></button>
                 </div>
             <?php endif; ?>

@@ -33,16 +33,5 @@ function imageVerification(array $imageFile): string
     } else {
         $message = 'Erreur lors du téléchargement de l\'image.';
     }
-    /*
-    setcookie(
-        'SERVICE_ERROR',
-        $message,
-        [
-            'expires' => time() + 2,
-            'httponly' => true,
-            'secure' => true
-        ]
-    );*/
-
     throw new Exception($message);
 }

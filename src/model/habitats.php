@@ -24,7 +24,7 @@ class HabitatsRepository
         $statement->execute();
         while ($habitat = $statement->fetch(pdo::FETCH_ASSOC)) {
             //We encode the image in base64 to display with img balise
-            $habitat['image'] = base64_encode($habitat['image']);
+            //$habitat['image'] = base64_encode($habitat['image']);
             $habitats[] = $habitat;
         }
 
@@ -44,14 +44,14 @@ class HabitatsRepository
 
         $habitat = $statement->fetch(pdo::FETCH_ASSOC);
         //We encode the image in base64 to display with img balise
-        $habitat['image'] = base64_encode($habitat['image']);
+        //$habitat['image'] = base64_encode($habitat['image']);
 
         return $habitat;
     }
 
-    function updateHabitat(int $id, string $name, string $description, string|null $image): bool
+    function updateHabitat(int $id, string $name, string $description, string|null $image = NULL): bool
     {
-        if ($image == NULL) {
+        if ($image == NULL || $image == '') {
             $statement = $this->connection->getConnection()->prepare('UPDATE habitat_image 
                                                                       LEFT JOIN habitats ON habitat_image.habitat_id = habitats.id
                                                                       LEFT JOIN images ON habitat_image.image_id = images.id
@@ -88,7 +88,7 @@ class HabitatsRepository
         $statement = $this->connection->getConnection()->prepare('INSERT INTO images(id, data) VALUES (?,?);
                                                                   INSERT INTO habitat_image(habitat_id, image_id) VALUES (?,?);
                                                                 ');
-        return  $statement->execute([$idImage, $image, $idHabitat['id'], $idImage]);
+        return $statement->execute([$idImage, $image, $idHabitat['id'], $idImage]);
     }
 
     function deleteHabitat(int $idHabitat): bool

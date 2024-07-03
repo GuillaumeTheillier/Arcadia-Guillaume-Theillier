@@ -1,5 +1,4 @@
 <?php
-
 require_once('src/model/habitats.php');
 require_once('src/lib/image.php');
 require_once('src/lib/functions.php');
@@ -17,6 +16,8 @@ function createHabitat()
 
         try {
             $data = imageVerification($_FILES['createHabitatImage']);
+            var_dump($data);
+
             $success = habitatRepository()->createHabitat($name, $description, $data);
             var_dump($success);
             setcookie(
@@ -42,7 +43,7 @@ function createHabitat()
         }
     }
     //Redirect to habitats list page
-    redirectToUrl('index.php?action=habitatsList');
+    //redirectToUrl('index.php?action=habitatsList');
 }
 
 function deleteHabitat()
@@ -76,18 +77,21 @@ function deleteHabitat()
 
 function updateHabitat()
 {
+
     if (isset($_POST['updateHabitatName']) && isset($_POST['updateHabitatDescription'])) {
         $name = htmlspecialchars($_POST['updateHabitatName']);
         $description = nl2br(htmlspecialchars($_POST['updateHabitatDescription']));
         $id = $_POST['updateHabitatId'];
-        $data = NULL;
 
         try {
-            if (isset($_FILES['updateHabitatImage']) && !is_null($_FILES['updateHabitatImage'])) {
+            //Image is optional
+            //If image is modified then add him in the function argument
+            if (isset($_FILES['updateHabitatImage']) && $_FILES['updateHabitatImage']['error'] !== 4) {
                 $data = imageVerification($_FILES['updateHabitatImage']);
+                $success = habitatRepository()->updateHabitat($id, $name, $description, $data);
+            } else {
+                $success = habitatRepository()->updateHabitat($id, $name, $description);
             }
-            $success = habitatRepository()->updateHabitat($id, $name, $description, $data);
-            var_dump($success);
             setcookie(
                 'UPDATE_HABITAT_SUCCESS',
                 $success,
