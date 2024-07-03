@@ -43,7 +43,7 @@ function createHabitat()
         }
     }
     //Redirect to habitats list page
-    //redirectToUrl('index.php?action=habitatsList');
+    redirectToUrl('index.php?action=habitatsList');
 }
 
 function deleteHabitat()
