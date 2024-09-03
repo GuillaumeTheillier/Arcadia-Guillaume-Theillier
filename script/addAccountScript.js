@@ -4,8 +4,8 @@ const btnCloseCreate = document.getElementById('btn-close-add-account');
 const btnOpenUpdate = document.getElementsByClassName('btn-open-update-account');
 const btnCloseUpdate = document.getElementById('btn-close-update-account');
 
-const createAccountFrame = document.getElementById('createAccountFrame');
-const updateAccountFrame = document.getElementById('updateAccountFrame');
+const createAccountFrame = document.getElementById('create-account-frame');
+const updateAccountFrame = document.getElementById('update-account-frame');
 
 //create account frame
 eventButtonOpen(btnOpenCreate, createAccountFrame);
