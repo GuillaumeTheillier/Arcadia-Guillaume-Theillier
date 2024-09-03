@@ -6,7 +6,6 @@ class AccountRepository
 {
     private RelationnalDatabaseConnection $db_connect;
 
-
     function __construct()
     {
         $this->db_connect = new RelationnalDatabaseConnection;
@@ -43,7 +42,10 @@ class AccountRepository
         return $user;
     }
 
-    //Checks if username from user input exist in the database
+    /**
+     * Checks if username from user input exist in the database.
+     * 
+     */
     function usernameExist(string $username): bool
     {
         $statement = $this->db_connect->getConnection()->prepare('SELECT username FROM users');
@@ -59,9 +61,9 @@ class AccountRepository
     }
 
     /**
-     * Checks if password given with input match with hash save in database
+     * Checks if password given with input match with hash save in database.
      * 
-     * @return Bool false for wrong password or user array for correct prassword
+     * @return Bool|Array FALSE for wrong password or user array for correct prassword.
      * */
     function verifyPassword(string $username, string $password): bool|array
     {
@@ -81,7 +83,7 @@ class AccountRepository
     /**
      * Create new staff account in database
      * 
-     * @return Bool true on success or false on failure
+     * @return Bool TRUE on success or FALSE on failure.
      */
     function createAccount(string $username, string $firstName, string $surname, string $hash, int $role)
     {
@@ -93,7 +95,7 @@ class AccountRepository
     /**
      * Update staff account in database
      * 
-     * @return Bool true on success or false on failure
+     * @return Bool TRUE on success or FALSE on failure.
      */
     function updateAccount(string $oldUsername, string $newUsername, string $firstName, string $surname, string $hash, int $role)
     {
@@ -113,7 +115,7 @@ class AccountRepository
     /**
      * Delete staff account in database
      * 
-     * @return Bool True on success or False on failure
+     * @return Bool TRUE on success or FALSE on failure.
      */
     function deleteAccount(string $username)
     {
