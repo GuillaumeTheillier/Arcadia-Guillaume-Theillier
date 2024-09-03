@@ -4,8 +4,10 @@ const createServiceFrame = document.getElementById('create-service-frame');
 
 btnOpen.addEventListener('click', () => {
     createServiceFrame.style.display = 'block';
+    body.style.overflow = 'hidden';
 })
 
 btnClose.addEventListener('click', () => {
     createServiceFrame.style.display = 'none';
+    body.style.overflow = 'auto';
 })
