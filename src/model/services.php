@@ -42,11 +42,11 @@ class ServicesRepository
         return $statement->execute([$idService]);
     }
 
-    function updateService(int $id, string $title, string $description, string $image, string $descAdd): bool
+    function updateService(int $id, string $title, string $description, string|null $image = null, string $descAdd): bool
     {
         //var_dump([$id, $title, $description, $image, $descAdd]);
 
-        if ($image !== '') {
+        if ($image !== '' || $image != null) {
             $statement = $this->connection->getConnection()->prepare('UPDATE `services`
                                                                   SET title = ?, description = ?, image = ?, description_additional = ? 
                                                                   WHERE id = ?;
