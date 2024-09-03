@@ -7,6 +7,7 @@ ob_start();
     <h1 class="page-title">Listes des comptes</h1>
     <div class="account-list-container">
 
+        <!--require frame for the form of account creation and update -->
         <?php require_once('crudForm/createAccountForm.php'); ?>
         <?php require_once('crudForm/updateAccountForm.php'); ?>
 

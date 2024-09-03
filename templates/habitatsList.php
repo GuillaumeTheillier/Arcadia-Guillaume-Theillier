@@ -7,9 +7,9 @@ ob_start();
 
     <?php if (isset($_SESSION['LOGGED_USER']) && $_SESSION['ROLE_USER'] === 3) : ?>
         <!-- Display habitat for admin and employee -->
-        <div class="create-form-container">
-            <?php require('crudForm/createHabitatForm.php'); ?>
-        </div>
+
+        <!--require frame for the form of habitat creation -->
+        <?php require('crudForm/createHabitatForm.php'); ?>
 
         <!-- Create habitat button -->
         <div class="button-container">

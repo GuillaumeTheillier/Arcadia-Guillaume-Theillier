@@ -6,9 +6,8 @@ ob_start();
 <main>
     <h1 class="page-title">Services</h1>
 
-    <div class="create-form-container">
-        <?php require('crudForm/createServiceForm.php'); ?>
-    </div>
+    <!--require frame for the form of service creation -->
+    <?php require('crudForm/createServiceForm.php'); ?>
 
     <!-- Alert -->
     <div class="alert-container">
@@ -32,7 +31,6 @@ ob_start();
             </div>
         <?php elseif (isset($_COOKIE['CREATE_SERVICE_ERROR'])) : ?>
             <script>
-                //const createServiceFrame = document.getElementById('create-service-frame');
                 createServiceFrame.style.display = 'block';
             </script>
         <?php endif; ?>
