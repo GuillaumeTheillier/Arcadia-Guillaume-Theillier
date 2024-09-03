@@ -6,7 +6,7 @@ require_once('src/model/services.php');
 
 function servicesRepository()
 {
-    return $servicesRepository = new ServicesRepository;
+    return $servicesRepository = new ServicesRepository();
 }
 
 function deleteService()
@@ -29,6 +29,7 @@ function createService()
 
         try {
             $data = imageVerification($_FILES['createServiceImage']);
+            var_dump($data);
             $success = servicesRepository()->createService($title, $description, $data, $descAdd);
             setcookie(
                 'CREATE_SERVICE_SUCCESS',
