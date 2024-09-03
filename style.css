@@ -1178,6 +1178,7 @@ a {
 /* CRUD Window */
 .crud-frame {
     max-width: 90vw;
+    max-height: 80vh;
     display: none;
     position: fixed;
     overflow: auto;

@@ -10,12 +10,16 @@ ob_start();
     </h1>
 
     <?php if (isset($_SESSION['LOGGED_USER']) && $_SESSION['ROLE_USER'] === 3) : ?>
+        <!--require frame for the form of animal creation -->
+        <?php require('crudForm/createAnimalForm.php'); ?>
 
         <p class="habitat-description"> <?php echo $habitat['description'] ?> </p>
 
         <div class="button-container">
-            <button type="button" class="button-crud">Ajouter un animal</button>
+            <button type="button" class="button-crud" id="btn-open-add-animal">Ajouter un animal</button>
         </div>
+
+        <script src="script\addAnimalScript.js"></script>
 
         <div class="habitat-animals-list">
             <?php foreach ($animals as $animal) : ?>
