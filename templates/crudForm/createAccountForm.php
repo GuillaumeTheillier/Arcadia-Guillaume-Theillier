@@ -1,6 +1,6 @@
 <div class="create-form-container">
-    <div class="crud-frame" id="create-account-frame">
-        <button type='button' class="btn-close" id="btn-close-add-account"></button>
+    <div class="crud-frame">
+        <button type='button' class="btn-close btn-close-frame"></button>
 
         <h4 class="crud-frame-title">Créer un compte</h4>
 

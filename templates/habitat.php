@@ -16,10 +16,8 @@ ob_start();
         <p class="habitat-description"> <?php echo $habitat['description'] ?> </p>
 
         <div class="button-container">
-            <button type="button" class="button-crud" id="btn-open-add-animal">Ajouter un animal</button>
+            <button type="button" class="button-crud btn-open-frame">Ajouter un animal</button>
         </div>
-
-        <script src="script\addAnimalScript.js"></script>
 
         <div class="habitat-animals-list">
             <?php foreach ($animals as $animal) : ?>
@@ -36,7 +34,8 @@ ob_start();
                 </article>
             <?php endforeach ?>
         </div>
-
+        <!-- This script useful only for the zoo's staff -->
+        <script src="script\frameScript.js"></script>
     <?php else : ?>
 
         <p class="habitat-description"> <?php echo $habitat['description'] ?> </p>
@@ -50,9 +49,7 @@ ob_start();
                 </a>
             <?php endforeach ?>
         </div>
-
     <?php endif ?>
-
 </main>
 
 <?php

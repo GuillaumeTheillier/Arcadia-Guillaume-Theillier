@@ -1,6 +1,6 @@
 <div class="create-form-container">
-    <div class="crud-frame" id="create-animal-frame">
-        <button type='button' class="btn-close" id="btn-close-add-animal"></button>
+    <div class="crud-frame">
+        <button type='button' class="btn-close btn-close-frame"></button>
 
         <h4 class="crud-frame-title">Ajout d'un animal</h4>
 

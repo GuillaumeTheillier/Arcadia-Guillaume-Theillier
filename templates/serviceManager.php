@@ -37,7 +37,7 @@ ob_start();
     </div>
 
     <div class="button-container">
-        <button type="button" id="btn-open-add-service" class="button-crud">Ajouter un service</button>
+        <button type="button" class="button-crud btn-open-frame">Ajouter un service</button>
     </div>
 
     <?php foreach ($services as $service) : ?>
@@ -71,8 +71,8 @@ ob_start();
             </div>
         </form>
     <?php endforeach ?>
-
-    <script src="script/addServiceScript.js"></script>
+    <!-- This script useful only for the zoo's staff -->
+    <script src="script\frameScript.js"></script>
 </main>
 
 <?php

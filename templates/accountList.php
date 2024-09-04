@@ -51,7 +51,7 @@ ob_start();
             <?php endif; ?>
         </div>
 
-        <button type="button" id="btn-open-add-account" class="button-crud">Ajouter un compte</button>
+        <button type="button" class="button-crud btn-open-frame">Ajouter un compte</button>
 
         <table class="account-list">
             <thead>
@@ -84,7 +84,7 @@ ob_start();
             </tbody>
         </table>
     </div>
-    <script src="script/addAccountScript.js"></script>
+    <script src="script\frameScript.js"></script>
 </main>
 
 <?php

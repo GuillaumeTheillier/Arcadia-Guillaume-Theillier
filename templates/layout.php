@@ -10,7 +10,7 @@
     <title> <?php echo 'Arcadia | ' . $title; ?> </title>
 </head>
 
-<body id="body">
+<body>
     <?php require_once(__DIR__ . '/header.php'); ?>
 
     <?php echo $content; ?>

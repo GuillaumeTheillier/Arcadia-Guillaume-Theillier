@@ -13,10 +13,10 @@ ob_start();
 
         <!-- Create habitat button -->
         <div class="button-container">
-            <button type="button" class="button-crud" id="btn-open-add-habitat">Ajouter un habitat</button>
+            <button type="button" class="button-crud btn-open-frame">Ajouter un habitat</button>
         </div>
 
-        <script src="script/addHabitatScript.js"></script>
+
 
         <!-- Alert -->
         <div class="alert-container">
@@ -72,6 +72,8 @@ ob_start();
                 </article>
             <?php endforeach; ?>
         </div>
+        <!-- This script useful only for the zoo's staff -->
+        <script src="script\frameScript.js"></script>
     <?php else : ?>
         <!-- Display habitat for visitor -->
         <div class="habitats-container">
