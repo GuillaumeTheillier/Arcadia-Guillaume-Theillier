@@ -2,12 +2,12 @@
 
 require_once('src/model/staffAccount.php');
 
-function account()
+function updateAccount()
 {
     $username = $_POST['username'];
 
     $accountRepository = new AccountRepository;
     $account = $accountRepository->getUser($username);
 
-    require('templates/account.php');
+    require('templates/updateAccount.php');
 }
