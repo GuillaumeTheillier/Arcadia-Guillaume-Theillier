@@ -13,3 +13,13 @@ function habitatsList()
 
     require('templates/habitatsList.php');
 }
+
+function updateHabitatForm()
+{
+    $habitatName = $_POST['habitatName'];
+
+    $habitatRepository = new HabitatsRepository;
+    $habitat = $habitatRepository->getHabitat($habitatName);
+
+    require('templates/updateHabitatForm.php');
+}

@@ -1,25 +1,29 @@
 <?php
-
 require_once('src/model/animals.php');
 require_once('src/model/habitats.php');
 
-function habitat($habitatTarget)
+function habitat(int $habitatTarget)
 {
-    $habitatRepository = new HabitatsRepository;
-    $habitat = $habitatRepository->getHabitat($habitatTarget);
+    try {
+        $habitatRepository = new HabitatsRepository;
+        $habitat = $habitatRepository->getHabitat($habitatTarget);
 
-    $animalsRepository = new AnimalsRepository;
-    $animals = $animalsRepository->getAllAnimalsInHabitat($habitatTarget);
+        $animalsRepository = new AnimalsRepository;
+        $animals = $animalsRepository->getAllAnimalsInHabitat($habitatTarget);
 
-    require('templates/habitat.php');
-}
+        //Create cookie to save the current habitat id
+        setcookie(
+            'CURRENT_HABITAT_ID',
+            $habitat['id'],
+            [
+                'expires' => time() + 3600,
+                'httponly' => true,
+                'secure' => true
+            ]
+        );
 
-function updateHabitatForm()
-{
-    $habitatName = $_POST['habitatName'];
-
-    $habitatRepository = new HabitatsRepository;
-    $habitat = $habitatRepository->getHabitat($habitatName);
-
-    require('templates/updateHabitatForm.php');
+        require('templates/habitat.php');
+    } catch (Error $e) {
+        var_dump($e->getMessage());
+    }
 }
