@@ -44,7 +44,7 @@ ob_start();
             <?php endif ?>
         </div>
         <div class="input-container">
-            <label for="update-password" class="label-input-form">Mot de passe (optionnel, pour changer le mot de passe)</label>
+            <label for="update-password" class="label-input-form">Mot de passe (optionnel)</label>
             <input type="password" class="input-form" name="password" id="update-password" minlength="8">
             <div class="display-form-password">
                 <input type="checkbox" id="checkbox-display-password"><!--onclick="showPassword(passwordInputUpdate)"-->
@@ -54,7 +54,7 @@ ob_start();
         </div>
         <button type="submit">Modifier</button>
     </form>
-    <script src="script/updateAccountScript.js"></script>
+    <script src="script/showPasswordScript.js"></script>
 </main>
 
 <?php
