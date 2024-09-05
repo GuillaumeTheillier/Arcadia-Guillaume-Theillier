@@ -16,35 +16,30 @@ class HabitatsRepository
     function getAllHabitats(): array
     {
         $statement = $this->connection->getConnection()
-            ->prepare('SELECT habitats.nom as nom, images.data as image, habitats.id as habitat_id
+            ->prepare('SELECT habitats.nom as nom, images.data as image, habitats.id as id
                         FROM habitat_image
                         LEFT JOIN habitats ON habitat_image.habitat_id = habitats.id
                         LEFT JOIN images ON habitat_image.image_id = images.id
                     ');
         $statement->execute();
         while ($habitat = $statement->fetch(pdo::FETCH_ASSOC)) {
-            //We encode the image in base64 to display with img balise
-            //$habitat['image'] = base64_encode($habitat['image']);
             $habitats[] = $habitat;
         }
 
         return $habitats;
     }
 
-    function getHabitat(string $habitat): array
+    function getHabitat(int $habitat): array
     {
         $statement = $this->connection->getConnection()
             ->prepare('SELECT habitats.nom as nom, images.data as image, habitats.description as description, habitats.id as id
                         FROM habitat_image
                         LEFT JOIN habitats ON habitat_image.habitat_id = habitats.id
                         LEFT JOIN images ON habitat_image.image_id = images.id
-                        WHERE nom = ?
+                        WHERE habitats.id = ?
                     ');
         $statement->execute([$habitat]);
-
         $habitat = $statement->fetch(pdo::FETCH_ASSOC);
-        //We encode the image in base64 to display with img balise
-        //$habitat['image'] = base64_encode($habitat['image']);
 
         return $habitat;
     }
@@ -81,7 +76,7 @@ class HabitatsRepository
         $idHabitat = $idHabitatQuery->fetch(pdo::FETCH_ASSOC);
         //var_dump($idHabitat['id']);
         //FORMAT id image : 31, first digit is for habitat id and the second for image
-        //exemple : $idhabitat * 10 + 1 = 21
+        //example : $idhabitat * 10 + 1 = 21
         $idImage = $idHabitat['id'] * 10 + 1;
         //var_dump($idImage);
         //Insert image and connection between habitat and image database
