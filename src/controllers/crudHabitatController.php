@@ -17,7 +17,6 @@ function createHabitat()
         try {
             $data = imageVerification($_FILES['createHabitatImage']);
             //var_dump($data);
-
             $success = habitatRepository()->createHabitat($name, $description, $data);
             //var_dump($success);
             setcookie(

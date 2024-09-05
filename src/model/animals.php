@@ -12,26 +12,26 @@ class AnimalsRepository
     }
 
     /**
-     * Get all data animals from database.
+     * Get all data animals from database in a specific habitat.
      * 
      * @param string $habitat Animals from the selected habitat parameter.
      * @return array Array of all data animal from the same habitat.
      */
-    function getAllAnimalsInHabitat(string $habitat): array
+    function getAllAnimalsInHabitat(int $habitat): array
     {
-        $statement = $this->connection->getConnection()->prepare('SELECT name, race.label as race, image 
+        $animals = [];
+
+        $statement = $this->connection->getConnection()->prepare('SELECT animals.id as id, name, race.label as race, image 
                                                                   FROM animals 
                                                                   LEFT JOIN race ON animals.race_id = race.id
                                                                   LEFT JOIN habitats ON animals.habitat_id = habitats.id
-                                                                  WHERE habitats.nom = ?  
+                                                                  WHERE habitats.id = ?  
                                                                 ');
         $statement->execute([$habitat]);
 
-        $animals = [];
-
         while ($animal = $statement->fetch(pdo::FETCH_ASSOC)) {
+            //A SUPPRIMER
             $animal['image'] = base64_encode($animal['image']);
-
             $animals[] = $animal;
         }
 
@@ -44,20 +44,16 @@ class AnimalsRepository
      * @param string $habitat Unique animal name.
      * @return array Array of one data animal.
      */
-    function getAnimal(string $animal): array
+    function getAnimal(int $animal): array
     {
-        $statement = $this->connection->getConnection()->prepare('SELECT name, race.label as race, image, habitats.nom as habitat, status 
+        $statement = $this->connection->getConnection()->prepare('SELECT animals.id as id, name, race.label as race, image, habitats.nom as habitat, status
                                                                   FROM animals 
                                                                   LEFT JOIN race ON animals.race_id = race.id
                                                                   LEFT JOIN habitats ON animals.habitat_id = habitats.id
-                                                                  WHERE name = ?
+                                                                  WHERE animals.id = ?
                                                                 ');
         $statement->execute([$animal]);
-
-
         $animal = $statement->fetch(pdo::FETCH_ASSOC);
-        $animal['image'] = base64_encode($animal['image']);
-
         return $animal;
     }
 
@@ -67,7 +63,7 @@ class AnimalsRepository
      * @param string $name Unique animal name.
      * @param string $image image data in base64.
      * @param int $habitat habitat id.
-     * @param int $race race id.     * 
+     * @param int $race race id.
      * @return Bool TRUE on success or FALSE on failure.
      */
     function createAnimal(string $name, string $image, int $habitat, int $race): bool
@@ -110,11 +106,11 @@ class AnimalsRepository
     /**
      * Update animal status in database.
      * 
-     * @param string $name Unique animal name.
+     * @param int $idAnimal Unique animal id.
      * @param string $status New status to modify in databse.
      * @return Bool TRUE on success or FALSE on failure.
      */
-    function updateStatus(string $name, string $status) {}
+    function updateStatus(int $idAnimal, string $status) {}
 
     /**
      * Add animal race in race table.
@@ -122,7 +118,7 @@ class AnimalsRepository
      * @param string $race Unique animal name.     * 
      * @return Bool TRUE on success or FALSE on failure.
      */
-    function addRace(string $race): bool
+    function createRace(string $race): bool
     {
         $statement = $this->connection->getConnection()->prepare('INSERT INTO race(label) VALUES label=?');
         return $statement->execute([$race]);

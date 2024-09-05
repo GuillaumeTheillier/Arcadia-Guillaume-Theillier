@@ -114,7 +114,7 @@ form {
 
 .label-input-form {
     font-family: "Hind Siliguri", sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.05rem;
     font-weight: 450;
 }
 
@@ -717,7 +717,7 @@ footer {
 }
 
 .habitat-animals-list {
-    margin-top: 8rem;
+    margin-top: 1rem;
     margin-bottom: 10rem;
     width: 80vw;
     display: grid;
@@ -1185,7 +1185,7 @@ a {
     top: 5rem;
     z-index: 1;
     background-color: white;
-    padding: 1rem 1.5rem 0 1.5rem;
+    padding: 1rem 2.5rem 0 2.5rem;
     border: 1px solid var(--dark-color);
 }
 
@@ -1214,15 +1214,6 @@ a {
     box-sizing: content-box;
 }
 
-/* Account CRUD */
-/*#btn-close-add-account,
-#btn-close-update-account {
-    position: absolute;
-    top: -0.5%;
-    left: 2.5%;
-    margin-top: 1rem;
-}
-*/
 .display-form-password {
     display: inline-flex;
 }

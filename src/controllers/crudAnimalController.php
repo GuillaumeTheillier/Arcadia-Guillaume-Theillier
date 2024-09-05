@@ -10,15 +10,16 @@ function animalRepository()
 
 function createAnimal()
 {
-    if (isset($_POST['createAnimalName']) && isset($_POST['createAnimalImage'])) {
-        $name = htmlspecialchars($_POST['createHabitatName']);
-        $habitat = $_POST['createAnimalIdHabitat'];
-        $race = $_POST['createAnimalIdRace'];
+    $habitatId = $_COOKIE['CURRENT_HABITAT_ID'];
+    //var_dump($_FILES['createAnimalImage']);
+    if (isset($_POST['createAnimalName']) && isset($_FILES['createAnimalImage']) && !empty($_POST['createAnimalRace']) && !empty(isset($_POST['createAnimalHabitat']))) {
+        $name = htmlspecialchars($_POST['createAnimalName']);
+        $habitat = $_POST['createAnimalHabitat'];
+        $race = $_POST['createAnimalRace'];
 
         try {
             $data = imageVerification($_FILES['createAnimalImage']);
             //var_dump($data);
-
             $success = animalRepository()->createAnimal($name, $data, $habitat, $race);
             //var_dump($success);
             setcookie(
@@ -42,18 +43,18 @@ function createAnimal()
             );
         }
     }
-    //Redirect to habitats list page
-    redirectToUrl('index.php?action=habitatsList');
+    //redirect to the service page
+    redirectToUrl('index.php?action=habitat&habitat=' . $habitatId);
 }
 
-function createRace()
+function createRaceAnimal()
 {
     if (isset($_POST['addRaceName'])) {
         $race = htmlspecialchars($_POST['addRaceName']);
 
-        $success = animalRepository()->addRace($race);
+        $success = animalRepository()->createRace($race);
         setcookie(
-            'CREATE_ANIMAL_SUCCESS',
+            'CREATE_RACE_ANIMAL_SUCCESS',
             $success,
             [
                 'expires' => time() + 1,
@@ -63,3 +64,35 @@ function createRace()
         );
     }
 }
+
+function deleteAnimal()
+{
+    $habitatId = $_COOKIE['CURRENT_HABITAT_ID'];
+    try {
+        $id = $_POST['animalId'];
+        $success = animalRepository()->deleteAnimal($id);
+        setcookie(
+            'DELETE_ANIMAL_SUCCESS',
+            $success,
+            [
+                'expires' => time() + 1,
+                'httponly' => true,
+                'secure' => true
+            ]
+        );
+    } catch (Error $e) {
+        setcookie(
+            'DELETE_ANIMAL_ERROR',
+            $e->getMessage(),
+            [
+                'expires' => time() + 1,
+                'httponly' => true,
+                'secure' => true
+            ]
+        );
+    }
+    //redirect to the service page
+    redirectToUrl('index.php?action=habitat&habitat=' . $habitatId);
+}
+
+//"index.php?action=habitat&habitatName=<?php echo $habitat['nom']";
