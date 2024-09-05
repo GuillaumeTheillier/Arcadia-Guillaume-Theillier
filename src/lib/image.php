@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Check if data of image is correct and encode them in base64.
+ * 
+ * @param array $imageFile Array of all image information.
+ * @return string data encode in base64.
+ */
 function imageVerification(array $imageFile): string
 {
     //initialize variable $data for image data
