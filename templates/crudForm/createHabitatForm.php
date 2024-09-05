@@ -24,7 +24,7 @@
             </section>
             <section class="input-container">
                 <label for="habitat-form-img" class="label-input-form">Image</label>
-                <input type="file" name="createHabitatImage" id="service-form-img" accept="image/png, image/jpeg" required>
+                <input type="file" name="createHabitatImage" id="habitat-form-img" accept="image/png, image/jpeg" required>
             </section>
             <button type="submit">Confirmer</button>
         </form>
