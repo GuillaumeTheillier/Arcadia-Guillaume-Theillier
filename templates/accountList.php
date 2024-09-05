@@ -9,7 +9,6 @@ ob_start();
 
         <!--require frame for the form of account creation and update -->
         <?php require_once('crudForm/createAccountForm.php'); ?>
-        <?php require_once('crudForm/updateAccountForm.php'); ?>
 
         <div class="alert-container">
             <!-- Alert for account creation -->
@@ -27,7 +26,8 @@ ob_start();
                 <?php endif; ?>
             <?php elseif (isset($_COOKIE['CREATE_ACCOUNT_ERROR'])) : ?>
                 <script>
-                    createAccountFrame.style.display = 'block';
+                    document.querySelector('.crud-frame').classList.add('visible');
+                    document.querySelector('body').style.overflow = 'hidden';
                 </script>
             <?php endif; ?>
             <!-- Alert for account update -->
@@ -75,7 +75,7 @@ ob_start();
                                 <!-- <button type="button" name="username" value="<?php //echo $account['username'] 
                                                                                     ?>" class="button-crud btn-open-update-account">Modifier</button>-->
 
-                                <button type="submit" name="username" value="<?php echo $account['username'] ?>" formaction="index.php?action=account" class="button-crud">Modifier</button>
+                                <button type="submit" name="username" value="<?php echo $account['username'] ?>" formaction="index.php?action=updateAccount" class="button-crud">Modifier</button>
                                 <button type="submit" name="username" value="<?php echo $account['username'] ?>" formaction="index.php?action=deleteStaffAccount" class="button-crud">Supprimer</button>
                             </form>
                         </td>

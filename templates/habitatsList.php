@@ -16,8 +16,6 @@ ob_start();
             <button type="button" class="button-crud btn-open-frame">Ajouter un habitat</button>
         </div>
 
-
-
         <!-- Alert -->
         <div class="alert-container">
             <!--Create habitat alert-->
@@ -28,7 +26,8 @@ ob_start();
                 </div>
             <?php elseif (isset($_COOKIE['CREATE_HABITAT_ERROR'])) : ?>
                 <script>
-                    createHabitatFrame.style.display = 'block';
+                    document.querySelector('.crud-frame').classList.add('visible');
+                    document.querySelector('body').style.overflow = 'hidden';
                 </script>
             <?php endif; ?>
             <!--Delete habitat alert-->
@@ -61,13 +60,13 @@ ob_start();
         <div class="habitats-container">
             <?php foreach ($habitats as $habitat) : ?>
                 <article>
-                    <a href="index.php?action=habitat&habitatName=<?php echo $habitat['nom'] ?>" class="habitat">
+                    <a href="index.php?action=habitat&habitat=<?php echo $habitat['id'] ?>" class="habitat">
                         <img class="habitat-img" src="data:image/jpg;base64,<?php echo $habitat['image'] ?>" alt="">
                         <h4 class="habitat-label"><?php echo $habitat['nom'] ?></h4>
                     </a>
                     <form method="post" class="button-container">
                         <button type="submit" name="habitatName" value="<?php echo $habitat['nom'] ?>" formaction="index.php?action=updateHabitatForm" class="button-crud">Modifier</button>
-                        <button type="submit" name="habitatId" value="<?php echo $habitat['habitat_id'] ?>" formaction="index.php?action=deleteHabitat" class="button-crud">Supprimer</button>
+                        <button type="submit" name="habitatId" value="<?php echo $habitat['id'] ?>" formaction="index.php?action=deleteHabitat" class="button-crud">Supprimer</button>
                     </form>
                 </article>
             <?php endforeach; ?>
@@ -78,7 +77,7 @@ ob_start();
         <!-- Display habitat for visitor -->
         <div class="habitats-container">
             <?php foreach ($habitats as $habitat) : ?>
-                <a href="index.php?action=habitat&habitatName=<?php echo $habitat['nom'] ?>" class="habitat">
+                <a href="index.php?action=habitat&habitat=<?php echo $habitat['id'] ?>" class="habitat">
                     <img class="habitat-img" src="data:image/jpg;base64,<?php echo $habitat['image'] ?>" alt="">
                     <h4 class="habitat-label"><?php echo $habitat['nom'] ?></h4>
                 </a>

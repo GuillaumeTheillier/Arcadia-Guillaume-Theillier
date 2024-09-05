@@ -31,7 +31,8 @@ ob_start();
             </div>
         <?php elseif (isset($_COOKIE['CREATE_SERVICE_ERROR'])) : ?>
             <script>
-                createServiceFrame.style.display = 'block';
+                document.querySelector('.crud-frame').classList.add('visible');
+                document.querySelector('body').style.overflow = 'hidden';
             </script>
         <?php endif; ?>
     </div>
