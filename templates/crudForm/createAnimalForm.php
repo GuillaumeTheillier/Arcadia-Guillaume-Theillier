@@ -23,9 +23,9 @@
                 <label for="create-animal-race" class="label-input-form">Race</label>
                 <select name="createAnimalRace" id="create-animal-race" class="input-form" required>
                     <option value=""></option>
-                    <option value="1">Tapir du Brésil</option>
-                    <option value="2">Tigre d'indochine</option>
-                    <option value="3">Jaguar</option>
+                    <?php foreach ($raceList as $race) : ?>
+                        <option value="<?php echo $race['id'] ?>"><?php echo $race['label'] ?></option>
+                    <?php endforeach ?>
                 </select>
                 <button id="btn-add-race">Ajouter une race</button>
             </div>
@@ -33,9 +33,9 @@
                 <label for="create-animal-habitat" class="label-input-form">Habitat</label>
                 <select name="createAnimalHabitat" id="create-animal-habitat" class="input-form" required>
                     <option value=""></option>
-                    <option value="1">Jungle</option>
-                    <option value="2">Marais</option>
-                    <option value="3">Savane</option>
+                    <?php foreach ($habitatList as $hab) : ?>
+                        <option value="<?php echo $hab['id'] ?>"><?php echo $hab['nom'] ?></option>
+                    <?php endforeach ?>
                 </select>
             </div>
             <div class="input-container">
