@@ -76,12 +76,10 @@ function deleteHabitat()
 
 function updateHabitat()
 {
-
     if (isset($_POST['updateHabitatName']) && isset($_POST['updateHabitatDescription'])) {
         $name = htmlspecialchars($_POST['updateHabitatName']);
         $description = nl2br(htmlspecialchars($_POST['updateHabitatDescription']));
         $id = $_POST['updateHabitatId'];
-
         try {
             //Image is optional
             //If image is modified then add him in the function argument
