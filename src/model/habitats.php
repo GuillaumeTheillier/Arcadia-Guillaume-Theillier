@@ -25,7 +25,6 @@ class HabitatsRepository
         while ($habitat = $statement->fetch(pdo::FETCH_ASSOC)) {
             $habitats[] = $habitat;
         }
-
         return $habitats;
     }
 
@@ -40,13 +39,22 @@ class HabitatsRepository
                     ');
         $statement->execute([$habitat]);
         $habitat = $statement->fetch(pdo::FETCH_ASSOC);
-
         return $habitat;
+    }
+
+    function getHabitatList(): array
+    {
+        $statement = $this->connection->getConnection()->prepare('SELECT id, nom FROM habitats');
+        $statement->execute();
+        while ($habitat = $statement->fetch(pdo::FETCH_ASSOC)) {
+            $habitats[] = $habitat;
+        }
+        return $habitats;
     }
 
     function updateHabitat(int $id, string $name, string $description, string|null $image = NULL): bool
     {
-        if ($image == NULL || $image == '') {
+        if ($image == NULL && $image == '') {
             $statement = $this->connection->getConnection()->prepare('UPDATE habitat_image 
                                                                       LEFT JOIN habitats ON habitat_image.habitat_id = habitats.id
                                                                       LEFT JOIN images ON habitat_image.image_id = images.id
