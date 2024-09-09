@@ -31,7 +31,7 @@ class AnimalsRepository
 
         while ($animal = $statement->fetch(pdo::FETCH_ASSOC)) {
             //A SUPPRIMER
-            $animal['image'] = base64_encode($animal['image']);
+            //$animal['image'] = base64_encode($animal['image']);
             $animals[] = $animal;
         }
 
@@ -77,27 +77,28 @@ class AnimalsRepository
     /**
      * Update one data animal from database.
      * 
+     * @param int $id Animal's identifier. It's unique and cannot be modified.
      * @param string $name Unique animal name.
+     * @param string|null $image data image.
      * @return Bool TRUE on success or FALSE on failure.
      */
-    function updateAnimal(int $id, string $name, string|null $image = NULL, string $status)
+    function updateAnimal(int $id, string $name, int $habitat, int $race, string|null $image = NULL)
     {
         //var_dump([$id, $title, $description, $image, $descAdd]);
-
-        if ($image !== '' || $image != null) {
+        if ($image !== '' && $image != null) {
             $statement = $this->connection->getConnection()->prepare('UPDATE `animals`
-                                                                  SET name = ?, image = ?, status = ? 
+                                                                  SET name = ?, image = ?, habitat_id = ?, race_id = ?
                                                                   WHERE id = ?;
                                                                   ');
 
-            $success = $statement->execute([$name, $image, $status, $id]);
+            $success = $statement->execute([$name, $image, $habitat, $race, $id]);
         } else {
             $statement = $this->connection->getConnection()->prepare('UPDATE `animals`
-                                                                  SET name = ?, status = ? 
+                                                                  SET name = ?, habitat_id = ?, race_id = ?
                                                                   WHERE id = ?;
                                                                   ');
 
-            $success = $statement->execute([$name, $status, $id]);
+            $success = $statement->execute([$name, $habitat, $race, $id]);
         }
 
         return $success;
@@ -113,18 +114,6 @@ class AnimalsRepository
     function updateStatus(int $idAnimal, string $status) {}
 
     /**
-     * Add animal race in race table.
-     * 
-     * @param string $race Unique animal name.     * 
-     * @return Bool TRUE on success or FALSE on failure.
-     */
-    function createRace(string $race): bool
-    {
-        $statement = $this->connection->getConnection()->prepare('INSERT INTO race(label) VALUES label=?');
-        return $statement->execute([$race]);
-    }
-
-    /**
      * Delete all data for one animal in database.
      * 
      * @param string $id Unique animal id.
@@ -134,5 +123,31 @@ class AnimalsRepository
     {
         $statement = $this->connection->getConnection()->prepare('DELETE FROM animals WHERE id=?');
         return $statement->execute([$id]);
+    }
+
+    /**
+     * Get all race name and id from database
+     * 
+     */
+    function getRace(): array
+    {
+        $statement = $this->connection->getConnection()->prepare('SELECT id, label FROM race');
+        $statement->execute();
+        while ($race = $statement->fetch(pdo::FETCH_ASSOC)) {
+            $races[] = $race;
+        }
+        return $races;
+    }
+
+    /**
+     * Add animal race in race table.
+     * 
+     * @param string $race Unique animal name.     * 
+     * @return Bool TRUE on success or FALSE on failure.
+     */
+    function createRace(string $race): bool
+    {
+        $statement = $this->connection->getConnection()->prepare('INSERT INTO race(label) VALUES label=?');
+        return $statement->execute([$race]);
     }
 }
