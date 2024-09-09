@@ -65,13 +65,13 @@ ob_start();
             <?php foreach ($animals as $animal) : ?>
                 <article class="habitat-animal">
                     <a href="index.php?action=animal&animal=<?php echo $animal['id'] ?>">
-                        <img class="habitat-animal-img" src="data:image/jpg;base64,<?php echo $animal['image'] ?>" alt="">
+                        <img class="habitat-animal-img" src="data:image/webp;base64,<?php echo $animal['image'] ?>" alt="">
                         <p class="habitat-animal-name"> <?php echo $animal['name'] ?> </p>
                         <p class="habitat-animal-race"> <?php echo $animal['race'] ?> </p>
                     </a>
                     <form method="post" class="button-container">
-                        <button type="button" name="animalId" value="<?php echo $animal['id'] ?>" class="button-crud">Modifier</button>
-                        <button type="submit" name="animalId" value="<?php echo $animal['id'] ?>" formaction="index.php?action=deleteAnimal" class="button-crud">Supprimer</button>
+                        <button type="submit" name="animalId" value="<?php echo $animal['id'] ?>" class="button-crud" formaction="index.php?action=updateAnimalForm&animal=<?php echo $animal['id'] ?>">Modifier</button>
+                        <button type="submit" name="animalId" value="<?php echo $animal['id'] ?>" class="button-crud" formaction="index.php?action=deleteAnimal">Supprimer</button>
                     </form>
                 </article>
             <?php endforeach ?>
@@ -85,7 +85,7 @@ ob_start();
         <div class="habitat-animals-list">
             <?php foreach ($animals as $animal) : ?>
                 <a class="habitat-animal" href="index.php?action=animal&animal=<?php echo $animal['id'] ?>">
-                    <img class="habitat-animal-img" src="data:image/jpg;base64,<?php echo $animal['image'] ?>" alt="">
+                    <img class="habitat-animal-img" src="data:image/webp;base64,<?php echo $animal['image'] ?>" alt="">
                     <p class="habitat-animal-name"> <?php echo $animal['name'] ?> </p>
                     <p class="habitat-animal-race"> <?php echo $animal['race'] ?> </p>
                 </a>
