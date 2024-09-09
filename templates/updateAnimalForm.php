@@ -17,22 +17,32 @@ ob_start();
     <form action="index.php?action=updateAnimal" method="post" enctype="multipart/form-data">
         <div class="input-container">
             <label for="update-animal-name" class="label-input-form">Nom</label>
-            <input type="text" class="input-form" name="updateAnimalName" id="update-animal-name" value="<?php echo $animal['nom']; ?>" maxlength="50" required>
+            <input type="text" class="input-form" name="updateAnimalName" id="update-animal-name" value="<?php echo $animal['name']; ?>" maxlength="50" required>
         </div>
         <div class="input-container">
             <label for="update-animal-race" class="label-input-form">Race</label>
-            <select name="role" id="update-animal-race" class="input-form" required>
-                <option value="1">Tapir du Brésil</option>
-                <option value="2">Tigre d'indochine</option>
-                <option value="3">Jaguar</option>
+            <select name="updateAnimalRace" id="update-animal-race" class="input-form" required>
+                <option value="" disabled></option>
+                <?php foreach ($raceList as $race) : ?>
+                    <?php if ($race['label'] === $animal['race']) : ?>
+                        <option value="<?php echo $race['id'] ?>" selected><?php echo $race['label'] ?></option>
+                    <?php else: ?>
+                        <option value="<?php echo $race['id'] ?>"><?php echo $race['label'] ?></option>
+                    <?php endif ?>
+                <?php endforeach ?>
             </select>
         </div>
         <div class="input-container">
-            <label for="update-animal-habitat" class="label-input-form">Rôle</label>
-            <select name="role" id="update-animal-habitat" class="input-form" required>
-                <option value="1">Jungle</option>
-                <option value="2">Marais</option>
-                <option value="3">Savane</option>
+            <label for="update-animal-habitat" class="label-input-form">Habitat</label>
+            <select name="updateAnimalHabitat" id="update-animal-habitat" class="input-form" required>
+                <option value="" disabled></option>
+                <?php foreach ($habitatList as $hab) : ?>
+                    <?php if ($hab['nom'] === $animal['habitat']) : ?>
+                        <option value="<?php echo $hab['id'] ?>" selected><?php echo $hab['nom'] ?></option>
+                    <?php else: ?>
+                        <option value="<?php echo $hab['id'] ?>"><?php echo $hab['nom'] ?></option>
+                    <?php endif ?>
+                <?php endforeach ?>
             </select>
         </div>
         <div class="input-container-image">

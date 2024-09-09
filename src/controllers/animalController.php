@@ -2,20 +2,54 @@
 
 require_once('src/model/animals.php');
 
-function animal(string $animalName)
+function animal(int $animalId)
 {
-    $animalRepository = new AnimalsRepository;
-    $animal = $animalRepository->getAnimal($animalName);
+    try {
+        //Get all necessary data for animals and races
+        $animalRepository = new AnimalsRepository;
+        $animal = $animalRepository->getAnimal($animalId);
+        //Create cookie to save the current animal id
+        setcookie(
+            'CURRENT_ANIMAL_ID',
+            $animal['id'],
+            [
+                'expires' => time() + 3600,
+                'httponly' => true,
+                'secure' => true
+            ]
+        );
+        require('templates/animal.php');
+    } catch (Error $e) {
+        var_dump($e->getMessage());
+    }
+}
 
-    //Create cookie to save the current animal id
-    setcookie(
-        'CURRENT_ANIMAL_ID',
-        $animal['id'],
-        [
-            'expires' => time() + 3600,
-            'httponly' => true,
-            'secure' => true
-        ]
-    );
-    require('templates/animal.php');
+function updateAnimalForm(int $animalId)
+{
+    try {
+        //Get data from database for habitat admin page 
+        if (isset($_SESSION['LOGGED_USER']) && $_SESSION['ROLE_USER'] === 3) {
+            //Get all necessary data for habitat
+            $habitatRepository = new HabitatsRepository;
+            $habitatList = $habitatRepository->getHabitatList();
+            //Get all necessary data for animals and races
+            $animalRepository = new AnimalsRepository;
+            $animal = $animalRepository->getAnimal($animalId);
+            $raceList = $animalRepository->getRace();
+
+            //Create cookie to save the current animal id
+            setcookie(
+                'CURRENT_ANIMAL_ID',
+                $animal['id'],
+                [
+                    'expires' => time() + 3600,
+                    'httponly' => true,
+                    'secure' => true
+                ]
+            );
+            require('templates/updateAnimalForm.php');
+        }
+    } catch (Error $e) {
+        var_dump($e->getMessage());
+    }
 }

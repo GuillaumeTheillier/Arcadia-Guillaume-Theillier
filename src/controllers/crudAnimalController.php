@@ -65,6 +65,60 @@ function createRaceAnimal()
     }
 }
 
+function updateAnimal()
+{
+    $habitatId = $_COOKIE['CURRENT_HABITAT_ID'];
+    if (isset($_POST['updateAnimalName']) && !empty($_POST['updateAnimalRace']) && !empty($_POST['updateAnimalHabitat'])) {
+        $name = htmlspecialchars($_POST['updateAnimalName']);
+        $habitat = $_POST['updateAnimalHabitat'];
+        $race = $_POST['updateAnimalRace'];
+        $animalId = $_POST['updateAnimalId'];
+
+        try {
+            if (isset($_FILES['updateAnimalImage']) && $_FILES['updateAnimalImage']['error'] !== 4) {
+                $data = imageVerification($_FILES['updateAnimalImage']);
+                //var_dump($data);
+                $success = animalRepository()->updateAnimal($animalId, $name, $habitat, $race, $data);
+            } else {
+                $success = animalRepository()->updateAnimal($animalId, $name, $habitat, $race);
+            }
+            //var_dump($success);
+            setcookie(
+                'UPDATE_ANIMAL_SUCCESS',
+                $success,
+                [
+                    'expires' => time() + 1,
+                    'httponly' => true,
+                    'secure' => true
+                ]
+            );
+        } catch (Exception $e) {
+            //var_dump($e->getMessage());
+            setcookie(
+                'UPDATE_ANIMAL_ERROR',
+                $e->getMessage(),
+                [
+                    'expires' => time() + 1,
+                    'httponly' => true,
+                    'secure' => true
+                ]
+            );
+        }
+    } else {
+        setcookie(
+            'UPDATE_ANIMAL_ERROR',
+            'Les champs saisies sont incorrects.',
+            [
+                'expires' => time() + 1,
+                'httponly' => true,
+                'secure' => true
+            ]
+        );
+    }
+    //redirect to the service page
+    redirectToUrl('index.php?action=habitat&habitat=' . $habitatId);
+}
+
 function deleteAnimal()
 {
     $habitatId = $_COOKIE['CURRENT_HABITAT_ID'];
