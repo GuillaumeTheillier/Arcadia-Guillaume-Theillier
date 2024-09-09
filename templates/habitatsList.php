@@ -65,7 +65,7 @@ ob_start();
                         <h4 class="habitat-label"><?php echo $habitat['nom'] ?></h4>
                     </a>
                     <form method="post" class="button-container">
-                        <button type="submit" name="habitatName" value="<?php echo $habitat['nom'] ?>" formaction="index.php?action=updateHabitatForm" class="button-crud">Modifier</button>
+                        <button type="submit" name="habitatId" value="<?php echo $habitat['id'] ?>" formaction="index.php?action=updateHabitatForm" class="button-crud">Modifier</button>
                         <button type="submit" name="habitatId" value="<?php echo $habitat['id'] ?>" formaction="index.php?action=deleteHabitat" class="button-crud">Supprimer</button>
                     </form>
                 </article>
