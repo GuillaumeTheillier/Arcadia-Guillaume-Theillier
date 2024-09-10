@@ -50,37 +50,45 @@ function imageVerification(array $imageFile): string
  */
 function imageVerification(array $imageFile): string
 {
-    //initialize variable $data for image data
-    $data = '';
     //check if user want upload an image to modify them
-    //$_Files[] Error code 4 : No file was uploaded
-    if ($imageFile['error'] !== 4 || $imageFile === null) {
-        $imageExt = pathinfo($imageFile['name'], PATHINFO_EXTENSION);
+    //$_Files[]['error'] UPLOAD_ERR_OK : There is no error, the file uploaded with success.
+    if ($imageFile['error'] === UPLOAD_ERR_OK) {
+        //initialize variable to check image file uploaded
+        $data = null;
         $extensions = ['jpg', 'png', 'jpeg', 'webp'];
+        $mimeTypeApproved = ['image/jpeg', 'image/png', 'image/webp'];
         //Image max size : 500Ko
         $maxSize = 500000;
-
-        //Test image extension
-        if (in_array($imageExt, $extensions)) {
+        $imageExt = pathinfo($imageFile['name'], PATHINFO_EXTENSION);
+        //MIME type
+        $mimeTypeImage = mime_content_type($imageFile['tmp_name']);
+        //var_dump($mimeTypeImage);
+        //Check image extension and MIME type
+        if (in_array($imageExt, $extensions) && in_array($mimeTypeImage, $mimeTypeApproved)) {
             //test image size
             if ($imageFile['size'] <= $maxSize) {
                 $filename = 'tmp/' . $imageFile['name'];
-                //Move image to a tmp folder
-                move_uploaded_file($imageFile['tmp_name'], $filename);
-                //Convert image in webp format
-                ConvertImage($filename, $imageExt);
-                $data = file_get_contents('tmp/convertImageWebp.webp');
-                $data = base64_encode($data);
-                //var_dump($data);
-                //delete image saved in tmp folder
-                unlink('tmp/convertImageWebp.webp');
-                unlink($filename);
-                return $data;
+                //Check if it's image data inside file
+                if ($re = exif_imagetype($imageFile['tmp_name']) !== false) {
+                    //Move image to a tmp folder
+                    move_uploaded_file($imageFile['tmp_name'], $filename);
+                    //Convert image in webp format
+                    ConvertImage($filename, $imageExt);
+                    $data = file_get_contents('tmp/convertImageWebp.webp');
+                    $data = base64_encode($data);
+                    //var_dump($data);
+                    //delete image saved in tmp folder
+                    unlink('tmp/convertImageWebp.webp');
+                    unlink($filename);
+                    return $data;
+                } else {
+                    $message = 'Le fichier téléchargé ne contient pas de donnée d\'image.';
+                }
             } else {
                 $message =  'L\'image est trop volumineuse. La taille maximale est de ' . ($maxSize / 1000) . 'Ko.';
             }
         } else {
-            $message =  'L\'extension n\'est pas valide. Extensions valides : jpg, jpeg, png et webp.';
+            $message =  'L\'extension n\'est pas valide. Extensions valides : jpeg, png et webp.';
         }
     } else {
         $message = 'Erreur lors du téléchargement de l\'image.';
