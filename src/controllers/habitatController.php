@@ -35,6 +35,7 @@ function habitat(int $habitatTarget)
         }
         require('templates/habitat.php');
     } catch (Error $e) {
+        // Affiche page 'Une erreur est survenue'.
         var_dump($e->getMessage());
     }
 }
