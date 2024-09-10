@@ -43,19 +43,14 @@ ob_start();
             <?php elseif (isset($_COOKIE['DELETE_ANIMAL_ERROR'])) : ?>
                 <div class="alert alert-danger" role="alert">
                     Une erreur est survenue lors de la suppression de l'animal.
-                    Réessayez plus tard.
+                    Veuillez réessayer.
                     <button type='button' class="btn-close ms-auto" data-bs-dismiss='alert'></button>
                 </div>
             <?php endif; ?>
             <!--Update animal alert-->
             <?php if (isset($_COOKIE['UPDATE_ANIMAL_SUCCESS']) && $_COOKIE['UPDATE_ANIMAL_SUCCESS'] == true) : ?>
                 <div class="alert alert-success" role="alert">
-                    L'animal a bien été modifié.
-                    <button type='button' class="btn-close ms-auto" data-bs-dismiss='alert'></button>
-                </div>
-            <?php elseif (isset($_COOKIE['UPDATE_ANIMAL_ERROR'])) : ?>
-                <div class="alert alert-danger" role="alert">
-                    Une erreur est survenue lors de la modification de l'animal, réessayez.
+                    Les informations sur l'animal ont bien été modifiées.
                     <button type='button' class="btn-close ms-auto" data-bs-dismiss='alert'></button>
                 </div>
             <?php endif; ?>
