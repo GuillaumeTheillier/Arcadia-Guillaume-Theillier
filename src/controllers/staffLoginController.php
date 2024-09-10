@@ -1,5 +1,6 @@
 <?php
-
+//Set on visitor by default
+//$_SESSION['ROLE_USER'] = 0;
 require_once('src/model/staffAccount.php');
 require_once('src/lib/functions.php');
 
@@ -63,6 +64,7 @@ function login()
 
             $_SESSION['LOGGED_USER'] = $user['username'];
             /*
+                0 = Visitor
                 1 = employee
                 2 = veterinarian
                 3 = admin
