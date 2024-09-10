@@ -76,18 +76,18 @@ function deleteHabitat()
 
 function updateHabitat()
 {
+    $habitatId = $_POST['updateHabitatId'];
     if (isset($_POST['updateHabitatName']) && isset($_POST['updateHabitatDescription'])) {
         $name = htmlspecialchars($_POST['updateHabitatName']);
         $description = nl2br(htmlspecialchars($_POST['updateHabitatDescription']));
-        $id = $_POST['updateHabitatId'];
         try {
             //Image is optional
             //If image is modified then add him in the function argument
             if (isset($_FILES['updateHabitatImage']) && $_FILES['updateHabitatImage']['error'] !== 4) {
                 $data = imageVerification($_FILES['updateHabitatImage']);
-                $success = habitatRepository()->updateHabitat($id, $name, $description, $data);
+                $success = habitatRepository()->updateHabitat($habitatId, $name, $description, $data);
             } else {
-                $success = habitatRepository()->updateHabitat($id, $name, $description);
+                $success = habitatRepository()->updateHabitat($habitatId, $name, $description);
             }
             setcookie(
                 'UPDATE_HABITAT_SUCCESS',
@@ -98,6 +98,8 @@ function updateHabitat()
                     'secure' => true
                 ]
             );
+            //Redirect to the list of habitats page
+            redirectToUrl('index.php?action=habitatsList');
         } catch (Exception $e) {
             //var_dump($e->getMessage());
             setcookie(
@@ -109,8 +111,20 @@ function updateHabitat()
                     'secure' => true
                 ]
             );
+            //Redirect to the list of habitats page
+            redirectToUrl('index.php?action=updateHabitatForm&habitat=' . $habitatId);
         }
+    } else {
+        setcookie(
+            'UPDATE_HABITAT_ERROR',
+            'Tous les champs n\'ont pas été saisis.',
+            [
+                'expires' => time() + 1,
+                'httponly' => true,
+                'secure' => true
+            ]
+        );
+        //Redirect to the update habitat page
+        redirectToUrl('index.php?action=updateHabitatForm&habitat=' . $habitatId);
     }
-    //Redirect to habitats list page
-    redirectToUrl('index.php?action=habitatsList');
 }

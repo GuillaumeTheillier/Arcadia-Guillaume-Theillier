@@ -68,12 +68,11 @@ function createRaceAnimal()
 function updateAnimal()
 {
     $habitatId = $_COOKIE['CURRENT_HABITAT_ID'];
+    $animalId = $_POST['updateAnimalId'];
     if (isset($_POST['updateAnimalName']) && !empty($_POST['updateAnimalRace']) && !empty($_POST['updateAnimalHabitat'])) {
         $name = htmlspecialchars($_POST['updateAnimalName']);
         $habitat = $_POST['updateAnimalHabitat'];
         $race = $_POST['updateAnimalRace'];
-        $animalId = $_POST['updateAnimalId'];
-
         try {
             if (isset($_FILES['updateAnimalImage']) && $_FILES['updateAnimalImage']['error'] !== 4) {
                 $data = imageVerification($_FILES['updateAnimalImage']);
@@ -92,6 +91,8 @@ function updateAnimal()
                     'secure' => true
                 ]
             );
+            //Redirect to the habitat page
+            redirectToUrl('index.php?action=habitat&habitat=' . $habitatId);
         } catch (Exception $e) {
             //var_dump($e->getMessage());
             setcookie(
@@ -103,20 +104,22 @@ function updateAnimal()
                     'secure' => true
                 ]
             );
+            //Redirect to the update animal page
+            redirectToUrl('index.php?action=updateAnimalForm&animal=' . $animalId);
         }
     } else {
         setcookie(
             'UPDATE_ANIMAL_ERROR',
-            'Les champs saisies sont incorrects.',
+            'Tous les champs n\'ont pas été saisis.',
             [
                 'expires' => time() + 1,
                 'httponly' => true,
                 'secure' => true
             ]
         );
+        //Redirect to the update animal page
+        redirectToUrl('index.php?action=updateAnimalForm&animal=' . $animalId);
     }
-    //redirect to the service page
-    redirectToUrl('index.php?action=habitat&habitat=' . $habitatId);
 }
 
 function deleteAnimal()
