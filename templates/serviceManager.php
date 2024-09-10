@@ -14,7 +14,7 @@ ob_start();
         <!-- Update service -->
         <?php if (isset($_COOKIE['UPDATE_SERVICE_SUCCESS']) && $_COOKIE['UPDATE_SERVICE_SUCCESS'] == true) : ?>
             <div class="alert alert-success" role="alert">
-                Les modifications ont bien été effectué.
+                Le service a bien été modifié avec succès.
                 <button type='button' class="btn-close ms-auto" data-bs-dismiss='alert'></button>
             </div>
         <?php elseif (isset($_COOKIE['UPDATE_SERVICE_ERROR'])) : ?>
