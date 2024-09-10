@@ -14,10 +14,8 @@ function habitatsList()
     require('templates/habitatsList.php');
 }
 
-function updateHabitatForm()
+function updateHabitatForm(int $habitatId)
 {
-    $habitatId = $_POST['habitatId'];
-
     $habitatRepository = new HabitatsRepository;
     $habitat = $habitatRepository->getHabitat($habitatId);
 

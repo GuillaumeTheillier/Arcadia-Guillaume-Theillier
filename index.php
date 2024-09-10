@@ -41,9 +41,9 @@ if (isset($_GET['action']) && $_GET['action'] !== '') {
     $action = $_GET['action'];
     if ($action === 'addComment') {
         addComment($_POST);
-    } elseif ($action === 'habitat' && isset($_GET['habitat']) && is_numeric($_GET['habitat'])) {
+    } elseif (/*$action === 'habitat' &&*/isset($_GET['habitat']) && is_numeric($_GET['habitat'])) {
         $habitatId = $_GET['habitat'];
-        habitat($habitatId);
+        $action($habitatId);
     } elseif (/*$action === 'animal' &&*/isset($_GET['animal']) && is_numeric($_GET['animal'])) {
         $animalId = $_GET['animal'];
         $action($animalId);
