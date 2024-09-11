@@ -13,11 +13,32 @@ function deleteService()
 {
     $id = $_POST['deleteServiceId'];
 
-    servicesRepository()->deleteService($id);
-
+    try {
+        $success = servicesRepository()->deleteService($id);
+        setcookie(
+            'DELETE_SERVICE_SUCCESS',
+            $success,
+            [
+                'expires' => time() + 1,
+                'httponly' => true,
+                'secure' => true
+            ]
+        );
+    } catch (Error $e) {
+        setcookie(
+            'DELETE_SERVICE_ERROR',
+            $e->getMessage(),
+            [
+                'expires' => time() + 1,
+                'httponly' => true,
+                'secure' => true
+            ]
+        );
+    }
     //redirect to the service page
     redirectToUrl('index.php?action=services');
 }
+
 
 function createService()
 {
