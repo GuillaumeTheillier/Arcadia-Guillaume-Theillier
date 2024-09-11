@@ -3,12 +3,12 @@
 require_once('src/model/comment.php');
 require_once('src/lib/functions.php');
 
-function manageComment()
+function commentManager()
 {
     $commentRepository = new CommentRepository;
     $allcomment = $commentRepository->getAll();
 
-    require('templates/manageComment.php');
+    require('templates/commentManager.php');
 }
 
 function editVisibleComment()
@@ -19,5 +19,5 @@ function editVisibleComment()
     $commentRepository = new CommentRepository;
     $commentRepository->validComment($isVisible, $id);
 
-    redirectToUrl('index.php?action=manageComment#' . $id);
+    redirectToUrl('index.php?action=commentManager#' . $id);
 }
