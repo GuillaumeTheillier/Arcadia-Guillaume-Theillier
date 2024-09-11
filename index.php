@@ -28,13 +28,14 @@ require_once(__DIR__ . '/src/controllers/contactController.php');
 require_once(__DIR__ . '/src/controllers/sendContactController.php');
 require_once(__DIR__ . '/src/controllers/staffLoginController.php');
 require_once(__DIR__ . '/src/controllers/dashboardController.php');
-require_once(__DIR__ . '/src/controllers/manageCommentController.php');
+require_once(__DIR__ . '/src/controllers/commentManagerController.php');
 require_once(__DIR__ . '/src/controllers/accountListController.php');
 require_once(__DIR__ . '/src/controllers/crudStaffAccountController.php');
 require_once(__DIR__ . '/src/controllers/accountController.php');
 require_once(__DIR__ . '/src/controllers/crudServiceController.php');
 require_once(__DIR__ . '/src/controllers/crudHabitatController.php');
 require_once(__DIR__ . '/src/controllers/crudAnimalController.php');
+require_once(__DIR__ . '/src/controllers/foodConsumptionController.php');
 
 if (isset($_GET['action']) && $_GET['action'] !== '') {
 
