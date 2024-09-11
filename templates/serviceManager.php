@@ -14,7 +14,7 @@ ob_start();
         <!-- Update service -->
         <?php if (isset($_COOKIE['UPDATE_SERVICE_SUCCESS']) && $_COOKIE['UPDATE_SERVICE_SUCCESS'] == true) : ?>
             <div class="alert alert-success" role="alert">
-                Le service a bien été modifié avec succès.
+                Le service a été modifié avec succès.
                 <button type='button' class="btn-close ms-auto" data-bs-dismiss='alert'></button>
             </div>
         <?php elseif (isset($_COOKIE['UPDATE_SERVICE_ERROR'])) : ?>
@@ -37,9 +37,12 @@ ob_start();
         <?php endif; ?>
     </div>
 
-    <div class="button-container">
-        <button type="button" class="button-crud btn-open-frame">Ajouter un service</button>
-    </div>
+    <?php if ($_SESSION['ROLE_USER'] === 3) : ?>
+        <!-- Create Service is only for admin -->
+        <div class="button-container">
+            <button type="button" class="button-crud btn-open-frame">Ajouter un service</button>
+        </div>
+    <?php endif ?>
 
     <?php foreach ($services as $service) : ?>
         <form method="post" class="service-form" enctype='multipart/form-data'>
@@ -68,7 +71,10 @@ ob_start();
 
             <div class="service-form-button">
                 <button type="submit" name="updateServiceId" value="<?php echo $service['id'] ?>" formaction="index.php?action=updateService">Enregister les modifications</button>
-                <button type="submit" name="deleteServiceId" value="<?php echo $service['id'] ?>" formaction="index.php?action=deleteService">Supprimer ce service</button>
+                <?php if ($_SESSION['ROLE_USER'] === 3) : ?>
+                    <!-- Delete service is only for admin -->
+                    <button type="submit" name="deleteServiceId" value="<?php echo $service['id'] ?>" formaction="index.php?action=deleteService">Supprimer ce service</button>
+                <?php endif ?>
             </div>
         </form>
     <?php endforeach ?>
