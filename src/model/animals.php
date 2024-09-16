@@ -14,6 +14,50 @@ class AnimalsRepository
     /**
      * Get all data animals from database in a specific habitat.
      * 
+     *
+     * @return array Array of all data animal from the same habitat.
+     */
+    function getAllAnimal(int $id = null, string $filterType = null): array
+    {
+        $animals = [];
+
+        if ($filterType === null) {
+            $statement = $this->connection->getConnection()->prepare('SELECT animals.id as id, name, race.label as race, habitats.nom as habitat
+                                                                  FROM animals 
+                                                                  LEFT JOIN race ON animals.race_id = race.id
+                                                                  LEFT JOIN habitats ON animals.habitat_id = habitats.id
+                                                                  ORDER BY name ASC 
+                                                                ');
+            $statement->execute();
+        } else if ($filterType === 'habitat') {
+            $statement = $this->connection->getConnection()->prepare('SELECT animals.id as id, name, race.label as race, habitats.nom as habitat
+                                                                        FROM animals 
+                                                                        LEFT JOIN race ON animals.race_id = race.id
+                                                                        LEFT JOIN habitats ON animals.habitat_id = habitats.id
+                                                                        WHERE habitats.id = ?
+                                                                        ORDER BY name ASC 
+                                                                        ');
+            $statement->execute([$id]);
+        } else if ($filterType === 'race') {
+            $statement = $this->connection->getConnection()->prepare('SELECT animals.id as id, name, race.label as race, habitats.nom as habitat
+                                                                        FROM animals 
+                                                                        LEFT JOIN race ON animals.race_id = race.id
+                                                                        LEFT JOIN habitats ON animals.habitat_id = habitats.id
+                                                                        WHERE race.id = ?
+                                                                        ORDER BY name ASC 
+                                                                        ');
+            $statement->execute([$id]);
+        }
+
+        while ($animal = $statement->fetch(pdo::FETCH_ASSOC)) {
+            $animals[] = $animal;
+        }
+        return $animals;
+    }
+
+    /**
+     * Get all data animals from database in a specific habitat.
+     * 
      * @param string $habitat Animals from the selected habitat parameter.
      * @return array Array of all data animal from the same habitat.
      */
@@ -30,8 +74,6 @@ class AnimalsRepository
         $statement->execute([$habitat]);
 
         while ($animal = $statement->fetch(pdo::FETCH_ASSOC)) {
-            //A SUPPRIMER
-            //$animal['image'] = base64_encode($animal['image']);
             $animals[] = $animal;
         }
 
