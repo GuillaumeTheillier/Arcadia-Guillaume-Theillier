@@ -21,8 +21,8 @@
                             case 1:
                         ?>
                                 <a class="header-link" href="index.php?action=dashboard">Tableau de bord</a>
+                                <a class="header-link" href="index.php?action=animalList">Animaux</a>
                                 <a class="header-link" href="index.php?action=services">Services</a>
-                                <a class="header-link" href="index.php?action=habitatsList">Habitats</a>
                                 <a class="header-link" href="index.php?action=commentManager">Avis</a>
                                 <a class="header-link" href="index.php?action=logout">Déconnexion</a>
                                 <?php break; ?>

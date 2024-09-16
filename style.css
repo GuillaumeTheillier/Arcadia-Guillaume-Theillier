@@ -1250,3 +1250,110 @@ a {
 #label-display-password {
     padding-left: 1rem;
 }
+
+
+
+
+
+
+
+/* animal list staff */
+.animal-list-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.animal-list {
+    table-layout: auto;
+    width: 70vw;
+    border-collapse: collapse;
+    font-size: 1rem;
+    margin: 1rem 0;
+    text-align: center;
+}
+
+.animal-list th {
+    font-weight: 600;
+    padding-bottom: 1rem;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.animal-list thead {
+    border-bottom: 2px solid black;
+}
+
+.animal-list td {
+    text-align: center;
+    height: 50px;
+    padding: 1.5rem 2rem;
+    font-size: 1.1rem;
+}
+
+
+.animal-list .button-crud {
+    font-size: 80%;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.animal-list-button {
+    padding: 0;
+    margin: 0;
+}
+
+@media screen and (max-width:630px) {
+    .animal-list {
+        width: 95vw;
+    }
+
+    .animal-list td,
+    .animal-list th {
+        font-size: 0.9rem;
+    }
+
+    .animal-list tr:first-of-type td {
+        border-top: 1px solid black;
+    }
+
+    .animal-list .button-crud {
+        font-size: 60%;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+
+
+
+
+
+
+/* Filter */
+.filter {
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: center;
+    gap: 3rem;
+
+}
+
+.filter h5 {
+    justify-self: center;
+}
+
+.filter button {
+    font-size: 0.8rem;
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+}
+
+.filter label {
+    font-size: 0.9rem;
+}
+
+.filter select {
+    width: fit-content;
+}

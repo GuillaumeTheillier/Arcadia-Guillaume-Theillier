@@ -36,6 +36,7 @@ require_once(__DIR__ . '/src/controllers/crudServiceController.php');
 require_once(__DIR__ . '/src/controllers/crudHabitatController.php');
 require_once(__DIR__ . '/src/controllers/crudAnimalController.php');
 require_once(__DIR__ . '/src/controllers/foodConsumptionController.php');
+require_once(__DIR__ . '/src/controllers/animalListStaffController.php');
 
 if (isset($_GET['action']) && $_GET['action'] !== '') {
 
