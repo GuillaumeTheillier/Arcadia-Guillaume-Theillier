@@ -6,6 +6,8 @@ ob_start();
 <main>
     <h1 class="page-title">Liste des animaux</h1>
 
+    <?php require('crudForm/addAnimalReport.php'); ?>
+
     <!-- Alert -->
     <div class="alert-container">
         <?php if (isset($_COOKIE['ADD_FOOD_SUCCESS']) && $_COOKIE['ADD_FOOD_SUCCESS'] == true) : ?>
@@ -21,6 +23,7 @@ ob_start();
         <?php endif; ?>
     </div>
 
+    <!-- Filter -->
     <div class="filter">
         <form action="index.php?action=animalList" method="post">
             <!-- Race filter -->
@@ -70,21 +73,36 @@ ob_start();
             </thead>
             <tbody>
                 <?php foreach ($animalList as $animal) : ?>
-                    <tr>
+                    <tr class='table-row'>
+                        <?php if ($_SESSION['ROLE_USER'] == 1) : ?>
+                            <td><?php echo $animal['name']; ?></td>
+                            <td><?php echo $animal['race']; ?></td>
+                            <td><?php echo $animal['habitat']; ?></td>
+                            <td>
+                                <form class="animal-list-button" method="post">
+                                    <button type="submit" name="animalId" class="button-crud" value="<?php echo $animal['id'] ?>" formaction="index.php?action=foodConsumptionForm">Ajouter une consommation</button>
+                                </form>
+                            </td>
+                    </tr>
+                <?php elseif ($_SESSION['ROLE_USER'] == 2) : ?>
+                    <!--<a href="index.php?action=animalConsumptionList"></a>-->
+                    <tr onclick="document.location.href='index.php?action=animalConsumptionList&animal=<?php echo $animal['id'] ?>'" class='table-row row-click'>
                         <td><?php echo $animal['name']; ?></td>
                         <td><?php echo $animal['race']; ?></td>
                         <td><?php echo $animal['habitat']; ?></td>
                         <td>
                             <form class="animal-list-button" method="post">
-                                <button type="submit" name="animalId" class="button-crud" value="<?php echo $animal['id'] ?>" formaction="index.php?action=foodConsumptionForm">Ajouter une consommation</button>
+                                <!--<button type="submit" name="animalId" class="button-crud" value="<?php echo $animal['id'] ?>" formaction="index.php?action=reportForm">Ajouter un compte rendu</button>
+                --><button type="button" class="button-crud btn-open-frame">Ajouter un compte rendu</button>
                             </form>
                         </td>
                     </tr>
-                <?php endforeach; ?>
+                <?php endif ?>
+            <?php endforeach; ?>
             </tbody>
         </table>
     </div>
-
+    <script src="script\frameScript.js"></script>
 </main>
 
 <?php
