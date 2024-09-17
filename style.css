@@ -799,16 +799,33 @@ footer {
     align-items: center;
 }
 
+.animal-container>#animal-flex {
+    width: 100vw;
+    background-color: var(--primary-color);
+    padding: 3rem 0;
+    margin-bottom: 4rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10rem;
+    color: white;
+}
+
 .animal-img {
     object-fit: cover;
-    width: 20rem;
-    height: 35rem;
+    width: 15rem;
+    height: 20rem;
 }
 
 .animal-description {
     font-size: 1.5rem;
     margin-top: 5rem;
     margin-bottom: 4rem;
+}
+
+.animal-description button {
+    background-color: var(--dark-color);
 }
 
 
@@ -1302,6 +1319,14 @@ a {
 .animal-list-button {
     padding: 0;
     margin: 0;
+}
+
+.table-row:hover {
+    background-color: rgba(128, 128, 128, 0.193);
+}
+
+.row-click {
+    cursor: pointer;
 }
 
 @media screen and (max-width:630px) {

@@ -26,4 +26,21 @@ class FoodConsumptionRepository
                                                                                                 VALUES (?, ?, ?, ?, ?);');
         return $statement->execute([$date, $food, $quantity, $username, $animalId]);
     }
+
+    function getConsumption(int $animalId)
+    {
+        $consumptionList = [];
+        $statement = $this->connection->getConnection()->prepare('SELECT date, food_type as foodType, quantity
+                                                                FROM food_consumption
+                                                                WHERE animal_id = ?
+                                                                ORDER BY date DESC');
+        $statement->execute([$animalId]);
+        while ($consumption = $statement->fetch(pdo::FETCH_ASSOC)) {
+            $date = new DateTime($consumption['date']);
+            $consumption['date'] = date_format($date, "d/m/Y H:i:s");
+
+            $consumptionList[] = $consumption;
+        }
+        return $consumptionList;
+    }
 }
