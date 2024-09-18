@@ -15,6 +15,10 @@
 
         <form action="index.php?action=addAnimalReport" method="post">
             <div class="input-container">
+                <label for="add-report-date" class="label-input-form">Date de passage</label>
+                <input type="datetime-local" class="input-form" name="addReportDate" id="add-report-date" maxlength="50" required>
+            </div>
+            <div class="input-container">
                 <label for="add-report-status" class="label-input-form">Etat de l'animal</label>
                 <input type="text" class="input-form" name="addReportStatus" id="add-report-status" maxlength="50" required>
             </div>
@@ -27,14 +31,10 @@
                 <input type="text" class="input-form" name="addReportQuantity" id="add-report-quantity" maxlength="50" required>
             </div>
             <div class="input-container">
-                <label for="add-report-date" class="label-input-form">Date de passage</label>
-                <input type="datetime-local" class="input-form" name="addReportDate" id="add-report-date" maxlength="50" required>
-            </div>
-            <div class="input-container">
                 <label for="add-report-status-detail" class="label-input-form">Détail sur l'état de l'animal (facultatif)</label>
-                <input type="text" class="input-form" name="addReportStatusDetail" id="add-report-status-detail" maxlength="50">
+                <input type="text" class="input-form" name="addReportStatusDetail" id="add-report-status-detail" maxlength="200">
             </div>
-            <button type="submit">Confirmer</button>
+            <button type="submit" name="animalId" value="<?php echo $animal['id'] ?>">Confirmer</button>
         </form>
     </div>
 </div>

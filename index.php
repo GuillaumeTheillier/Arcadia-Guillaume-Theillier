@@ -38,6 +38,7 @@ require_once(__DIR__ . '/src/controllers/crudAnimalController.php');
 require_once(__DIR__ . '/src/controllers/foodConsumptionController.php');
 require_once(__DIR__ . '/src/controllers/animalListStaffController.php');
 require_once(__DIR__ . '/src/controllers/animalConsumptionListController.php');
+require_once(__DIR__ . '/src/controllers/addVeterinarianReportController.php');
 
 if (isset($_GET['action']) && $_GET['action'] !== '') {
 
