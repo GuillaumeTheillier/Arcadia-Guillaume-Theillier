@@ -1325,7 +1325,7 @@ a {
     background-color: rgba(128, 128, 128, 0.193);
 }
 
-.row-click {
+.click-row:hover {
     cursor: pointer;
 }
 
