@@ -5,7 +5,7 @@ ob_start();
 
 <main class="animal-container">
     <h1 class="page-title"><?php echo $animal['name'] ?></h1>
-    <?php require('crudForm/addAnimalReport.php'); ?>
+    <?php require('crudForm/addVeterinarianReport.php'); ?>
     <div id="animal-flex">
         <img class="animal-img" src="data:image/jpg;base64,<?php echo $animal['image'] ?>" alt="">
         <div class="animal-description">
@@ -13,6 +13,8 @@ ob_start();
             <p class="animal-race">Race : <?php echo $animal['race'] ?> </p>
             <p class="animal-status">Etat de l'animal : <?php echo $animal['status'] ?></p>
             <button type="button" class="button-crud btn-open-frame">Ajouter un compte rendu</button>
+            <br>
+            <button type="button" class="button-crud btn-open-frame">Ajouter un commentaire à son habitat</button>
         </div>
     </div>
     <div class="animal-list-container">
