@@ -12,11 +12,16 @@ function animalList()
         $habitatList = $habitatRepository->getHabitatList();
         if (isset($_POST['animalListHabitatFilter'])) {
             $habitatId = $_POST['animalListHabitatFilter'];
+            $filter['type'] = 'habitat';
+            $filter['labelId'] = $habitatId;
             $animalList = $animalRepository->getAllAnimal($habitatId, 'habitat');
         } else if (isset($_POST['animalListRaceFilter'])) {
             $raceId = $_POST['animalListRaceFilter'];
+            $filter['type'] = 'race';
+            $filter['labelId'] = $raceId;
             $animalList = $animalRepository->getAllAnimal($raceId, 'race');
         } else {
+            $filter = false;
             $animalList = $animalRepository->getAllAnimal();
         }
         require('templates/animalListStaff.php');
