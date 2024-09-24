@@ -5,16 +5,34 @@ ob_start();
 
 <main class="animal-container">
     <h1 class="page-title"><?php echo $animal['name'] ?></h1>
-    <?php require('crudForm/addVeterinarianReport.php'); ?>
+    <?php require('crudForm/addVeterinarianReportForm.php'); ?>
+    <div class="alert-container">
+        <?php
+        //Alert veterinarian report  
+        if (isset($_COOKIE['ADD_REPORT_SUCCESS']) && $_COOKIE['ADD_REPORT_SUCCESS'] == true) :
+        ?>
+            <div class="alert alert-success" role="alert">
+                Un nouveau compte rendu a été ajouté.
+                <button type='button' class="btn-close ms-auto" data-bs-dismiss='alert'></button>
+            </div>
+        <?php elseif (isset($_COOKIE['ADD_REPORT_ERROR'])) : ?>
+            <div class="alert alert-danger" role="alert">
+                <script>
+                    document.querySelector('.crud-frame').classList.add('visible');
+                    document.querySelector('body').style.overflow = 'hidden';
+                </script>
+            </div>
+        <?php endif; ?>
+    </div>
     <div id="animal-flex">
         <img class="animal-img" src="data:image/jpg;base64,<?php echo $animal['image'] ?>" alt="">
         <div class="animal-description">
             <p class="animal-habitat">habitat : <?php echo $animal['habitat'] ?> </p>
             <p class="animal-race">Race : <?php echo $animal['race'] ?> </p>
             <p class="animal-status">Etat de l'animal : <?php echo $animal['status'] ?></p>
-            <button type="button" class="button-crud btn-open-frame">Ajouter un compte rendu</button>
+            <button type="button" data-animal-id='<?php echo $animal['id'] ?>' class="button-crud btn-open-frame">Ajouter un compte rendu</button>
             <br>
-            <button type="button" class="button-crud btn-open-frame">Ajouter un commentaire à son habitat</button>
+            <button type="button" data-habitat-name='<?php echo $animal['habitat'] ?>' class="button-crud btn-open-frame">Ajouter un commentaire à son habitat</button>
         </div>
     </div>
     <div class="animal-list-container">
