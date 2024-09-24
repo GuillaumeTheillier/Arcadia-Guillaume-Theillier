@@ -1,5 +1,5 @@
 <div class="create-form-container">
-    <div class="crud-frame">
+    <div class="crud-frame" data-frame-name="habitatComment">
         <button type='button' class="btn-close btn-close-frame"></button>
 
         <h4 class="crud-frame-title">Ajouter un commentaire à un habitat</h4>
@@ -18,7 +18,7 @@
                 <label for="add-habitat-comment" class="label-input-form"></label>
                 <input type="text" class="input-form" name="addHabitatComment" id="add-habitat-comment" maxlength="255" required>
             </div>
-            <button type="submit" name="habitatId" value="<?php echo $habitat['id'] ?>">Confirmer</button>
+            <button type="submit" name="habitatId" class="submitFrameBtn" value="<?php echo $animal['habitat'] ?>">Confirmer</button>
         </form>
     </div>
 </div>

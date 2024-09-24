@@ -5,7 +5,10 @@ ob_start();
 
 <main class="animal-container">
     <h1 class="page-title"><?php echo $animal['name'] ?></h1>
-    <?php require('crudForm/addVeterinarianReportForm.php'); ?>
+    <?php
+    require('crudForm/addVeterinarianReportForm.php');
+    require('crudForm/addHabitatComment.php');
+    ?>
     <div class="alert-container">
         <?php
         //Alert veterinarian report  
@@ -30,9 +33,10 @@ ob_start();
             <p class="animal-habitat">habitat : <?php echo $animal['habitat'] ?> </p>
             <p class="animal-race">Race : <?php echo $animal['race'] ?> </p>
             <p class="animal-status">Etat de l'animal : <?php echo $animal['status'] ?></p>
-            <button type="button" data-animal-id='<?php echo $animal['id'] ?>' class="button-crud btn-open-frame">Ajouter un compte rendu</button>
             <br>
-            <button type="button" data-habitat-name='<?php echo $animal['habitat'] ?>' class="button-crud btn-open-frame">Ajouter un commentaire à son habitat</button>
+            <button type="button" data-frame-to-open='report' data-animal-id='<?php echo $animal['id'] ?>' class="button-crud btn-open-frame">Ajouter un compte rendu</button>
+            <br>
+            <button type="button" data-frame-to-open='habitatComment' data-habitat-name='<?php echo $animal['habitat'] ?>' class="button-crud btn-open-frame">Ajouter un commentaire à son habitat</button>
         </div>
     </div>
     <div class="animal-list-container">
@@ -55,7 +59,8 @@ ob_start();
                 <?php endforeach ?>
             </tbody>
         </table>
-        <script src="script\frameScript.js"></script>
+    </div>
+    <script src="script\frameScript.js"></script>
 </main>
 
 <?php

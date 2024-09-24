@@ -1,5 +1,5 @@
 <div class="create-form-container">
-    <div class="crud-frame">
+    <div class="crud-frame" data-frame-name="report">
         <button type='button' class="btn-close btn-close-frame"></button>
 
         <h4 class="crud-frame-title">Ajouter un compte rendu</h4>

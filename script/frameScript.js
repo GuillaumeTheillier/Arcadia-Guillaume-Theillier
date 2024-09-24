@@ -1,27 +1,15 @@
 let btnOpen = document.querySelectorAll('.btn-open-frame');
-let btnClose = document.querySelector('.btn-close-frame');
-let frame = document.querySelector('.crud-frame');
+let btnClose = document.querySelectorAll('.btn-close-frame');
+let frame = document.querySelectorAll('.crud-frame');
 let body = document.querySelector('body');
-//console.log(frame);
-
-function openFrameWithMultipleButton() {
-    btnOpen.forEach(element => {
-        let btnSubmit = document.querySelector('.submitFrameBtn');
-        element.addEventListener('click', () => {
-            btnSubmit.value = element.dataset.animalId;
-            //console.log(element.dataset.animalId);
-            frame.classList.add('visible');
-            body.style.overflow = 'hidden';
-        });
-    });
-}
 
 /**
  * Open frame on button click and disable the scrollbar for the main page.
  */
-function openFrame() {
-    btnOpen[0].addEventListener('click', () => {
-        frame.classList.add('visible');
+function openFrame(indexBtn, indexFrame) {
+    btnOpen[indexBtn].addEventListener('click', () => {
+        console.log('1');
+        frame[indexFrame].classList.add('visible');
         body.style.overflow = 'hidden';
     });
 }
@@ -29,19 +17,53 @@ function openFrame() {
 /**
  * Close frame on button click and enable the scrollbar for the main page.
  */
-function closeFrame() {
-    btnClose.addEventListener('click', () => {
-        frame.classList.remove('visible');
+function closeFrame(indexBtn, indexFrame) {
+    btnClose[indexBtn].addEventListener('click', () => {
+        frame[indexFrame].classList.remove('visible');
         body.style.overflow = 'auto';
     });
 }
 
-
-if (btnOpen.length > 1) {
-    openFrameWithMultipleButton()
-    closeFrame();
-} else if (btnOpen.length === 1) {
-    openFrame();
-    closeFrame();
+/**
+ * 
+ */
+function openFrameWithMultipleButton(index) {
+    console.log('test');
+    btnOpen.forEach(element => {
+        let btnSubmit = document.querySelector('.submitFrameBtn');
+        element.addEventListener('click', () => {
+            btnSubmit.value = element.dataset.animalId;
+            //console.log(element.dataset.animalId);
+            frame[index].classList.add('visible');
+            body.style.overflow = 'hidden';
+        });
+    });
 }
+
+function openCloseCorrectFrame() {
+    //console.log(frame);
+    //frame array
+    for (let i = 0; i < frame.length; i++) {
+        // button array
+        for (let j = 0; j < btnOpen.length; j++) {
+            if (frame[i].dataset.frameName == btnOpen[j].dataset.frameToOpen) {
+                openFrame(j, i)
+                closeFrame(i, j);
+            }
+        }
+    }
+}
+
+if (frame.length === 1) {
+    if (btnOpen.length > 1) {
+        openFrameWithMultipleButton(0)
+        closeFrame(0, 0);
+    } else if (btnOpen.length === 1) {
+        openFrame(0, 0);
+        closeFrame(0, 0);
+    }
+} else {
+    openCloseCorrectFrame();
+}
+
 
