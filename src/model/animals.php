@@ -173,7 +173,7 @@ class AnimalsRepository
      */
     function getRace(): array
     {
-        $statement = $this->connection->getConnection()->prepare('SELECT id, label FROM race');
+        $statement = $this->connection->getConnection()->prepare('SELECT id, label FROM race ORDER BY label ASC');
         $statement->execute();
         while ($race = $statement->fetch(pdo::FETCH_ASSOC)) {
             $races[] = $race;
