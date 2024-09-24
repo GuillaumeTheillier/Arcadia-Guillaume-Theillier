@@ -5,7 +5,7 @@ function foodConsumptionRepository()
 {
     return $foodConsumptionRepository = new FoodConsumptionRepository;
 }
-
+/*
 function foodConsumptionForm()
 {
     if (isset($_POST['animalId'])) {
@@ -17,7 +17,7 @@ function foodConsumptionForm()
             'ADD_FOOD_ERROR',
             'Une erreur est survenue.',
             [
-                'expires' => time() + 2,
+                'expires' => time() + 1,
                 'httponly' => true,
                 'secure' => true
             ]
@@ -36,7 +36,7 @@ function foodConsumptionForm()
         ]
     );
     require('templates/foodConsumptionForm.php');
-}
+}*/
 
 function addFoodConsumption()
 {
