@@ -27,29 +27,20 @@ class VeterinarianReportRepository
                                                                                                 VALUES (:date, :food, :quantity, :username, :animalId);
                                                                       UPDATE animals SET status = :status
                                                                       WHERE id = :animalId;');
-
-            $statement->bindParam(':date', $date, PDO::PARAM_STR);
-            $statement->bindParam(':food', $food, PDO::PARAM_STR);
-            $statement->bindParam(':quantity', $quantity, PDO::PARAM_STR);
-            $statement->bindParam(':username', $username, PDO::PARAM_STR);
-            $statement->bindParam(':status', $status, PDO::PARAM_STR);
-            $statement->bindParam(':animalId', $animalId, PDO::PARAM_INT);
-            return $statement->execute();
         } else {
             $statement = $this->connection->getConnection()->prepare('INSERT INTO veterinarian_report(date, food_type, quantity, status_detail, veterinarian_username, animal_id) 
                                                                                                 VALUES (:date, :food, :quantity, :statusDetail, :username,:animalId);
                                                                       UPDATE animals SET status = :status
                                                                       WHERE id = :animalId;');
-
-            $statement->bindParam(':date', $date, PDO::PARAM_STR);
-            $statement->bindParam(':food', $food, PDO::PARAM_STR);
-            $statement->bindParam(':quantity', $quantity, PDO::PARAM_STR);
-            $statement->bindParam(':username', $username, PDO::PARAM_STR);
             $statement->bindParam(':statusDetail', $statusDetail, PDO::PARAM_STR);
-            $statement->bindParam(':status', $status, PDO::PARAM_STR);
-            $statement->bindParam(':animalId', $animalId, PDO::PARAM_INT);
-            return $statement->execute();
         }
+        $statement->bindParam(':date', $date, PDO::PARAM_STR);
+        $statement->bindParam(':food', $food, PDO::PARAM_STR);
+        $statement->bindParam(':quantity', $quantity, PDO::PARAM_STR);
+        $statement->bindParam(':username', $username, PDO::PARAM_STR);
+        $statement->bindParam(':status', $status, PDO::PARAM_STR);
+        $statement->bindParam(':animalId', $animalId, PDO::PARAM_INT);
+        return $statement->execute();
     }
 
     function getReport(int $animalId)
