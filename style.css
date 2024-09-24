@@ -83,7 +83,7 @@ html {
 
 /* Center alert message */
 .alert-container {
-    margin-top: 1rem;
+    margin-top: 0rem;
     text-align: center;
 }
 
@@ -1267,6 +1267,8 @@ a {
 #label-display-password {
     padding-left: 1rem;
 }
+
+.btn-close-frame {}
 
 
 
