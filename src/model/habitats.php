@@ -44,7 +44,7 @@ class HabitatsRepository
 
     function getHabitatList(): array
     {
-        $statement = $this->connection->getConnection()->prepare('SELECT id, nom FROM habitats');
+        $statement = $this->connection->getConnection()->prepare('SELECT id, nom FROM habitats ORDER BY nom ASC');
         $statement->execute();
         while ($habitat = $statement->fetch(pdo::FETCH_ASSOC)) {
             $habitats[] = $habitat;
