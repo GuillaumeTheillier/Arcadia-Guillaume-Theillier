@@ -6,8 +6,12 @@ ob_start();
 <main>
     <h1 class="page-title">Services</h1>
 
-    <!--require frame for the form of service creation -->
-    <?php require('crudForm/createServiceForm.php'); ?>
+    <?php
+    //require frame for the form of service creation
+    if ($_SESSION['ROLE_USER'] === 3) {
+        require('crudForm/createServiceForm.php');
+    }
+    ?>
 
     <!-- Alert -->
     <div class="alert-container">
