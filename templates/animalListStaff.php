@@ -55,7 +55,7 @@ ob_start();
             <!-- Race filter -->
             <div class="input-container">
                 <label for="animal-list-race-filter" class="label-input-form">Race</label>
-                <select onchange="this.form.submit()" name="animalListRaceFilter" id="animal-list-race-filter" class="input-form raceSelect">
+                <select onchange="this.form.submit()" name="animalListRaceFilter" id="animal-list-race-filter" class="input-form race-select">
                     <option value="" disabled></option>
                     <?php foreach ($raceList as $race) : ?>
                         <option value="<?php echo $race['id'] ?>"><?php echo $race['label'] ?></option>
@@ -67,7 +67,7 @@ ob_start();
         <form action="index.php?action=animalList" method="post">
             <div class="input-container">
                 <label for="animal-list-habitat-filter" class="label-input-form">Habitat</label>
-                <select onchange="this.form.submit()" name="animalListHabitatFilter" id="animal-list-habitat-filter" class="input-form habitatSelect">
+                <select onchange="this.form.submit()" name="animalListHabitatFilter" id="animal-list-habitat-filter" class="input-form habitat-select">
                     <option value="" disabled></option>
                     <?php foreach ($habitatList as $hab) : ?>
                         <option value="<?php echo $hab['id'] ?>"><?php echo $hab['nom'] ?></option>
@@ -104,8 +104,8 @@ ob_start();
                     <?php elseif ($_SESSION['ROLE_USER'] === 2) : ?>
                         <tr class="table-row">
                             <td class="click-row" onclick="document.location.href='index.php?action=animalConsumptionList&animal=<?php echo htmlspecialchars($animal['id']) ?>'"><?php echo $animal['name']; ?></td>
-                            <td class="click-row raceCol" onclick="document.location.href='index.php?action=animalConsumptionList&animal=<?php echo htmlspecialchars($animal['id']) ?>'"><?php echo $animal['race']; ?></td>
-                            <td class="click-row habitatCol" onclick="document.location.href='index.php?action=animalConsumptionList&animal=<?php echo htmlspecialchars($animal['id']) ?>'"><?php echo $animal['habitat']; ?></td>
+                            <td class="click-row race-col" onclick="document.location.href='index.php?action=animalConsumptionList&animal=<?php echo htmlspecialchars($animal['id']) ?>'"><?php echo $animal['race']; ?></td>
+                            <td class="click-row habitat-col" onclick="document.location.href='index.php?action=animalConsumptionList&animal=<?php echo htmlspecialchars($animal['id']) ?>'"><?php echo $animal['habitat']; ?></td>
                             <td>
                                 <button type="button" data-animal-id="<?php echo $animal['id']; ?>" class="button-crud btn-open-frame">Ajouter un compte rendu</button>
                             </td>

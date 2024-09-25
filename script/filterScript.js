@@ -1,9 +1,9 @@
 let filterType = document.querySelector('.filter').dataset.filterType;
 let filterLabelId = document.querySelector('.filter').dataset.filterLabelId;
-let habitatCol = document.querySelectorAll('.habitatCol');
-let raceCol = document.querySelectorAll('.raceCol');
-let raceSelect = document.querySelector('.raceSelect');
-let habitatSelect = document.querySelector('.habitatSelect');
+let habitatCol = document.querySelectorAll('.habitat-col');
+let raceCol = document.querySelectorAll('.race-col');
+let raceSelect = document.querySelector('.race-select');
+let habitatSelect = document.querySelector('.habitat-select');
 
 //console.log(habitatSelect[3].value);
 //console.log(filterLabelId);
