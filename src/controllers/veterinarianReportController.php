@@ -1,6 +1,7 @@
 <?php
 require_once('src/lib/functions.php');
 require_once('src/model/veterinarianReport.php');
+require_once('src/model/animals.php');
 
 function veterinarianReport()
 {
@@ -57,4 +58,26 @@ function addVeterinarianReport()
     //var_dump($_SERVER['HTTP_REFERER']);
     //redirectToUrl('index.php?action=animalList');
     redirectToUrl($_SERVER['HTTP_REFERER']);
+}
+
+function veterinarianReportList()
+{
+    $reportRepository = veterinarianReport();
+    $animalRepository = new AnimalsRepository;
+    $animal = $animalRepository->getAllAnimal();
+
+    if (!isset($_POST['reportListSort'])) {
+        $sort = 'date Asc';
+    } else $sort = $_POST['reportListSort'];
+
+    if (!isset($_POST['reportListAnimalFilter'])) {
+        $animalList = null;
+    } else $animalList = $_POST['reportListAnimalFilter'];
+
+    if (!isset($_POST['reportListDateFilter'])) {
+        $date = null;
+    } else $date = $_POST['reportListDateFilter'];
+
+    $reportList = $reportRepository->getAllReport($sort, $date, $animalList);
+    require('templates/veterinarianReportList.php');
 }
