@@ -40,6 +40,7 @@
                             case 3:
                             ?>
                                 <a class="header-link" href="index.php?action=dashboard">Tableau de bord</a>
+                                <a class="header-link" href="index.php?action=veterinarianReportList">Compte rendu</a>
                                 <a class="header-link" href="index.php?action=services">Services</a>
                                 <a class="header-link" href="index.php?action=habitatsList">Habitats</a>
                                 <a class="header-link" href="index.php?action=logout">Déconnexion</a>
