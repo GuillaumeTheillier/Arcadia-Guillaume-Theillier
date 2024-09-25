@@ -1268,8 +1268,6 @@ a {
     padding-left: 1rem;
 }
 
-.btn-close-frame {}
-
 
 
 
@@ -1305,7 +1303,7 @@ a {
 }
 
 .animal-list td {
-    text-align: center;
+    text-align: justify;
     height: 50px;
     padding: 1.5rem 2rem;
     font-size: 1.1rem;
@@ -1361,6 +1359,7 @@ a {
 
 
 
+
 /* Filter */
 .filter {
     display: flex;
@@ -1388,3 +1387,9 @@ a {
 .filter select {
     width: fit-content;
 }
+
+#report-list-date-filter {
+    width: max-content;
+}
+
+/* Sort */
