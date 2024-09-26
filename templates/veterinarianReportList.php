@@ -61,7 +61,7 @@ ob_start();
                         <td><?php echo $report['animalName'] ?></td>
                         <td><?php echo $report['foodType']; ?></td>
                         <td><?php echo $report['quantity']; ?></td>
-                        <td><?php echo $report['statusDetail']; ?></td>
+                        <td class="report-status-detail"><?php echo $report['statusDetail']; ?></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
