@@ -13,12 +13,12 @@
             <?php endif; ?>
         </div>
 
-        <form action="index.php?action=addAHabitatComment" method="post">
+        <form action="index.php?action=addHabitatComment" method="post">
             <div class="input-container">
                 <label for="add-habitat-comment" class="label-input-form"></label>
-                <input type="text" class="input-form" name="addHabitatComment" id="add-habitat-comment" maxlength="255" required>
+                <input type="text" class="input-form" name="habitatComment" id="add-habitat-comment" maxlength="255" required>
             </div>
-            <button type="submit" name="habitatId" class="submitFrameBtn" value="<?php echo $animal['habitat'] ?>">Confirmer</button>
+            <button type="submit" name="habitatId" class="submitFrameBtn" value="<?php echo $animal['habitatId'] ?>">Confirmer</button>
         </form>
     </div>
 </div>

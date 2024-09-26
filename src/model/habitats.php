@@ -103,4 +103,20 @@ class HabitatsRepository
         //Delete all images are starting by the id habitat digit 
         return $statement->execute([$idHabitat, $idHabitat, $idHabitat * 10 + 1]);
     }
+
+    // Habitat Comment
+
+    /**
+     * 
+     */
+    function addComment(string $comment, int $id)
+    {
+        $statement = $this->connection->getConnection()->prepare('UPDATE habitats SET comment = :comment
+                                                          WHERE id = :id');
+        $statement->bindParam(':comment', $comment, pdo::PARAM_STR);
+        $statement->bindParam(':id', $id, pdo::PARAM_INT);
+        return $statement->execute();
+    }
+
+    function getComment(int $id) {}
 }
