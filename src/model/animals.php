@@ -22,7 +22,7 @@ class AnimalsRepository
         $animals = [];
 
         if ($filterType === null) {
-            $statement = $this->connection->getConnection()->prepare('SELECT animals.id as id, name, race.label as race, habitats.nom as habitat
+            $statement = $this->connection->getConnection()->prepare('SELECT animals.id as id, name, race.label as race, habitats.nom as habitat, habitats.id as habitatId
                                                                   FROM animals 
                                                                   LEFT JOIN race ON animals.race_id = race.id
                                                                   LEFT JOIN habitats ON animals.habitat_id = habitats.id
@@ -30,7 +30,7 @@ class AnimalsRepository
                                                                 ');
             $statement->execute();
         } else if ($filterType === 'habitat') {
-            $statement = $this->connection->getConnection()->prepare('SELECT animals.id as id, name, race.label as race, habitats.nom as habitat
+            $statement = $this->connection->getConnection()->prepare('SELECT animals.id as id, name, race.label as race, habitats.nom as habitat, habitats.id as habitatId
                                                                         FROM animals 
                                                                         LEFT JOIN race ON animals.race_id = race.id
                                                                         LEFT JOIN habitats ON animals.habitat_id = habitats.id
@@ -39,7 +39,7 @@ class AnimalsRepository
                                                                         ');
             $statement->execute([$id]);
         } else if ($filterType === 'race') {
-            $statement = $this->connection->getConnection()->prepare('SELECT animals.id as id, name, race.label as race, habitats.nom as habitat
+            $statement = $this->connection->getConnection()->prepare('SELECT animals.id as id, name, race.label as race, habitats.nom as habitat, habitats.id as habitatId
                                                                         FROM animals 
                                                                         LEFT JOIN race ON animals.race_id = race.id
                                                                         LEFT JOIN habitats ON animals.habitat_id = habitats.id
@@ -88,7 +88,7 @@ class AnimalsRepository
      */
     function getAnimal(int $animal): array
     {
-        $statement = $this->connection->getConnection()->prepare('SELECT animals.id as id, name, race.label as race, image, habitats.nom as habitat, status
+        $statement = $this->connection->getConnection()->prepare('SELECT animals.id as id, name, race.label as race, image, habitats.nom as habitat, habitats.id as habitatId, status
                                                                   FROM animals 
                                                                   LEFT JOIN race ON animals.race_id = race.id
                                                                   LEFT JOIN habitats ON animals.habitat_id = habitats.id
