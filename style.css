@@ -1361,13 +1361,12 @@ a {
 
 
 /* Filter */
-.filter {
+.filter form {
     display: flex;
     flex-direction: row;
     align-items: end;
     justify-content: center;
     gap: 3rem;
-
 }
 
 .filter h5 {
