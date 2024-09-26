@@ -7,45 +7,40 @@ ob_start();
     <h1 class="page-title">Compte rendu des vétérinaires</h1>
 
     <!-- filter -->
-    <div class="filter" data-sort="<?php echo $sort; ?>">
+    <div class="filter" data-sort="<?php echo $sort; ?>" data-animal-filter="<?php echo $animalId; ?>">
         <form action="index.php?action=veterinarianReportList" method="post">
             <!-- Sort by -->
             <div class="input-container">
                 <label for="report-list-sort" class="label-input-form">Trier par :</label>
                 <select onchange="this.form.submit()" name="reportListSort" id="report-list-sort" class="input-form select-sort">
                     <option value="" disabled></option>
-                    <option value="date Asc">Date croissante</option>
-                    <option value="date Desc">Date décroissante</option>
-                    <option value="animalName Asc">Animal A-Z</option>
-                    <option value="animalName Desc">Animal Z-A</option>
+                    <option value="dateAsc">Date croissante</option>
+                    <option value="dateDesc">Date décroissante</option>
+                    <option value="animalNameAsc">Animal A-Z</option>
+                    <option value="animalNameDesc">Animal Z-A</option>
                 </select>
             </div>
-        </form>
-        <script src="script/sortScript.js"></script>
-        <!-- Date filter -->
-        <form action="index.php?action=veterinarianReportList" method="post">
+            <!-- Date filter -->
             <div class="input-container">
                 <label for="report-list-date-filter" class="label-input-form">Date</label>
-                <input type="date" name="reportListDateFilter" id="report-list-date-filter" class="input-form">
+                <input type="date" name="reportListDateFilter" value="<?php echo $date ?>" id="report-list-date-filter" class="input-form date-filter">
             </div>
-        </form>
-        <!-- Animal filter -->
-        <form action="index.php?action=veterinarianReportList" method="post">
+            <!-- Animal filter -->
             <div class="input-container">
                 <label for="report-list-animal-filter" class="label-input-form">Animal</label>
-                <select onchange="this.form.submit()" name="reportListAnimalFilter" id="report-list-animal-filter" class="input-form habitat-select">
+                <select name="reportListAnimalFilter" id="report-list-animal-filter" class="input-form select-animal">
                     <option value="" disabled></option>
                     <?php foreach ($animal as $ani) : ?>
-                        <option value="<?php echo $ani['id'] ?>"><?php echo $ani['name'] ?></option>
+                        <option value=<?php echo (int)$ani['id'] ?>><?php echo $ani['name'] ?></option>
                     <?php endforeach ?>
                 </select>
             </div>
+            <!-- submit filter -->
+            <button type="submit">Valider</button>
+            <!-- reset filter -->
+            <button type="submit" name="clearFilter" value=true>Effacer filtre</button>
         </form>
-        <script src="script/filterScript.js"></script>
-        <!-- reset filter -->
-        <form action="index.php?action=veterinarianReportList" method="post">
-            <button type="submit">Effacer filtre</button>
-        </form>
+        <script src="script/reportFilterScript.js"></script>
     </div>
     <!-- Report list table -->
     <div class="animal-list-container">

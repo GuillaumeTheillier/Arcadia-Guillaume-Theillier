@@ -74,36 +74,89 @@ class VeterinarianReportRepository
     {
         $reportList = array();
 
-        if ($sort === null || $sort === 'dateAsc') {
-            $statement = $this->connection->getConnection()->prepare('SELECT date, food_type as foodType, quantity, status_detail as statusDetail, animals.name as animalName
+        if ($animalId === null && $date === null) {
+            //sort active but no filter active
+            if ($sort === null || $sort === 'dateAsc') {
+                $statement = $this->connection->getConnection()->prepare('SELECT date, food_type as foodType, quantity, status_detail as statusDetail, animals.name as animalName
                                                                   FROM veterinarian_report
                                                                   LEFT JOIN animals ON veterinarian_report.animal_id = animals.id
                                                                   ORDER BY date ASC');
-        } elseif ($sort === 'dateDesc') {
-            $statement = $this->connection->getConnection()->prepare('SELECT date, food_type as foodType, quantity, status_detail as statusDetail, animals.name as animalName
+            } elseif ($sort === 'dateDesc') {
+                $statement = $this->connection->getConnection()->prepare('SELECT date, food_type as foodType, quantity, status_detail as statusDetail, animals.name as animalName
                                                                   FROM veterinarian_report
                                                                   LEFT JOIN animals ON veterinarian_report.animal_id = animals.id
                                                                   ORDER BY date DESC');
-        } elseif ($sort === 'animalNameAsc') {
-            $statement = $this->connection->getConnection()->prepare('SELECT date, food_type as foodType, quantity, status_detail as statusDetail, animals.name as animalName
+            } elseif ($sort === 'animalNameAsc') {
+                $statement = $this->connection->getConnection()->prepare('SELECT date, food_type as foodType, quantity, status_detail as statusDetail, animals.name as animalName
                                                                   FROM veterinarian_report
                                                                   LEFT JOIN animals ON veterinarian_report.animal_id = animals.id
                                                                   ORDER BY animalName ASC');
-        } elseif ($sort === 'animalNameDesc') {
-            $statement = $this->connection->getConnection()->prepare('SELECT date, food_type as foodType, quantity, status_detail as statusDetail, animals.name as animalName
+            } elseif ($sort === 'animalNameDesc') {
+                $statement = $this->connection->getConnection()->prepare('SELECT date, food_type as foodType, quantity, status_detail as statusDetail, animals.name as animalName
                                                                   FROM veterinarian_report
                                                                   LEFT JOIN animals ON veterinarian_report.animal_id = animals.id
                                                                   ORDER BY animalName DESC');
-        }
-
-        /*$statement = $this->connection->getConnection()->prepare('SELECT date, food_type as foodType, quantity, status_detail as statusDetail, animals.name as animalName
+            }
+        } else if ($animalId !== null && $date !== null) {
+            //Two filter active
+            if ($sort === null || $sort === 'dateAsc') {
+                $statement = $this->connection->getConnection()->prepare('SELECT date, food_type as foodType, quantity, status_detail as statusDetail, animals.name as animalName
                                                                   FROM veterinarian_report
                                                                   LEFT JOIN animals ON veterinarian_report.animal_id = animals.id
-                                                                  ORDER BY :sort');*/
-
-
-        //var_dump($sort);
-        //$statement->bindParam(':sort', $sort);
+                                                                  WHERE animals.id = :animalId AND date = :date
+                                                                  ORDER BY date ASC');
+            } elseif ($sort === 'dateDesc') {
+                $statement = $this->connection->getConnection()->prepare('SELECT date, food_type as foodType, quantity, status_detail as statusDetail, animals.name as animalName
+                                                                  FROM veterinarian_report
+                                                                  LEFT JOIN animals ON veterinarian_report.animal_id = animals.id
+                                                                  WHERE animals.id = :animalId AND date = :date
+                                                                  ORDER BY date DESC');
+            } elseif ($sort === 'animalNameAsc') {
+                $statement = $this->connection->getConnection()->prepare('SELECT date, food_type as foodType, quantity, status_detail as statusDetail, animals.name as animalName
+                                                                  FROM veterinarian_report
+                                                                  LEFT JOIN animals ON veterinarian_report.animal_id = animals.id
+                                                                  WHERE animals.id = :animalId AND date = :date
+                                                                  ORDER BY animalName ASC');
+            } elseif ($sort === 'animalNameDesc') {
+                $statement = $this->connection->getConnection()->prepare('SELECT date, food_type as foodType, quantity, status_detail as statusDetail, animals.name as animalName
+                                                                  FROM veterinarian_report
+                                                                  LEFT JOIN animals ON veterinarian_report.animal_id = animals.id
+                                                                  WHERE animals.id = :animalId AND date = :date
+                                                                  ORDER BY animalName DESC');
+            }
+            $statement->bindParam(':animalId', $animalId, pdo::PARAM_INT);
+            $statement->bindParam(':date', $date, pdo::PARAM_STR);
+        } else if ($animalId !== null || $date !== null) {
+            //one filter active
+            if ($sort === null || $sort === 'dateAsc') {
+                $statement = $this->connection->getConnection()->prepare('SELECT date, food_type as foodType, quantity, status_detail as statusDetail, animals.name as animalName
+                                                                  FROM veterinarian_report
+                                                                  LEFT JOIN animals ON veterinarian_report.animal_id = animals.id
+                                                                  WHERE animals.id = :animalId OR date = :date
+                                                                  ORDER BY date ASC');
+            } elseif ($sort === 'dateDesc') {
+                $statement = $this->connection->getConnection()->prepare('SELECT date, food_type as foodType, quantity, status_detail as statusDetail, animals.name as animalName
+                                                                  FROM veterinarian_report
+                                                                  LEFT JOIN animals ON veterinarian_report.animal_id = animals.id
+                                                                  WHERE animals.id = :animalId OR date = :date
+                                                                  ORDER BY date DESC');
+            } elseif ($sort === 'animalNameAsc') {
+                $statement = $this->connection->getConnection()->prepare('SELECT date, food_type as foodType, quantity, status_detail as statusDetail, animals.name as animalName
+                                                                  FROM veterinarian_report
+                                                                  LEFT JOIN animals ON veterinarian_report.animal_id = animals.id
+                                                                  WHERE animals.id = :animalId OR date = :date
+                                                                  ORDER BY animalName ASC');
+            } elseif ($sort === 'animalNameDesc') {
+                $statement = $this->connection->getConnection()->prepare('SELECT date, food_type as foodType, quantity, status_detail as statusDetail, animals.name as animalName
+                                                                  FROM veterinarian_report
+                                                                  LEFT JOIN animals ON veterinarian_report.animal_id = animals.id
+                                                                  WHERE animals.id = :animalId OR date = :date
+                                                                  ORDER BY animalName DESC');
+            }
+            $statement->bindParam(':animalId', $animalId, pdo::PARAM_INT);
+            $statement->bindParam(':date', $date, pdo::PARAM_STR);
+        }
+        //var_dump($sort, $animalId, $date);
         $statement->execute();
         while ($report = $statement->fetch(pdo::FETCH_ASSOC)) {
             $reportDate = new DateTime($report['date']);
@@ -112,14 +165,32 @@ class VeterinarianReportRepository
         }
         return $reportList;
     }
-}
-/*
-function filterReport($date, $animalId, $statement)
-{
-    if ($date === null && $animalId === null) {
-        $statement;
+
+    function sort($sort)
+    {
+        if ($sort === null || $sort === 'dateAsc') {
+            $statement = $this->connection->getConnection()->prepare('SELECT date, food_type as foodType, quantity, status_detail as statusDetail, animals.name as animalName
+                                                              FROM veterinarian_report
+                                                              LEFT JOIN animals ON veterinarian_report.animal_id = animals.id
+                                                              ORDER BY date ASC');
+        } elseif ($sort === 'dateDesc') {
+            $statement = $this->connection->getConnection()->prepare('SELECT date, food_type as foodType, quantity, status_detail as statusDetail, animals.name as animalName
+                                                              FROM veterinarian_report
+                                                              LEFT JOIN animals ON veterinarian_report.animal_id = animals.id
+                                                              ORDER BY date DESC');
+        } elseif ($sort === 'animalNameAsc') {
+            $statement = $this->connection->getConnection()->prepare('SELECT date, food_type as foodType, quantity, status_detail as statusDetail, animals.name as animalName
+                                                              FROM veterinarian_report
+                                                              LEFT JOIN animals ON veterinarian_report.animal_id = animals.id
+                                                              ORDER BY animalName ASC');
+        } elseif ($sort === 'animalNameDesc') {
+            $statement = $this->connection->getConnection()->prepare('SELECT date, food_type as foodType, quantity, status_detail as statusDetail, animals.name as animalName
+                                                              FROM veterinarian_report
+                                                              LEFT JOIN animals ON veterinarian_report.animal_id = animals.id
+                                                              ORDER BY animalName DESC');
+        }
     }
-}*/
+}
 /*
 //par defaut
 $statement = $this->connection->getConnection()->prepare('SELECT date, food_type as foodType, quantity, status_detail as statusDetail, animals.name as animalName
@@ -141,3 +212,28 @@ $statement = $this->connection->getConnection()->prepare('SELECT date, food_type
                                                                   ORDER BY :sort
                                                                   WHERE :date = :date AND animals.id = :animal');
 */
+
+/*
+ 
+if ($sort === null || $sort === 'dateAsc') {
+            $statement = $this->connection->getConnection()->prepare('SELECT date, food_type as foodType, quantity, status_detail as statusDetail, animals.name as animalName
+                                                                  FROM veterinarian_report
+                                                                  LEFT JOIN animals ON veterinarian_report.animal_id = animals.id
+                                                                  ORDER BY date ASC');
+        } elseif ($sort === 'dateDesc') {
+            $statement = $this->connection->getConnection()->prepare('SELECT date, food_type as foodType, quantity, status_detail as statusDetail, animals.name as animalName
+                                                                  FROM veterinarian_report
+                                                                  LEFT JOIN animals ON veterinarian_report.animal_id = animals.id
+                                                                  ORDER BY date DESC');
+        } elseif ($sort === 'animalNameAsc') {
+            $statement = $this->connection->getConnection()->prepare('SELECT date, food_type as foodType, quantity, status_detail as statusDetail, animals.name as animalName
+                                                                  FROM veterinarian_report
+                                                                  LEFT JOIN animals ON veterinarian_report.animal_id = animals.id
+                                                                  ORDER BY animalName ASC');
+        } elseif ($sort === 'animalNameDesc') {
+            $statement = $this->connection->getConnection()->prepare('SELECT date, food_type as foodType, quantity, status_detail as statusDetail, animals.name as animalName
+                                                                  FROM veterinarian_report
+                                                                  LEFT JOIN animals ON veterinarian_report.animal_id = animals.id
+                                                                  ORDER BY animalName DESC');
+        }
+ */

@@ -67,17 +67,24 @@ function veterinarianReportList()
     $animal = $animalRepository->getAllAnimal();
 
     if (!isset($_POST['reportListSort'])) {
-        $sort = 'date Asc';
+        $sort = 'dateAsc';
     } else $sort = $_POST['reportListSort'];
 
     if (!isset($_POST['reportListAnimalFilter'])) {
-        $animalList = null;
-    } else $animalList = $_POST['reportListAnimalFilter'];
+        $animalId = null;
+    } else $animalId = intval($_POST['reportListAnimalFilter']);
 
-    if (!isset($_POST['reportListDateFilter'])) {
+    if (!isset($_POST['reportListDateFilter']) || empty($_POST['reportListDateFilter'])) {
         $date = null;
     } else $date = $_POST['reportListDateFilter'];
+    //clear Filter
+    if (isset($_POST['clearFilter'])) {
+        $date = null;
+        $animalId = null;
+    }
 
-    $reportList = $reportRepository->getAllReport($sort, $date, $animalList);
+
+    // var_dump($animalId);
+    $reportList = $reportRepository->getAllReport($sort, $animalId, $date);
     require('templates/veterinarianReportList.php');
 }
