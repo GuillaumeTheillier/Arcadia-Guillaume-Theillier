@@ -52,6 +52,18 @@ ob_start();
     <!-- Filter -->
     <div class="filter" data-filter-type="<?php echo $filter['type']; ?>" data-filter-label-id="<?php echo $filter['labelId']; ?>">
         <form action="index.php?action=animalList" method="post">
+            <!-- Habitat filter -->
+            <div class="input-container">
+                <label for="animal-list-habitat-filter" class="label-input-form">Habitat</label>
+                <select onchange="this.form.submit()" name="animalListHabitatFilter" id="animal-list-habitat-filter" class="input-form habitat-select">
+                    <option value="" disabled></option>
+                    <?php foreach ($habitatList as $hab) : ?>
+                        <option value="<?php echo $hab['id'] ?>"><?php echo $hab['nom'] ?></option>
+                    <?php endforeach ?>
+                </select>
+            </div>
+        </form>
+        <form action="index.php?action=animalList" method="post">
             <!-- Race filter -->
             <div class="input-container">
                 <label for="animal-list-race-filter" class="label-input-form">Race</label>
@@ -63,22 +75,11 @@ ob_start();
                 </select>
             </div>
         </form>
-        <!-- Habitat filter -->
         <form action="index.php?action=animalList" method="post">
-            <div class="input-container">
-                <label for="animal-list-habitat-filter" class="label-input-form">Habitat</label>
-                <select onchange="this.form.submit()" name="animalListHabitatFilter" id="animal-list-habitat-filter" class="input-form habitat-select">
-                    <option value="" disabled></option>
-                    <?php foreach ($habitatList as $hab) : ?>
-                        <option value="<?php echo $hab['id'] ?>"><?php echo $hab['nom'] ?></option>
-                    <?php endforeach ?>
-                </select>
-            </div>
-        </form>
-        <!-- reset filter -->
-        <form action="index.php?action=animalList" method="post">
+            <!-- reset filter -->
             <button type="submit">Effacer filtre</button>
         </form>
+        <script src="script/filterScript.js"></script>
     </div>
     <!-- animal list table -->
     <div class="animal-list-container">
@@ -86,8 +87,8 @@ ob_start();
             <thead>
                 <tr>
                     <th>Nom</th>
-                    <th class="raceCol">Race</th>
-                    <th class="habitatCol">Habitat</th>
+                    <th class="race-col">Race</th>
+                    <th class="habitat-col">Habitat</th>
                 </tr>
             </thead>
             <tbody>
@@ -116,7 +117,6 @@ ob_start();
         </table>
     </div>
     <script src="script/frameScript.js"></script>
-    <script src="script/filterScript.js"></script>
 </main>
 
 <?php
