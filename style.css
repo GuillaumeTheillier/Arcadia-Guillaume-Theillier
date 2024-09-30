@@ -12,7 +12,7 @@ body {
     height: 100%;
     padding: 0;
     margin: 0;
-    background-color: rgba(45, 44, 44, 0.04);
+    /*background-color: rgba(45, 44, 44, 0.04);*/
 }
 
 body {
@@ -1285,11 +1285,10 @@ a {
 
 .animal-list {
     table-layout: auto;
-    width: 70vw;
+    width: 75vw;
     border-collapse: collapse;
     font-size: 1rem;
     margin: 1rem 0;
-    text-align: center;
 }
 
 .animal-list th {
@@ -1304,16 +1303,39 @@ a {
 }
 
 .animal-list td {
-    text-align: center;
     height: 50px;
-    padding: 1.5rem 2rem;
+    padding: 1.5rem 1rem;
     font-size: 1.1rem;
+}
+
+.animal-list td:not(.table-col-textarea) {
+    text-align: center;
+}
+
+.habitat-comment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 0;
+}
+
+.table-col-textarea {
+    max-width: 20rem;
+    text-align: justify;
+}
+
+.habitat-comment-form {
+    padding: 0;
+}
+
+.habitat-comment-form textarea {
+    width: 25rem;
+    height: 9rem;
 }
 
 .report-status-detail {
     text-align: justify;
 }
-
 
 .animal-list .button-crud {
     font-size: 80%;
@@ -1327,7 +1349,7 @@ a {
 }
 
 .table-row:hover {
-    background-color: rgba(128, 128, 128, 0.193);
+    background-color: rgba(128, 128, 128, 0.063);
 }
 
 .click-row:hover {
@@ -1338,7 +1360,13 @@ a {
     display: none;
 }
 
-@media screen and (max-width:630px) {
+@media screen and (max-width:900px) {
+    .habitat-comment-form textarea {
+        width: 14rem;
+    }
+}
+
+@media screen and (max-width:700px) {
     .animal-list {
         width: 95vw;
     }
@@ -1348,14 +1376,43 @@ a {
         font-size: 0.9rem;
     }
 
+    .animal-list td {
+        padding: 1rem 1rem;
+    }
+
     .animal-list tr:first-of-type td {
         border-top: 1px solid black;
+    }
+
+    .table-col-textarea {
+        max-width: 20rem;
+    }
+
+    .habitat-comment-form {
+        gap: 1rem;
     }
 
     .animal-list .button-crud {
         font-size: 60%;
         padding-left: 1rem;
         padding-right: 1rem;
+    }
+
+
+}
+
+@media screen and (max-width:424px) {
+    .animal-list td {
+        padding: 1rem 0.75rem;
+    }
+
+    .table-col-textarea {
+        max-width: 10rem;
+    }
+
+    .habitat-comment-form textarea {
+        width: 10rem;
+        height: 12rem;
     }
 }
 
