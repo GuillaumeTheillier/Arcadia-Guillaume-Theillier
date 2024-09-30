@@ -11,7 +11,7 @@ function addHabitatComment()
             $habitatRepository = new HabitatsRepository;
             $success = $habitatRepository->addComment($comment, $id);
             setcookie(
-                'COMMENT_SUCCESS',
+                'ADD_HABITAT_COMMENT_SUCCESS',
                 $success,
                 [
                     'expires' => time() + 1,
@@ -21,7 +21,7 @@ function addHabitatComment()
             );
         } else {
             setcookie(
-                'COMMENT_ERROR',
+                'ADD_HABITAT_COMMENT_ERROR',
                 'Tous les champs ne sont pas remplis.',
                 [
                     'expires' => time() + 1,
@@ -32,7 +32,7 @@ function addHabitatComment()
         }
     } else {
         setcookie(
-            'COMMENT_ERROR',
+            'ADD_HABITAT_COMMENT_ERROR',
             'Tous les champs ne sont pas remplis.',
             [
                 'expires' => time() + 1,
