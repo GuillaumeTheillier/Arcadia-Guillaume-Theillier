@@ -1,5 +1,5 @@
 let filterType = document.querySelector('.filter').dataset.filterType;
-let filterLabelId = document.querySelector('.filter').dataset.filterLabelId;
+let filterId = document.querySelector('.filter').dataset.filterId;
 let habitatCol = document.querySelectorAll('.habitat-col');
 let raceCol = document.querySelectorAll('.race-col');
 let raceSelect = document.querySelector('.race-select');
@@ -16,9 +16,7 @@ let habitatSelect = document.querySelector('.habitat-select');
  */
 function selectFilterOption(select) {
     for (let i = 0; i < select.length; i++) {
-        if (filterLabelId == select[i].value) {
-            select[i].selected = true;
-        }
+        select[i].selected = (filterId == select[i].value);
     }
 }
 

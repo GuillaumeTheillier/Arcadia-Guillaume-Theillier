@@ -50,13 +50,13 @@ ob_start();
     </div>
 
     <!-- Filter -->
-    <div class="filter" data-filter-type="<?php echo $filter['type']; ?>" data-filter-label-id="<?php echo $filter['labelId']; ?>">
+    <div class="filter" data-filter-type="<?php echo $filter['type']; ?>" data-filter-id="<?php echo $filter['id']; ?>">
         <form action="index.php?action=animalList" method="post">
             <!-- Habitat filter -->
             <div class="input-container">
                 <label for="animal-list-habitat-filter" class="label-input-form">Habitat</label>
                 <select onchange="this.form.submit()" name="animalListHabitatFilter" id="animal-list-habitat-filter" class="input-form habitat-select">
-                    <option value="" disabled></option>
+                    <option value="" disabled hidden>choisir un habitat</option>
                     <?php foreach ($habitatList as $hab) : ?>
                         <option value="<?php echo $hab['id'] ?>"><?php echo $hab['nom'] ?></option>
                     <?php endforeach ?>
@@ -68,7 +68,7 @@ ob_start();
             <div class="input-container">
                 <label for="animal-list-race-filter" class="label-input-form">Race</label>
                 <select onchange="this.form.submit()" name="animalListRaceFilter" id="animal-list-race-filter" class="input-form race-select">
-                    <option value="" disabled></option>
+                    <option value="" disabled hidden>choisir une race</option>
                     <?php foreach ($raceList as $race) : ?>
                         <option value="<?php echo $race['id'] ?>"><?php echo $race['label'] ?></option>
                     <?php endforeach ?>
@@ -79,7 +79,7 @@ ob_start();
             <!-- reset filter -->
             <button type="submit">Effacer filtre</button>
         </form>
-        <script src="script/filterScript.js"></script>
+
     </div>
     <!-- animal list table -->
     <div class="animal-list-container">
@@ -116,6 +116,7 @@ ob_start();
             </tbody>
         </table>
     </div>
+    <script src="script/filterScript.js"></script>
     <script src="script/frameScript.js"></script>
 </main>
 
