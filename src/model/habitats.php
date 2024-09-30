@@ -47,9 +47,9 @@ class HabitatsRepository
         $statement = $this->connection->getConnection()->prepare('SELECT id, nom FROM habitats ORDER BY nom ASC');
         $statement->execute();
         while ($habitat = $statement->fetch(pdo::FETCH_ASSOC)) {
-            $habitats[] = $habitat;
+            $habitatList[] = $habitat;
         }
-        return $habitats;
+        return $habitatList;
     }
 
     function updateHabitat(int $id, string $name, string $description, string|null $image = NULL): bool
@@ -118,5 +118,14 @@ class HabitatsRepository
         return $statement->execute();
     }
 
-    function getComment(int $id) {}
+    function getAllComment()
+    {
+        $statement = $this->connection->getConnection()->prepare('SELECT id, nom, comment
+                                                                  FROM habitats');
+        $statement->execute();
+        while ($comment = $statement->fetch(pdo::FETCH_ASSOC)) {
+            $commentList[] = $comment;
+        }
+        return $commentList;
+    }
 }
