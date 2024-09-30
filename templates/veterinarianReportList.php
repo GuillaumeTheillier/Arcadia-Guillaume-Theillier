@@ -13,7 +13,6 @@ ob_start();
             <div class="input-container">
                 <label for="report-list-sort" class="label-input-form">Trier par :</label>
                 <select onchange="this.form.submit()" name="reportListSort" id="report-list-sort" class="input-form select-sort">
-                    <option value="" disabled></option>
                     <option value="dateAsc">Date croissante</option>
                     <option value="dateDesc">Date décroissante</option>
                     <option value="animalNameAsc">Animal A-Z</option>
@@ -29,7 +28,7 @@ ob_start();
             <div class="input-container">
                 <label for="report-list-animal-filter" class="label-input-form">Animal</label>
                 <select name="reportListAnimalFilter" id="report-list-animal-filter" class="input-form select-animal">
-                    <option value="" disabled></option>
+                    <option value="" selected disabled hidden>choisir un animal</option>
                     <?php foreach ($animal as $ani) : ?>
                         <option value=<?php echo (int)$ani['id'] ?>><?php echo $ani['name'] ?></option>
                     <?php endforeach ?>
