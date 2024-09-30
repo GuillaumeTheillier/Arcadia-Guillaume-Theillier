@@ -28,7 +28,6 @@ function closeFrame(indexBtn, indexFrame) {
  * 
  */
 function openFrameWithMultipleButton(index) {
-    console.log('test');
     btnOpen.forEach(element => {
         let btnSubmit = document.querySelector('.submitFrameBtn');
         element.addEventListener('click', () => {
