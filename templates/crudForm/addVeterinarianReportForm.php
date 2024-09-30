@@ -16,7 +16,7 @@
         <form action="index.php?action=addVeterinarianReport" method="post">
             <div class="input-container">
                 <label for="add-report-date" class="label-input-form">Date de passage</label>
-                <input type="datetime-local" class="input-form" name="addReportDate" id="add-report-date" required>
+                <input type="date" class="input-form" name="addReportDate" id="add-report-date" required>
             </div>
             <div class="input-container">
                 <label for="add-report-status" class="label-input-form">Etat de l'animal</label>
