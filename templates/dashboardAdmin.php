@@ -55,16 +55,31 @@ ob_start();
 
                 <section class="dashboard-section">
                         <h4>Horaires</h4>
-                        <p>
-                                Lundi 09:00 - 19:00 <br>
-                                Mardi 09:00 - 19:00 <br>
-                                Mercredi 09:00 - 19:00 <br>
-                                Jeudi 09:00 - 19:00 <br>
-                                Vendredi 09:00 - 19:00 <br>
-                                Samedi 09:00 - 19:00 <br>
-                                Dimanche 09:00 - 19:00
-                        </p>
-                        <button><a href="index.php?action=schedules">Modifier</a></button>
+                        <form action="index.php?action=updateSchedule" method="post">
+                                <table class="schedule">
+                                        <?php
+                                        $semaine = array(
+                                                " Lundi ",
+                                                " Mardi ",
+                                                " Mercredi ",
+                                                " Jeudi ",
+                                                " vendredi ",
+                                                " samedi ",
+                                                " Dimanche "
+                                        );
+                                        for ($i = 1; $i < count($schedule); $i++) :
+                                        ?>
+                                                <tr>
+                                                        <?php $dayEn = date('l', 259200 + (86400 * $i)); ?>
+                                                        <td><?php echo $semaine[$i - 1] ?></td>
+                                                        <td>
+                                                                <?php echo $schedule[$dayEn]['ouverture'] . ' - ' . $schedule[$dayEn]['fermeture'] ?>
+                                                        </td>
+                                                </tr>
+                                        <?php endfor ?>
+                                </table>
+                                <button type="submit" class="button-crud" formaction="index.php?action=updateSchedule">Modifier</button>
+                        </form>
                 </section>
         </div>
 </main>
