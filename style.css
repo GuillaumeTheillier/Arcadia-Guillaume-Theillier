@@ -942,6 +942,12 @@ footer {
     padding-bottom: 0.7rem;
 }
 
+.dashboard-section form {
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+}
+
 .dashboard-section button {
     margin-top: 1rem;
 }
@@ -1019,6 +1025,17 @@ a {
 }
 
 /* habitat consultations */
+
+/* schedule */
+
+.schedule td {
+    padding-bottom: 0.65rem;
+}
+
+.schedule td:first-of-type {
+    text-align: center;
+    padding-right: 1.5rem;
+}
 
 
 
