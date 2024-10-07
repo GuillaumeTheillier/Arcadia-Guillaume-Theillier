@@ -1,10 +1,16 @@
 <?php
-
+//SQL database connection
 namespace DatabaseConnection;
 
 use Exception;
 use PDO;
+use MongoDB;
 
+require 'vendor/autoload.php';
+
+/**
+ * Connection to SQL database.
+ */
 class RelationnalDatabaseConnection
 {
     public ?PDO $database = null;
@@ -23,20 +29,20 @@ class RelationnalDatabaseConnection
     }
 }
 
-namespace UnrelationnalDatabaseConnection;
-
-use Exception;
-use PDO;
-
+/**
+ * Connection to MongoDb database.
+ */
 class UnrelationnalDatabaseConnection
 {
-    public ?PDO $database = null;
+    private $client = null;
+    public $database = null;
 
-    function getConnection(): PDO
+    function getConnection()
     {
-        if ($this->database === null) {
+        if ($this->client === null) {
             try {
-                $this->database = new PDO('mongodb://localhost:27017/');
+                $client = new MongoDB\Client();
+                $database = $client->arcadia;
             } catch (Exception $e) {
                 die('Erreur : ' . $e->getMessage());
             }
