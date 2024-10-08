@@ -41,6 +41,7 @@ require_once(__DIR__ . '/src/controllers/animalConsumptionListController.php');
 require_once(__DIR__ . '/src/controllers/veterinarianReportController.php');
 require_once(__DIR__ . '/src/controllers/addHabitatCommentController.php');
 require_once(__DIR__ . '/src/controllers/habitatCommentController.php');
+require_once(__DIR__ . '/src/controllers/updateScheduleController.php');
 
 if (isset($_GET['action']) && $_GET['action'] !== '') {
 
