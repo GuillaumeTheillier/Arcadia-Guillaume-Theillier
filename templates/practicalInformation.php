@@ -12,17 +12,30 @@ ob_start();
     </p>
 
     <div class="infos-container">
-        <div class="infos-opening-hours">
+        <div class="infos-schedule">
             <h3>Horaires</h3>
-            <p>
-                Lundi 09:00 - 19:00 <br>
-                Mardi 09:00 - 19:00 <br>
-                Mercredi 09:00 - 19:00 <br>
-                Jeudi 09:00 - 19:00 <br>
-                Vendredi 09:00 - 19:00 <br>
-                Samedi 09:00 - 19:00 <br>
-                Dimanche 09:00 - 19:00
-            </p>
+            <table>
+                <?php
+                $semaine = array(
+                    " Lundi ",
+                    " Mardi ",
+                    " Mercredi ",
+                    " Jeudi ",
+                    " Vendredi ",
+                    " Samedi ",
+                    " Dimanche "
+                );
+                for ($i = 1; $i < count($schedule); $i++) :
+                ?>
+                    <tr>
+                        <?php $dayEn = strtolower(date('l', 259200 + (86400 * $i))); ?>
+                        <td><?php echo $semaine[$i - 1] ?></td>
+                        <td>
+                            <?php echo $schedule[$dayEn]['ouverture'] . ' - ' . $schedule[$dayEn]['fermeture'] ?>
+                        </td>
+                    </tr>
+                <?php endfor ?>
+            </table>
         </div>
         <div class="infos-container-separator"></div>
         <div class="infos-address">
