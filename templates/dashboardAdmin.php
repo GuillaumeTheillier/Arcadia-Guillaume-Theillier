@@ -6,6 +6,23 @@ ob_start();
 <main>
         <h1 class="page-title"> Tableau de bord </h1>
 
+        <!-- Alert -->
+        <div class="alert-container">
+                <?php // Alert update schedule
+                if (isset($_COOKIE['UPDATE_SCHEDULE_SUCCESS']) && $_COOKIE['UPDATE_SCHEDULE_SUCCESS'] == true) :
+                ?>
+                        <div class="alert alert-success" role="alert">
+                                Les horaires ont bien été modifiés.
+                                <button type='button' class="btn-close ms-auto" data-bs-dismiss='alert'></button>
+                        </div>
+                <?php elseif (isset($_COOKIE['UPDATE_SCHEDULE_ERROR'])) : ?>
+                        <div class="alert alert-danger" role="alert">
+                                <?php echo $_COOKIE['UPDATE_SCHEDULE_ERROR'] ?>
+                                <button type='button' class="btn-close ms-auto" data-bs-dismiss='alert'></button>
+                        </div>
+                <?php endif; ?>
+        </div>
+
         <div class="dashboard-container">
 
                 <section class="dashboard-section">
@@ -63,17 +80,21 @@ ob_start();
                                                 " Mardi ",
                                                 " Mercredi ",
                                                 " Jeudi ",
-                                                " vendredi ",
-                                                " samedi ",
+                                                " Vendredi ",
+                                                " Samedi ",
                                                 " Dimanche "
                                         );
                                         for ($i = 1; $i < count($schedule); $i++) :
                                         ?>
                                                 <tr>
-                                                        <?php $dayEn = date('l', 259200 + (86400 * $i)); ?>
+                                                        <?php $dayEn = strtolower(date('l', 259200 + (86400 * $i))); ?>
                                                         <td><?php echo $semaine[$i - 1] ?></td>
                                                         <td>
-                                                                <?php echo $schedule[$dayEn]['ouverture'] . ' - ' . $schedule[$dayEn]['fermeture'] ?>
+                                                                <p>
+                                                                        <input type="time" name="<?php echo $dayEn ?>Opening" class="input-form" value="<?php echo $schedule[$dayEn]['ouverture'] ?>">
+                                                                        -
+                                                                        <input type="time" name="<?php echo $dayEn ?>Closing" class="input-form" value="<?php echo $schedule[$dayEn]['fermeture'] ?>">
+                                                                </p>
                                                         </td>
                                                 </tr>
                                         <?php endfor ?>
