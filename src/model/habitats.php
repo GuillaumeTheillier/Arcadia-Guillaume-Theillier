@@ -1,16 +1,16 @@
 <?php
 
-use DatabaseConnection\RelationnalDatabaseConnection;
+use DatabaseConnection\RelationalDatabaseConnection;
 
 require_once('database.php');
 
 class HabitatsRepository
 {
-    private RelationnalDatabaseConnection $connection;
+    private RelationalDatabaseConnection $connection;
 
     function __construct()
     {
-        $this->connection = new RelationnalDatabaseConnection;
+        $this->connection = new RelationalDatabaseConnection;
     }
 
     function getAllHabitats(): array

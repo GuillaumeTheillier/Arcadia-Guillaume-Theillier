@@ -1,6 +1,6 @@
 <?php
 
-use DatabaseConnection\RelationnalDatabaseConnection;
+use DatabaseConnection\RelationalDatabaseConnection;
 
 class Service
 {
@@ -13,11 +13,11 @@ class Service
 class ServicesRepository
 {
 
-    private RelationnalDatabaseConnection $connection;
+    private RelationalDatabaseConnection $connection;
 
     function __construct()
     {
-        $this->connection = new RelationnalDatabaseConnection;
+        $this->connection = new RelationalDatabaseConnection;
     }
 
     function getServices(): array
