@@ -18,6 +18,10 @@ function animal(int $animalId)
                 'secure' => true
             ]
         );
+
+        if (!isset($_SESSION['LOGGED_USER'])) {
+            $animalRepository->updateAnimalCountVisit($animalId);
+        }
         require('templates/animal.php');
     } catch (Error $e) {
         var_dump($e->getMessage());
