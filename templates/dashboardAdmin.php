@@ -26,7 +26,21 @@ ob_start();
         <div class="dashboard-container">
 
                 <section class="dashboard-section">
-                        <h4>Statistique sur la consultation des animaux</h4>
+                        <h4>Nombre de consultation des animaux</h4>
+                        <table class="dashboard-count-visit">
+                                <thead>
+                                        <th>Animal</th>
+                                        <th>Nombre de visite</th>
+                                </thead>
+                                <tbody>
+                                        <?php foreach ($animalVisit as $ani) : ?>
+                                                <tr>
+                                                        <td><?php echo $ani['name'] ?></td>
+                                                        <td><?php echo $ani['count_visit'] ?></td>
+                                                </tr>
+                                        <?php endforeach ?>
+                                </tbody>
+                        </table>
                 </section>
 
                 <section class="dashboard-section">
