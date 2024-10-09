@@ -972,6 +972,7 @@ footer {
     text-align: center;
     margin-top: 0.3rem;
     margin-bottom: 1.7rem;
+    /*width: 75%;*/
 }
 
 .dashboard-section form {
@@ -1056,7 +1057,35 @@ a {
     }
 }
 
-/* habitat consultations */
+/* animal count visitor */
+.dashboard-section:has(.dashboard-count-visit) {
+    width: 35vw;
+}
+
+.dashboard-count-visit {
+    text-align: center;
+}
+
+.dashboard-count-visit tr td:first-child,
+.dashboard-count-visit th:first-child {
+    padding-right: 2rem;
+}
+
+.dashboard-count-visit th {
+    padding-bottom: 0.8rem;
+}
+
+@media screen and (max-width:880px) {
+    .dashboard-section:has(.dashboard-count-visit) {
+        width: 45vw;
+    }
+}
+
+@media screen and (max-width:880px) {
+    .dashboard-section:has(.dashboard-count-visit) {
+        width: 45vw;
+    }
+}
 
 /* schedule */
 .schedule td {
