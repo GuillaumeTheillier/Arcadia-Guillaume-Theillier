@@ -1,29 +1,20 @@
 <?php
 
-//use DatabaseConnection\UnrelationnalDatabaseConnection;
-
-require 'vendor/autoload.php';
-
+use DatabaseConnection\UnrelationalDatabaseConnection;
 
 class ScheduleRepository
 {
-    //private UnrelationnalDatabaseConnection $connection;
-    private $arcadiadb;
+    private UnrelationalDatabaseConnection $connection;
 
     public function __construct()
     {
-        //$this->connection = new UnrelationnalDatabaseConnection;
-        //$this->connection = $this->connection->schedule;
-        $client = new MongoDB\Client();
-        $this->arcadiadb = $client->arcadia;
+        $this->connection = new UnrelationalDatabaseConnection;
     }
 
     function getSchedule()
     {
         try {
-            $mycoll = $this->arcadiadb->schedule;
-
-            $result = $mycoll->findOne(['_id' => 'schedule']);
+            $result = $this->connection->getScheduleConnection()->findOne(['_id' => 'schedule']);
 
             foreach ($result as $key => $res) {
                 $schedule[$key] = $res;
@@ -37,9 +28,7 @@ class ScheduleRepository
     function updateSchedule(array $schedule)
     {
         try {
-            $mycoll = $this->arcadiadb->schedule;
-
-            $result = $mycoll->updateOne(
+            $result = $this->connection->getScheduleConnection()->updateOne(
                 ['_id' => 'schedule'],
                 [
                     '$set' => [
