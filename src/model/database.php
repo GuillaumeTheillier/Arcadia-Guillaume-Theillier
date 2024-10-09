@@ -11,7 +11,7 @@ require 'vendor/autoload.php';
 /**
  * Connection to SQL database.
  */
-class RelationnalDatabaseConnection
+class RelationalDatabaseConnection
 {
     public ?PDO $database = null;
 
@@ -32,21 +32,35 @@ class RelationnalDatabaseConnection
 /**
  * Connection to MongoDb database.
  */
-class UnrelationnalDatabaseConnection
+class UnrelationalDatabaseConnection
 {
-    private $client = null;
-    public $database = null;
+    private $client;
+    public $scheduleCollection = null;
+    public $animalCollection = null;
 
-    function getConnection()
+    function getScheduleConnection()
     {
-        if ($this->client === null) {
+        if ($this->scheduleCollection === null) {
             try {
-                $client = new MongoDB\Client();
-                $database = $client->arcadia;
+                $this->client = new MongoDB\Client();
+                $this->scheduleCollection = $this->client->arcadia->schedule;
             } catch (Exception $e) {
                 die('Erreur : ' . $e->getMessage());
             }
         }
-        return $this->database;
+        return $this->scheduleCollection;
+    }
+
+    function getAnimalConnection()
+    {
+        if ($this->animalCollection === null) {
+            try {
+                $this->client = new MongoDB\Client();
+                $this->animalCollection = $this->client->arcadia->animal_count_visit;
+            } catch (Exception $e) {
+                die('Erreur : ' . $e->getMessage());
+            }
+        }
+        return $this->animalCollection;
     }
 }
