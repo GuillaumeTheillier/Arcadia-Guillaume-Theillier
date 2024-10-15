@@ -20,7 +20,6 @@
                                 //Employee
                             case 1:
                         ?>
-                                <a class="header-link" href="index.php?action=dashboard">Tableau de bord</a>
                                 <a class="header-link" href="index.php?action=animalList">Animaux</a>
                                 <a class="header-link" href="index.php?action=services">Services</a>
                                 <a class="header-link" href="index.php?action=commentManager">Avis</a>
@@ -30,7 +29,6 @@
                                 //Veterinarian
                             case 2:
                             ?>
-                                <a class="header-link" href="index.php?action=dashboard">Tableau de bord</a>
                                 <a class="header-link" href="index.php?action=animalList">Animaux</a>
                                 <a class="header-link" href="index.php?action=habitatComment">Habitats</a>
                                 <a class="header-link" href="index.php?action=logout">Déconnexion</a>
