@@ -816,7 +816,7 @@ footer {
     width: 100vw;
     background-color: var(--primary-color);
     padding: 3rem 0;
-    margin-bottom: 4rem;
+    margin-bottom: 0rem;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -827,14 +827,15 @@ footer {
 
 .animal-img {
     object-fit: cover;
-    width: 15rem;
-    height: 20rem;
+    border-radius: 5px;
+    width: auto;
+    height: 55vh;
 }
 
-.animal-description {
-    font-size: 1.5rem;
-    margin-top: 5rem;
-    margin-bottom: 4rem;
+.animal-description p {
+    font-size: 1.4rem;
+    /* margin-top: 5rem;
+    margin-bottom: 4rem;*/
 }
 
 .animal-description button {
