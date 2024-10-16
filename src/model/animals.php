@@ -1,14 +1,17 @@
 <?php
 
-use DatabaseConnection\RelationnalDatabaseConnection;
+use DatabaseConnection\RelationalDatabaseConnection;
+use DatabaseConnection\UnrelationalDatabaseConnection;
 
 class AnimalsRepository
 {
-    private RelationnalDatabaseConnection $connection;
+    private RelationalDatabaseConnection $relDbConnection;
+    private UnrelationalDatabaseConnection $unrelDbConnection;
 
     function __construct()
     {
-        $this->connection = new RelationnalDatabaseConnection;
+        $this->relDbConnection = new RelationalDatabaseConnection;
+        $this->unrelDbConnection = new UnrelationalDatabaseConnection;
     }
 
     /**
@@ -22,7 +25,7 @@ class AnimalsRepository
         $animals = [];
 
         if ($filterType === null) {
-            $statement = $this->connection->getConnection()->prepare('SELECT animals.id as id, name, race.label as race, habitats.nom as habitat, habitats.id as habitatId
+            $statement = $this->relDbConnection->getConnection()->prepare('SELECT animals.id as id, name, race.label as race, habitats.nom as habitat, habitats.id as habitatId
                                                                   FROM animals 
                                                                   LEFT JOIN race ON animals.race_id = race.id
                                                                   LEFT JOIN habitats ON animals.habitat_id = habitats.id
@@ -30,7 +33,7 @@ class AnimalsRepository
                                                                 ');
             $statement->execute();
         } else if ($filterType === 'habitat') {
-            $statement = $this->connection->getConnection()->prepare('SELECT animals.id as id, name, race.label as race, habitats.nom as habitat, habitats.id as habitatId
+            $statement = $this->relDbConnection->getConnection()->prepare('SELECT animals.id as id, name, race.label as race, habitats.nom as habitat, habitats.id as habitatId
                                                                         FROM animals 
                                                                         LEFT JOIN race ON animals.race_id = race.id
                                                                         LEFT JOIN habitats ON animals.habitat_id = habitats.id
@@ -39,7 +42,7 @@ class AnimalsRepository
                                                                         ');
             $statement->execute([$id]);
         } else if ($filterType === 'race') {
-            $statement = $this->connection->getConnection()->prepare('SELECT animals.id as id, name, race.label as race, habitats.nom as habitat, habitats.id as habitatId
+            $statement = $this->relDbConnection->getConnection()->prepare('SELECT animals.id as id, name, race.label as race, habitats.nom as habitat, habitats.id as habitatId
                                                                         FROM animals 
                                                                         LEFT JOIN race ON animals.race_id = race.id
                                                                         LEFT JOIN habitats ON animals.habitat_id = habitats.id
@@ -65,7 +68,7 @@ class AnimalsRepository
     {
         $animals = [];
 
-        $statement = $this->connection->getConnection()->prepare('SELECT animals.id as id, name, race.label as race, image 
+        $statement = $this->relDbConnection->getConnection()->prepare('SELECT animals.id as id, name, race.label as race, image 
                                                                   FROM animals 
                                                                   LEFT JOIN race ON animals.race_id = race.id
                                                                   LEFT JOIN habitats ON animals.habitat_id = habitats.id
@@ -88,7 +91,7 @@ class AnimalsRepository
      */
     function getAnimal(int $animal): array
     {
-        $statement = $this->connection->getConnection()->prepare('SELECT animals.id as id, name, race.label as race, image, habitats.nom as habitat, habitats.id as habitatId, status
+        $statement = $this->relDbConnection->getConnection()->prepare('SELECT animals.id as id, name, race.label as race, image, habitats.nom as habitat, habitats.id as habitatId, status
                                                                   FROM animals 
                                                                   LEFT JOIN race ON animals.race_id = race.id
                                                                   LEFT JOIN habitats ON animals.habitat_id = habitats.id
@@ -110,10 +113,12 @@ class AnimalsRepository
      */
     function createAnimal(string $name, string $image, int $habitat, int $race): bool
     {
-        $statement = $this->connection->getConnection()->prepare('INSERT INTO animals(name,image,habitat_id,race_id)
+        $statement = $this->relDbConnection->getConnection()->prepare('INSERT INTO animals(name,image,habitat_id,race_id)
                                                                   VALUES (?, ?, ?, ?)
                                                                 ');
-        return $statement->execute([$name, $image, $habitat, $race]);
+        $success = $statement->execute([$name, $image, $habitat, $race]);
+        $result = $this->AddAnimalToCollection($name);
+        return ($success && $result);
     }
 
     /**
@@ -128,14 +133,14 @@ class AnimalsRepository
     {
         //var_dump([$id, $title, $description, $image, $descAdd]);
         if ($image !== '' && $image != null) {
-            $statement = $this->connection->getConnection()->prepare('UPDATE `animals`
+            $statement = $this->relDbConnection->getConnection()->prepare('UPDATE `animals`
                                                                   SET name = ?, image = ?, habitat_id = ?, race_id = ?
                                                                   WHERE id = ?;
                                                                   ');
 
             $success = $statement->execute([$name, $image, $habitat, $race, $id]);
         } else {
-            $statement = $this->connection->getConnection()->prepare('UPDATE `animals`
+            $statement = $this->relDbConnection->getConnection()->prepare('UPDATE `animals`
                                                                   SET name = ?, habitat_id = ?, race_id = ?
                                                                   WHERE id = ?;
                                                                   ');
@@ -163,8 +168,10 @@ class AnimalsRepository
      */
     function deleteAnimal(int $id): bool
     {
-        $statement = $this->connection->getConnection()->prepare('DELETE FROM animals WHERE id=?');
-        return $statement->execute([$id]);
+        $statement = $this->relDbConnection->getConnection()->prepare('DELETE FROM animals WHERE id=?');
+        $success = $statement->execute([$id]);
+        $result = $this->deleteAnimalToCollection($id);
+        return ($success && $result);
     }
 
     /**
@@ -173,7 +180,7 @@ class AnimalsRepository
      */
     function getRace(): array
     {
-        $statement = $this->connection->getConnection()->prepare('SELECT id, label FROM race ORDER BY label ASC');
+        $statement = $this->relDbConnection->getConnection()->prepare('SELECT id, label FROM race ORDER BY label ASC');
         $statement->execute();
         while ($race = $statement->fetch(pdo::FETCH_ASSOC)) {
             $races[] = $race;
@@ -198,6 +205,139 @@ class AnimalsRepository
     function createRace(string $race): bool
     {
         $statement = $this->connection->getConnection()->prepare('INSERT INTO race(label) VALUES (?)');
+        $statement = $this->relDbConnection->getConnection()->prepare('INSERT INTO race(label) VALUES label=?');
         return $statement->execute([$race]);
+    }
+
+    function getAnimalName()
+    {
+        $statement = $this->relDbConnection->getConnection()->prepare('SELECT id, name FROM animals');
+        $statement->execute();
+        while ($animal = $statement->fetch(pdo::FETCH_ASSOC)) {
+            $animalList[$animal['id']] = $animal['name'];
+        }
+        return $animalList;
+    }
+
+    function getAnimalId(string $name)
+    {
+        $statement = $this->relDbConnection->getConnection()->prepare('SELECT id FROM animals WHERE animals.name = ?');
+        $statement->execute([$name]);
+        $animalId = $statement->fetch(pdo::FETCH_ASSOC);
+        return $animalId['id'];
+    }
+
+    /**
+     * 
+     */
+    function getAnimalCountVisit()
+    {
+        try {
+            $animal = array();
+            $animalList = $this->getAnimalName();
+            $result = $this->unrelDbConnection->getAnimalConnection()->find(
+                [],
+                [
+                    //'limit' => 5,
+                    'projection' => [
+                        '_id' => 0,
+                        'animal_id' => 1,
+                        'count_visit' => 1
+                    ],
+                ]
+            );
+            foreach ($result as $key => $res) {
+                $id = $res['animal_id'];
+                $res['name'] = $animalList[$id];
+                $animal[$key] = $res;
+            }
+            return $animal;
+        } catch (Error $e) {
+            return false;
+        }
+    }
+
+    /**
+     * Add one animal in unrelational database.
+     * 
+     * @param string $name Animal name.
+     * @return Bool TRUE on success or FALSE on failure.
+     */
+    function AddAnimalToCollection(string $name): bool
+    {
+        try {
+            $id = $this->getAnimalId($name);
+            $result = $this->unrelDbConnection->getAnimalConnection()->insertOne(
+                [
+                    'animal_id' => $id,
+                    'count_visit' => 0
+                ]
+            );
+            if ($result->getInsertedCount() == 1) {
+                return true;
+            } else return false;
+        } catch (Error $e) {
+            return false;
+        }
+    }
+
+    /**
+     * Increase visit count.
+     * 
+     * @param int $id Unique animal id.
+     * @return Bool TRUE on success or FALSE on failure.
+     */
+    function updateAnimalCountVisit(int $id): bool
+    {
+        try {
+            $count = $this->unrelDbConnection->getAnimalConnection()->findOne(
+                [
+                    'animal_id' => $id
+                ],
+                [
+                    'projection' => [
+                        '_id' => 0,
+                        'animal_id' => 1,
+                        'count_visit' => 1
+                    ]
+                ]
+            );
+            $result = $this->unrelDbConnection->getAnimalConnection()->updateOne(
+                [
+                    'animal_id' => $id
+                ],
+                [
+                    '$set' => ['count_visit' => $count['count_visit'] + 1]
+                ]
+            );
+            if ($result->getModifiedCount() == 1) {
+                return true;
+            } else return false;
+        } catch (Error $e) {
+            //return false;
+            var_dump($e->getMessage());
+        }
+    }
+
+    /**
+     * Delete all data for one animal in unrelational database.
+     * 
+     * @param int $id Unique animal id.
+     * @return Bool TRUE on success or FALSE on failure.
+     */
+    function deleteAnimalToCollection(int $id): bool
+    {
+        try {
+            $result = $this->unrelDbConnection->getAnimalConnection()->deleteOne(
+                [
+                    'animal_id' => $id
+                ]
+            );
+            if ($result->getDeletedCount() == 1) {
+                return true;
+            } else return false;
+        } catch (Error $e) {
+            return false;
+        }
     }
 }

@@ -6,10 +6,41 @@ ob_start();
 <main>
         <h1 class="page-title"> Tableau de bord </h1>
 
+        <!-- Alert -->
+        <div class="alert-container">
+                <?php // Alert update schedule
+                if (isset($_COOKIE['UPDATE_SCHEDULE_SUCCESS']) && $_COOKIE['UPDATE_SCHEDULE_SUCCESS'] == true) :
+                ?>
+                        <div class="alert alert-success" role="alert">
+                                Les horaires ont bien été modifiés.
+                                <button type='button' class="btn-close ms-auto" data-bs-dismiss='alert'></button>
+                        </div>
+                <?php elseif (isset($_COOKIE['UPDATE_SCHEDULE_ERROR'])) : ?>
+                        <div class="alert alert-danger" role="alert">
+                                <?php echo $_COOKIE['UPDATE_SCHEDULE_ERROR'] ?>
+                                <button type='button' class="btn-close ms-auto" data-bs-dismiss='alert'></button>
+                        </div>
+                <?php endif; ?>
+        </div>
+
         <div class="dashboard-container">
 
                 <section class="dashboard-section">
-                        <h4>Statistique sur la consultation des animaux</h4>
+                        <h4>Nombre de consultation des animaux</h4>
+                        <table class="dashboard-count-visit">
+                                <thead>
+                                        <th>Animal</th>
+                                        <th>Nombre de visite</th>
+                                </thead>
+                                <tbody>
+                                        <?php foreach ($animalVisit as $ani) : ?>
+                                                <tr>
+                                                        <td><?php echo $ani['name'] ?></td>
+                                                        <td><?php echo $ani['count_visit'] ?></td>
+                                                </tr>
+                                        <?php endforeach ?>
+                                </tbody>
+                        </table>
                 </section>
 
                 <section class="dashboard-section">
@@ -55,16 +86,35 @@ ob_start();
 
                 <section class="dashboard-section">
                         <h4>Horaires</h4>
-                        <p>
-                                Lundi 09:00 - 19:00 <br>
-                                Mardi 09:00 - 19:00 <br>
-                                Mercredi 09:00 - 19:00 <br>
-                                Jeudi 09:00 - 19:00 <br>
-                                Vendredi 09:00 - 19:00 <br>
-                                Samedi 09:00 - 19:00 <br>
-                                Dimanche 09:00 - 19:00
-                        </p>
-                        <button><a href="index.php?action=schedules">Modifier</a></button>
+                        <form action="index.php?action=updateSchedule" method="post">
+                                <table class="schedule">
+                                        <?php
+                                        $semaine = array(
+                                                " Lundi ",
+                                                " Mardi ",
+                                                " Mercredi ",
+                                                " Jeudi ",
+                                                " Vendredi ",
+                                                " Samedi ",
+                                                " Dimanche "
+                                        );
+                                        for ($i = 1; $i < count($schedule); $i++) :
+                                        ?>
+                                                <tr>
+                                                        <?php $dayEn = strtolower(date('l', 259200 + (86400 * $i))); ?>
+                                                        <td><?php echo $semaine[$i - 1] ?></td>
+                                                        <td>
+                                                                <p>
+                                                                        <input type="time" name="<?php echo $dayEn ?>Opening" class="input-form" value="<?php echo $schedule[$dayEn]['ouverture'] ?>">
+                                                                        -
+                                                                        <input type="time" name="<?php echo $dayEn ?>Closing" class="input-form" value="<?php echo $schedule[$dayEn]['fermeture'] ?>">
+                                                                </p>
+                                                        </td>
+                                                </tr>
+                                        <?php endfor ?>
+                                </table>
+                                <button type="submit" class="button-crud" formaction="index.php?action=updateSchedule">Modifier</button>
+                        </form>
                 </section>
         </div>
 </main>

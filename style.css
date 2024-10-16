@@ -857,7 +857,7 @@ footer {
 
 .infos-location {
     width: 60%;
-    max-width: 800px;
+    /*max-width: 800px;*/
 }
 
 .infos-container {
@@ -872,17 +872,34 @@ footer {
     width: 0.1rem;
 }
 
-.infos-opening-hours h3,
+.infos-schedule h3,
 .infos-address h3 {
     padding-bottom: 2rem;
 }
 
-.infos-opening-hours p {
-    text-align: justify;
+.infos-schedule td {
+    padding-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.infos-schedule td:first-of-type {
+    text-align: center;
+    padding-right: 1.5rem;
+}
+
+.infos-schedule input[type='time'] {
+    width: fit-content;
+    text-align: center;
+    padding: 0.18rem 0.2rem 0.1rem 0.2rem;
+}
+
+.infos-schedule input[type='time']::-webkit-calendar-picker-indicator {
+    /* remove clock icon from input time */
+    display: none;
 }
 
 .infos-parking {
-    width: 500px;
+    width: 60%;
 }
 
 .infos-parking h3 {
@@ -893,6 +910,27 @@ footer {
     font-weight: 550;
 }
 
+@media screen and (max-width:600px) {
+    .infos-container {
+        gap: 2rem
+    }
+
+    .infos-location {
+        width: 80%;
+    }
+
+    .infos-parking {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width:400px) {
+
+    .infos-schedule h3,
+    .infos-address h3 {
+        padding-bottom: 1.6rem;
+    }
+}
 
 
 
@@ -904,12 +942,6 @@ footer {
     text-align: center;
     margin-bottom: 3rem;
 }
-
-
-
-
-
-
 
 
 
@@ -951,8 +983,15 @@ footer {
 .dashboard-section h4 {
     font-size: 1.5rem;
     text-align: center;
-    padding-top: 0.3rem;
-    padding-bottom: 0.7rem;
+    margin-top: 0.3rem;
+    margin-bottom: 1.7rem;
+    /*width: 75%;*/
+}
+
+.dashboard-section form {
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
 }
 
 .dashboard-section button {
@@ -970,7 +1009,7 @@ a {
     }
 }
 
-@media screen and (max-width:830px) {
+@media screen and (max-width:900px) {
     .dashboard-container {
         display: flex;
         flex-direction: column;
@@ -1031,12 +1070,60 @@ a {
     }
 }
 
-/* habitat consultations */
+/* animal count visitor */
+.dashboard-section:has(.dashboard-count-visit) {
+    width: 35vw;
+}
 
+.dashboard-count-visit {
+    text-align: center;
+}
 
+.dashboard-count-visit tr td:first-child,
+.dashboard-count-visit th:first-child {
+    padding-right: 2rem;
+}
 
+.dashboard-count-visit th {
+    padding-bottom: 0.8rem;
+}
 
+@media screen and (max-width:880px) {
+    .dashboard-section:has(.dashboard-count-visit) {
+        width: 45vw;
+    }
+}
 
+@media screen and (max-width:880px) {
+    .dashboard-section:has(.dashboard-count-visit) {
+        width: 45vw;
+    }
+}
+
+/* schedule */
+.schedule td {
+    padding-bottom: 1rem;
+}
+
+.schedule td:first-of-type {
+    text-align: center;
+    padding-right: 1.5rem;
+}
+
+.schedule p {
+    margin: 0;
+}
+
+.schedule input[type='time'] {
+    width: fit-content;
+    text-align: center;
+    padding: 0.18rem 0.2rem 0.1rem 0.2rem;
+}
+
+.schedule input[type='time']::-webkit-calendar-picker-indicator {
+    /* remove clock icon from input time */
+    display: none;
+}
 
 
 
