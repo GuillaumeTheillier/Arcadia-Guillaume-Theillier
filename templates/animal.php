@@ -6,7 +6,7 @@ ob_start();
 <main class="animal-container">
     <h1 class="page-title"><?php echo $animal['name'] ?></h1>
 
-    <div id="animal-flex">
+    <div class="animal-flex">
         <img class="animal-img" src="data:image/jpg;base64,<?php echo $animal['image'] ?>" alt="">
         <div class="animal-description">
             <p class="animal-habitat">habitat : <?php echo $animal['habitat'] ?> </p>

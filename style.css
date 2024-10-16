@@ -812,7 +812,7 @@ footer {
     align-items: center;
 }
 
-.animal-container>#animal-flex {
+.animal-container>.animal-flex {
     width: 100vw;
     background-color: var(--primary-color);
     padding: 3rem 0;
@@ -883,7 +883,6 @@ footer {
 }
 
 .infos-schedule td:first-of-type {
-    text-align: center;
     padding-right: 1.5rem;
 }
 
@@ -1032,81 +1031,12 @@ a {
     }
 }
 
-/* users list */
-.dashboard-users-list {
-    table-layout: fixed;
-    border-collapse: collapse;
-    font-size: 1rem;
-    margin-bottom: 1rem;
-    text-align: center;
-}
-
-.dashboard-users-list th {
-    font-weight: 700;
-}
-
-.dashboard-users-list tr:first-of-type td {
-    border-top: 2px solid black;
-}
-
-.dashboard-users-list td {
-    padding: 0.5rem 1rem;
-    text-align: left;
-}
-
-@media screen and (max-width:575px) {
-
-    .dashboard-users-list td,
-    .dashboard-users-list th {
-        font-size: 0.9rem;
-        padding: 0.3rem 0.6rem;
-        max-width: 25vw;
-        text-overflow: ellipsis;
-        overflow: hidden;
-    }
-
-    .dashboard-users-list tr:first-of-type td {
-        border-top: 1px solid black;
-    }
-}
-
-/* animal count visitor */
-.dashboard-section:has(.dashboard-count-visit) {
-    width: 35vw;
-}
-
-.dashboard-count-visit {
-    text-align: center;
-}
-
-.dashboard-count-visit tr td:first-child,
-.dashboard-count-visit th:first-child {
-    padding-right: 2rem;
-}
-
-.dashboard-count-visit th {
-    padding-bottom: 0.8rem;
-}
-
-@media screen and (max-width:880px) {
-    .dashboard-section:has(.dashboard-count-visit) {
-        width: 45vw;
-    }
-}
-
-@media screen and (max-width:880px) {
-    .dashboard-section:has(.dashboard-count-visit) {
-        width: 45vw;
-    }
-}
-
 /* schedule */
 .schedule td {
     padding-bottom: 1rem;
 }
 
 .schedule td:first-of-type {
-    text-align: center;
     padding-right: 1.5rem;
 }
 
@@ -1238,50 +1168,11 @@ a {
 
 
 
-
-
-
-
 /* Account list */
 .account-list-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.account-list {
-    table-layout: auto;
-    width: 60vw;
-    border-collapse: collapse;
-    font-size: 1rem;
-    margin: 1rem 0;
-    text-align: center;
-}
-
-.account-list th {
-    font-weight: 700;
-    padding-bottom: 1rem;
-    text-align: center;
-}
-
-.account-list tr:first-of-type td {
-    border-top: 2px solid black;
-}
-
-.account-list td {
-    text-align: center;
-    height: 50px;
-}
-
-.account-list .button-crud {
-    font-size: 80%;
-    width: min-content;
-}
-
-.account-list-button {
-    display: block;
-    margin: 0;
-    padding-top: 1.5rem;
 }
 
 @media screen and (max-width:1350px) {
@@ -1307,12 +1198,6 @@ a {
         padding-right: 1rem;
     }
 }
-
-
-
-
-
-
 
 
 
@@ -1375,41 +1260,33 @@ a {
 
 
 
-/* animal list staff */
-.animal-list-container {
+/* table data list staff */
+/* Table */
+.table-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 1.5rem;
 }
 
-.animal-list {
-    table-layout: auto;
-    width: 75vw;
-    border-collapse: collapse;
-    font-size: 1rem;
-    margin: 1rem 0;
+.table-container .table {
+    width: max-content;
+    max-width: 80vw;
 }
 
-.animal-list th {
-    font-weight: 600;
-    padding-bottom: 1rem;
-    text-align: center;
-    font-size: 1.2rem;
+.table td,
+.table th {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
 }
 
-.animal-list thead {
-    border-bottom: 2px solid black;
+.table form {
+    padding: 0;
+    margin: 0;
 }
 
-.animal-list td {
-    height: 50px;
-    padding: 1.5rem 1rem;
-    font-size: 1.1rem;
-}
-
-.animal-list td:not(.table-col-textarea) {
-    text-align: center;
+.table .button-crud {
+    margin: 0.8rem;
+    font-size: 90%;
 }
 
 .habitat-comment-form {
@@ -1437,19 +1314,8 @@ a {
     text-align: justify;
 }
 
-.animal-list .button-crud {
-    font-size: 80%;
-    margin-top: 0;
-    margin-bottom: 0;
-}
-
-.animal-list-button {
-    padding: 0;
-    margin: 0;
-}
-
-.table-row:hover {
-    background-color: rgba(128, 128, 128, 0.063);
+.consump-list {
+    margin: 1rem 0;
 }
 
 .click-row:hover {
@@ -1467,23 +1333,6 @@ a {
 }
 
 @media screen and (max-width:700px) {
-    .animal-list {
-        width: 95vw;
-    }
-
-    .animal-list td,
-    .animal-list th {
-        font-size: 0.9rem;
-    }
-
-    .animal-list td {
-        padding: 1rem 1rem;
-    }
-
-    .animal-list tr:first-of-type td {
-        border-top: 1px solid black;
-    }
-
     .table-col-textarea {
         max-width: 20rem;
     }
@@ -1491,21 +1340,9 @@ a {
     .habitat-comment-form {
         gap: 1rem;
     }
-
-    .animal-list .button-crud {
-        font-size: 60%;
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
-
-
 }
 
 @media screen and (max-width:424px) {
-    .animal-list td {
-        padding: 1rem 0.75rem;
-    }
-
     .table-col-textarea {
         max-width: 10rem;
     }
@@ -1553,5 +1390,3 @@ a {
 #report-list-date-filter {
     width: max-content;
 }
-
-/* Sort */

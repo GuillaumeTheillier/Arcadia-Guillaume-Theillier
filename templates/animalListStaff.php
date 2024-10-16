@@ -82,8 +82,8 @@ ob_start();
 
     </div>
     <!-- animal list table -->
-    <div class="animal-list-container">
-        <table class="animal-list">
+    <div class="table-container">
+        <table class="table table-hover align-middle">
             <thead>
                 <tr>
                     <th>Nom</th>
@@ -91,10 +91,10 @@ ob_start();
                     <th class="habitat-col">Habitat</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="table-group-divider">
                 <?php foreach ($animalList as $animal) : ?>
                     <?php if ($_SESSION['ROLE_USER'] === 1) : ?>
-                        <tr class='table-row'>
+                        <tr>
                             <td><?php echo $animal['name']; ?></td>
                             <td><?php echo $animal['race']; ?></td>
                             <td><?php echo $animal['habitat']; ?></td>
@@ -103,7 +103,7 @@ ob_start();
                             </td>
                         </tr>
                     <?php elseif ($_SESSION['ROLE_USER'] === 2) : ?>
-                        <tr class="table-row">
+                        <tr>
                             <td class="click-row" onclick="document.location.href='index.php?action=animalConsumptionList&animal=<?php echo htmlspecialchars($animal['id']) ?>'"><?php echo $animal['name']; ?></td>
                             <td class="click-row race-col" onclick="document.location.href='index.php?action=animalConsumptionList&animal=<?php echo htmlspecialchars($animal['id']) ?>'"><?php echo $animal['race']; ?></td>
                             <td class="click-row habitat-col" onclick="document.location.href='index.php?action=animalConsumptionList&animal=<?php echo htmlspecialchars($animal['id']) ?>'"><?php echo $animal['habitat']; ?></td>

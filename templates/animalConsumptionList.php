@@ -27,7 +27,7 @@ ob_start();
             </div>
         <?php endif; ?>
     </div>
-    <div id="animal-flex">
+    <div class="animal-flex">
         <img class="animal-img" src="data:image/jpg;base64,<?php echo $animal['image'] ?>" alt="">
         <div class="animal-description">
             <p class="animal-habitat">habitat : <?php echo $animal['habitat'] ?> </p>
@@ -39,8 +39,8 @@ ob_start();
             <button type="button" data-frame-to-open='habitatComment' data-habitat-name='<?php echo $animal['habitat'] ?>' class="button-crud btn-open-frame">Ajouter un commentaire à son habitat</button>
         </div>
     </div>
-    <div class="animal-list-container">
-        <table class="animal-list">
+    <div class="table-container consump-list">
+        <table class="table table-hover align-middle">
             <thead>
                 <tr>
                     <th>Date</th>
@@ -48,9 +48,9 @@ ob_start();
                     <th>Quantité</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="table-group-divider">
                 <?php foreach ($consumptionList as $consumption) : ?>
-                    <tr class="table-row">
+                    <tr>
 
                         <td><?php echo $consumption['date']; ?></td>
                         <td><?php echo $consumption['foodType']; ?></td>

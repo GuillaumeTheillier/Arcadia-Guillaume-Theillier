@@ -71,7 +71,9 @@ function login()
             */
             $_SESSION['ROLE_USER'] = $user['role'];
 
-            redirectToUrl('index.php?action=dashboard');
+            if ($user['role'] === 3) {
+                redirectToUrl('index.php?action=dashboard');
+            } else redirectToUrl('index.php?action=animalList');
         }
     }
 }

@@ -41,26 +41,26 @@ ob_start();
         </form>
         <script src="script/reportFilterScript.js"></script>
     </div>
-    <!-- Report list table -->
-    <div class="animal-list-container">
-        <table class="animal-list">
+    <!-- veterinarian Report list table -->
+    <div class="table-container">
+        <table class="table table-hover align-middle">
             <thead>
                 <tr>
                     <th>Date</th>
                     <th>Animal</th>
-                    <th class="raceCol">Type de nourriture</th>
-                    <th class="habitatCol">Quantité</th>
+                    <th>Type de nourriture</th>
+                    <th>Quantité</th>
                     <th>Détail sur l'état de l'animal</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="table-group-divider">
                 <?php foreach ($reportList as $report) : ?>
-                    <tr class='table-row'>
+                    <tr>
                         <td><?php echo $report['date']; ?></td>
                         <td><?php echo $report['animalName'] ?></td>
                         <td><?php echo $report['foodType']; ?></td>
                         <td><?php echo $report['quantity']; ?></td>
-                        <td class="report-status-detail"><?php echo $report['statusDetail']; ?></td>
+                        <td><?php echo $report['statusDetail']; ?></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

@@ -24,8 +24,8 @@ ob_start();
     </div>
 
     <!-- Comment list table -->
-    <div class="animal-list-container">
-        <table class="animal-list">
+    <div class="table-container">
+        <table class="table table-hover align-middle">
             <thead>
                 <tr>
                     <th>Nom</th>
@@ -33,9 +33,9 @@ ob_start();
                     <th>Modifier le commentaire</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="table-group-divider">
                 <?php foreach ($commentList as $com) : ?>
-                    <tr class='table-row'>
+                    <tr>
                         <td><?php echo $com['nom']; ?></td>
                         <td class="table-col-textarea"><?php echo $com['comment']; ?></td>
                         <td>

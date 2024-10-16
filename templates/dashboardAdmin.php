@@ -27,7 +27,7 @@ ob_start();
 
                 <section class="dashboard-section">
                         <h4>Nombre de consultation des animaux</h4>
-                        <table class="dashboard-count-visit">
+                        <table class="table table-hover">
                                 <thead>
                                         <th>Animal</th>
                                         <th>Nombre de visite</th>
@@ -45,7 +45,7 @@ ob_start();
 
                 <section class="dashboard-section">
                         <h4>Listes des comptes</h4>
-                        <table class="dashboard-users-list">
+                        <table class="table table-hover">
                                 <thead>
                                         <tr>
                                                 <th>Nom d'utilisateur</th>
@@ -81,7 +81,6 @@ ob_start();
                                 </tbody>
                         </table>
                         <button type="button"><a href="index.php?action=accountList">Voir tous les comptes</a></button>
-                        <button type="button"><a href="index.php?action=createAccount">Créer un compte</a></button>
                 </section>
 
                 <section class="dashboard-section">

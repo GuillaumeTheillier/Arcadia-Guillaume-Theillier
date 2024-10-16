@@ -53,36 +53,35 @@ ob_start();
 
         <button type="button" class="button-crud btn-open-frame">Ajouter un compte</button>
 
-        <table class="account-list">
-            <thead>
-                <tr>
-                    <th>Nom d'utilisateur</th>
-                    <th>Nom</th>
-                    <th>Prénom</th>
-                    <th>Rôle</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($allAccount as $account) : ?>
+        <div class="table-container">
+            <table class="table table-hover align-middle">
+                <thead>
                     <tr>
-                        <td> <?php echo $account['username'] ?> </td>
-                        <td> <?php echo $account['surname'] ?> </td>
-                        <td> <?php echo $account['first_name'] ?> </td>
-                        <td> <?php echo $account['role'] ?> </td>
-                        <td>
-                            <form method="post" class="account-list-button">
-                                <!-- <button type="button" name="username" value="<?php //echo $account['username'] 
-                                                                                    ?>" class="button-crud btn-open-update-account">Modifier</button>-->
-
-                                <button type="submit" name="username" value="<?php echo $account['username'] ?>" formaction="index.php?action=updateAccount" class="button-crud">Modifier</button>
-                                <button type="submit" name="username" value="<?php echo $account['username'] ?>" formaction="index.php?action=deleteStaffAccount" class="button-crud">Supprimer</button>
-                            </form>
-                        </td>
+                        <th>Nom d'utilisateur</th>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Rôle</th>
+                        <th></th>
                     </tr>
-                <?php endforeach ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody class="table-group-divider">
+                    <?php foreach ($allAccount as $account) : ?>
+                        <tr>
+                            <td> <?php echo $account['username'] ?> </td>
+                            <td> <?php echo $account['surname'] ?> </td>
+                            <td> <?php echo $account['first_name'] ?> </td>
+                            <td> <?php echo $account['role'] ?> </td>
+                            <td>
+                                <form method="post" class="d-flex flex-row gap-1">
+                                    <button type="submit" name="username" value="<?php echo $account['username'] ?>" formaction="index.php?action=updateAccount" class="button-crud">Modifier</button>
+                                    <button type="submit" name="username" value="<?php echo $account['username'] ?>" formaction="index.php?action=deleteStaffAccount" class="button-crud">Supprimer</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <?php endforeach ?>
+                </tbody>
+            </table>
+        </div>
     </div>
     <script src="script\frameScript.js"></script>
 </main>
