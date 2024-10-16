@@ -20,14 +20,15 @@
                 <input type="text" name="createAnimalName" class="input-form" id="create-animal-name" required>
             </div>
             <div class="input-container">
-                <label for="create-animal-race" class="label-input-form">Race</label>
-                <select name="createAnimalRace" id="create-animal-race" class="input-form" required>
+                <label for="animal-choose-race" class="label-input-form">Race</label>
+                <select name="createAnimalRace" id="animal-choose-race" class="input-form" required>
                     <option value=""></option>
                     <?php foreach ($raceList as $race) : ?>
                         <option value="<?php echo $race['id'] ?>"><?php echo $race['label'] ?></option>
                     <?php endforeach ?>
                 </select>
-                <button id="btn-add-race">Ajouter une race</button>
+                <input type="text" name="createAnimalAddRace" id="animal-add-race" class="input-form" required hidden disabled>
+                <button type="button" id="btn-add-race">Ajouter une race</button>
             </div>
             <div class="input-container">
                 <label for="create-animal-habitat" class="label-input-form">Habitat</label>
@@ -39,10 +40,11 @@
                 </select>
             </div>
             <div class="input-container">
-                <label for="animal-form-img" class="label-input-form">Image</label>
-                <input type="file" name="createAnimalImage" id="animal-form-img" accept="image/png, image/jpeg" required>
+                <label for="create-animal-form-img" class="label-input-form">Image</label>
+                <input type="file" name="createAnimalImage" id="create-animal-form-img" accept="image/png, image/jpeg" required>
             </div>
             <button type="submit">Confirmer</button>
         </form>
     </div>
+    <script src="script/changingInputRaceScript.js"></script>
 </div>

@@ -181,6 +181,14 @@ class AnimalsRepository
         return $races;
     }
 
+    function getIdRace(string $label)
+    {
+        $statement = $this->connection->getConnection()->prepare('SELECT id FROM race WHERE label = :label');
+        $statement->bindParam(':label', $label, pdo::PARAM_STR);
+        $statement->execute();
+        return $statement->fetch(pdo::FETCH_ASSOC)['id'];
+    }
+
     /**
      * Add animal race in race table.
      * 
@@ -189,7 +197,7 @@ class AnimalsRepository
      */
     function createRace(string $race): bool
     {
-        $statement = $this->connection->getConnection()->prepare('INSERT INTO race(label) VALUES label=?');
+        $statement = $this->connection->getConnection()->prepare('INSERT INTO race(label) VALUES (?)');
         return $statement->execute([$race]);
     }
 }

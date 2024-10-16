@@ -8,7 +8,6 @@ let body = document.querySelector('body');
  */
 function openFrame(indexBtn, indexFrame) {
     btnOpen[indexBtn].addEventListener('click', () => {
-        console.log('1');
         frame[indexFrame].classList.add('visible');
         body.style.overflow = 'hidden';
     });

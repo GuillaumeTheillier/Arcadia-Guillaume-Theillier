@@ -20,8 +20,8 @@ ob_start();
             <input type="text" class="input-form" name="updateAnimalName" id="update-animal-name" value="<?php echo $animal['name']; ?>" maxlength="50" required>
         </div>
         <div class="input-container">
-            <label for="update-animal-race" class="label-input-form">Race</label>
-            <select name="updateAnimalRace" id="update-animal-race" class="input-form" required>
+            <label for="animal-choose-race" class="label-input-form">Race</label>
+            <select name="updateAnimalRace" id="animal-choose-race" class="input-form" required>
                 <option value="" disabled></option>
                 <?php foreach ($raceList as $race) : ?>
                     <?php if ($race['label'] === $animal['race']) : ?>
@@ -31,6 +31,8 @@ ob_start();
                     <?php endif ?>
                 <?php endforeach ?>
             </select>
+            <input type="text" name="updateAnimalAddRace" id="animal-add-race" class="input-form" required hidden disabled>
+            <button type="button" id="btn-add-race">Ajouter une race</button>
         </div>
         <div class="input-container">
             <label for="update-animal-habitat" class="label-input-form">Habitat</label>
@@ -54,6 +56,7 @@ ob_start();
         <input type="text" name="updateAnimalId" value="<?php echo $animal['id']; ?>" hidden>
         <button type="submit">Confirmer</button>
     </form>
+    <script src="script/changingInputRaceScript.js"></script>
 </main>
 <?php
 $content = ob_get_clean();

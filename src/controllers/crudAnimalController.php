@@ -2,26 +2,34 @@
 require_once('src/model/animals.php');
 require_once('src/lib/image.php');
 require_once('src/lib/functions.php');
+require_once('addRaceController.php');
 
 function animalRepository()
 {
     return new AnimalsRepository();
 }
 
+/**
+ * Create animal in database and redirect to the page of habitat who user create animal
+ */
 function createAnimal()
 {
-    $habitatId = $_COOKIE['CURRENT_HABITAT_ID'];
-    //var_dump($_FILES['createAnimalImage']);
-    if (isset($_POST['createAnimalName']) && isset($_FILES['createAnimalImage']) && !empty($_POST['createAnimalRace']) && !empty(isset($_POST['createAnimalHabitat']))) {
+    $currentHabId = $_COOKIE['CURRENT_HABITAT_ID'];
+    if (isset($_POST['createAnimalName']) && isset($_FILES['createAnimalImage']) && is_numeric($_POST['createAnimalHabitat'])) {
         $name = htmlspecialchars($_POST['createAnimalName']);
-        $habitat = $_POST['createAnimalHabitat'];
-        $race = $_POST['createAnimalRace'];
+        $habitatId = (int)$_POST['createAnimalHabitat'];
 
         try {
+            if (isset($_POST['createAnimalRace']) && is_numeric($_POST['createAnimalRace'])) {
+                $raceId = $_POST['createAnimalRace'];
+            } else if (isset($_POST['createAnimalAddRace']) && is_string($_POST['createAnimalAddRace'])) {
+                $race = htmlspecialchars($_POST['createAnimalAddRace']);
+                $raceId = addRace($race);
+            } else {
+                throw new Exception('La race est invalide');
+            }
             $data = imageVerification($_FILES['createAnimalImage']);
-            //var_dump($data);
-            $success = animalRepository()->createAnimal($name, $data, $habitat, $race);
-            //var_dump($success);
+            $success = animalRepository()->createAnimal($name, $data, $habitatId, $raceId);
             setcookie(
                 'CREATE_ANIMAL_SUCCESS',
                 $success,
@@ -42,9 +50,19 @@ function createAnimal()
                 ]
             );
         }
+    } else {
+        setcookie(
+            'CREATE_ANIMAL_ERROR',
+            'Toutes les entrées n\'ont pas été saisies',
+            [
+                'expires' => time() + 1,
+                'httponly' => true,
+                'secure' => true
+            ]
+        );
     }
     //redirect to the service page
-    redirectToUrl('index.php?action=habitat&habitat=' . $habitatId);
+    redirectToUrl('index.php?action=habitat&habitat=' . $currentHabId);
 }
 
 function createRaceAnimal()
@@ -69,19 +87,26 @@ function updateAnimal()
 {
     $habitatId = $_COOKIE['CURRENT_HABITAT_ID'];
     $animalId = $_POST['updateAnimalId'];
-    if (isset($_POST['updateAnimalName']) && !empty($_POST['updateAnimalRace']) && !empty($_POST['updateAnimalHabitat'])) {
+    if (isset($_POST['updateAnimalName']) && is_numeric($_POST['updateAnimalHabitat'])) {
         $name = htmlspecialchars($_POST['updateAnimalName']);
-        $habitat = $_POST['updateAnimalHabitat'];
-        $race = $_POST['updateAnimalRace'];
+        $habitat = (int)$_POST['updateAnimalHabitat'];
         try {
+            //Create new race that is necessary
+            if (isset($_POST['updateAnimalRace']) && is_numeric($_POST['updateAnimalRace'])) {
+                $raceId = $_POST['updateAnimalRace'];
+            } else if (isset($_POST['updateAnimalAddRace']) && is_string($_POST['updateAnimalAddRace'])) {
+                $race = htmlspecialchars($_POST['updateAnimalAddRace']);
+                $raceId = addRace($race);
+            } else {
+                throw new Exception('La race est invalide');
+            }
+            //Call function to update animal from the model
             if (isset($_FILES['updateAnimalImage']) && $_FILES['updateAnimalImage']['error'] !== 4) {
                 $data = imageVerification($_FILES['updateAnimalImage']);
-                //var_dump($data);
-                $success = animalRepository()->updateAnimal($animalId, $name, $habitat, $race, $data);
+                $success = animalRepository()->updateAnimal($animalId, $name, $habitat, $raceId, $data);
             } else {
-                $success = animalRepository()->updateAnimal($animalId, $name, $habitat, $race);
+                $success = animalRepository()->updateAnimal($animalId, $name, $habitat, $raceId);
             }
-            //var_dump($success);
             setcookie(
                 'UPDATE_ANIMAL_SUCCESS',
                 $success,
@@ -94,7 +119,6 @@ function updateAnimal()
             //Redirect to the habitat page
             redirectToUrl('index.php?action=habitat&habitat=' . $habitatId);
         } catch (Exception $e) {
-            //var_dump($e->getMessage());
             setcookie(
                 'UPDATE_ANIMAL_ERROR',
                 $e->getMessage(),
