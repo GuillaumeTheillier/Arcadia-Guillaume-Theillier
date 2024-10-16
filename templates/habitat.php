@@ -15,6 +15,10 @@ ob_start();
         <?php require('crudForm/createAnimalForm.php'); ?>
 
         <p class="habitat-description"> <?php echo $habitat['description'] ?> </p>
+        <div class="habitat-comment">
+            <h5>Commentaire sur l'habitat</h5>
+            <p><?php echo $habitat['comment'] ?></p>
+        </div>
 
         <div class="button-container">
             <button type="button" class="button-crud btn-open-frame">Ajouter un animal</button>
