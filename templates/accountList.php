@@ -72,7 +72,7 @@ ob_start();
                             <td> <?php echo $account['first_name'] ?> </td>
                             <td> <?php echo $account['role'] ?> </td>
                             <td>
-                                <form method="post" class="d-flex flex-row gap-1">
+                                <form method="post">
                                     <button type="submit" name="username" value="<?php echo $account['username'] ?>" formaction="index.php?action=updateAccount" class="button-crud">Modifier</button>
                                     <button type="submit" name="username" value="<?php echo $account['username'] ?>" formaction="index.php?action=deleteStaffAccount" class="button-crud">Supprimer</button>
                                 </form>

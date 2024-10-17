@@ -48,41 +48,41 @@ ob_start();
             </div>
         <?php endif; ?>
     </div>
-
     <!-- Filter -->
     <div class="filter" data-filter-type="<?php echo $filter['type']; ?>" data-filter-id="<?php echo $filter['id']; ?>">
-        <form action="index.php?action=animalList" method="post">
-            <!-- Habitat filter -->
-            <div class="input-container">
-                <label for="animal-list-habitat-filter" class="label-input-form">Habitat</label>
-                <select onchange="this.form.submit()" name="animalListHabitatFilter" id="animal-list-habitat-filter" class="input-form habitat-select">
-                    <option value="" disabled hidden>choisir un habitat</option>
-                    <?php foreach ($habitatList as $hab) : ?>
-                        <option value="<?php echo $hab['id'] ?>"><?php echo $hab['nom'] ?></option>
-                    <?php endforeach ?>
-                </select>
-            </div>
-        </form>
-        <form action="index.php?action=animalList" method="post">
-            <!-- Race filter -->
-            <div class="input-container">
-                <label for="animal-list-race-filter" class="label-input-form">Race</label>
-                <select onchange="this.form.submit()" name="animalListRaceFilter" id="animal-list-race-filter" class="input-form race-select">
-                    <option value="" disabled hidden>choisir une race</option>
-                    <?php foreach ($raceList as $race) : ?>
-                        <option value="<?php echo $race['id'] ?>"><?php echo $race['label'] ?></option>
-                    <?php endforeach ?>
-                </select>
-            </div>
-        </form>
-        <form action="index.php?action=animalList" method="post">
-            <!-- reset filter -->
-            <button type="submit">Effacer filtre</button>
-        </form>
-
+        <div class="filter-grid">
+            <form action="index.php?action=animalList" method="post">
+                <!-- Habitat filter -->
+                <div class="input-container">
+                    <label for="animal-list-habitat-filter" class="label-input-form">Habitat</label>
+                    <select onchange="this.form.submit()" name="animalListHabitatFilter" id="animal-list-habitat-filter" class="input-form habitat-select">
+                        <option value="" disabled hidden>choisir un habitat</option>
+                        <?php foreach ($habitatList as $hab) : ?>
+                            <option value="<?php echo $hab['id'] ?>"><?php echo $hab['nom'] ?></option>
+                        <?php endforeach ?>
+                    </select>
+                </div>
+            </form>
+            <form action="index.php?action=animalList" method="post">
+                <!-- Race filter -->
+                <div class="input-container">
+                    <label for="animal-list-race-filter" class="label-input-form">Race</label>
+                    <select onchange="this.form.submit()" name="animalListRaceFilter" id="animal-list-race-filter" class="input-form race-select">
+                        <option value="" disabled hidden>choisir une race</option>
+                        <?php foreach ($raceList as $race) : ?>
+                            <option value="<?php echo $race['id'] ?>"><?php echo $race['label'] ?></option>
+                        <?php endforeach ?>
+                    </select>
+                </div>
+            </form>
+            <form action="index.php?action=animalList" method="post">
+                <!-- reset filter -->
+                <button type="submit">Effacer filtre</button>
+            </form>
+        </div>
     </div>
     <!-- animal list table -->
-    <div class="table-container">
+    <div class="table-container animal-list">
         <table class="table table-hover align-middle">
             <thead>
                 <tr>

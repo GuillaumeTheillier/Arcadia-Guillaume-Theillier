@@ -21,7 +21,8 @@ function animalList()
             $filter['id'] = $raceId;
             $animalList = $animalRepository->getAllAnimal($raceId, 'race');
         } else {
-            $filter = false;
+            $filter['type'] = null;
+            $filter['id'] = null;
             $animalList = $animalRepository->getAllAnimal();
         }
         require('templates/animalListStaff.php');

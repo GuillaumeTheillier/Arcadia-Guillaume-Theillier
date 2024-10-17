@@ -37,10 +37,10 @@ ob_start();
                 <?php foreach ($commentList as $com) : ?>
                     <tr>
                         <td><?php echo $com['nom']; ?></td>
-                        <td class="table-col-textarea"><?php echo $com['comment']; ?></td>
+                        <td class="table-p"><?php echo $com['comment']; ?></td>
                         <td>
-                            <form action="index?action=addHabitatComment" method="post" class="habitat-comment-form">
-                                <textarea name="habitatComment" class="input-form" cols="8" rows="15" maxlength="255"></textarea>
+                            <form action="index?action=addHabitatComment" method="post">
+                                <textarea name="habitatComment" class="input-form" cols="6" rows="5" maxlength="255"></textarea>
                                 <button type="submit" name="habitatId" value="<?php echo $com['id'] ?>" class="button-crud">Modifier</button>
                             </form>
                         </td>

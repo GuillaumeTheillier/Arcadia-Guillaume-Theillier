@@ -1168,36 +1168,6 @@ a {
 
 
 
-/* Account list */
-.account-list-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-@media screen and (max-width:1350px) {
-    .account-list {
-        width: 95vw;
-    }
-}
-
-@media screen and (max-width:630px) {
-
-    .account-list td,
-    .account-list th {
-        font-size: 0.9rem;
-    }
-
-    .account-list tr:first-of-type td {
-        border-top: 1px solid black;
-    }
-
-    .account-list .button-crud {
-        font-size: 60%;
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
-}
 
 
 
@@ -1269,89 +1239,148 @@ a {
 }
 
 .table-container .table {
-    width: max-content;
+    min-width: 50vw;
     max-width: 80vw;
+    width: max-content;
 }
 
 .table td,
 .table th {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    width: fit-content;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 0.9rem;
 }
 
-.table form {
+.table form,
+.table-p {
+    width: 30vw;
+    height: max-content;
     padding: 0;
     margin: 0;
-}
-
-.table .button-crud {
-    margin: 0.8rem;
-    font-size: 90%;
-}
-
-.habitat-comment-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin: 0;
-}
-
-.table-col-textarea {
-    max-width: 20rem;
+    gap: 0rem;
     text-align: justify;
 }
 
-.habitat-comment-form {
-    padding: 0;
+.table form textarea {
+    width: 98%;
+    text-align: justify;
 }
 
-.habitat-comment-form textarea {
-    width: 25rem;
-    height: 9rem;
+.table .button-crud {
+    margin: 0rem;
+    font-size: 90%;
+    width: max-content;
 }
 
 .report-status-detail {
     text-align: justify;
 }
 
-.consump-list {
-    margin: 1rem 0;
+/* Animal consultation */
+.consult-animal {
+    width: fit-content;
 }
 
-.click-row:hover {
-    cursor: pointer;
+.consult-animal td:nth-child(2),
+.consult-animal th:nth-child(2) {
+    text-align: center;
+}
+
+/* Consumption list for one animal page */
+.consump-list {
+    margin: 1rem 0;
 }
 
 .hidden {
     display: none;
 }
 
-@media screen and (max-width:900px) {
-    .habitat-comment-form textarea {
-        width: 14rem;
+/* Account list */
+.account-list-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.account-list-container form {
+    width: min-content;
+    display: flex;
+    flex-direction: row;
+}
+
+.account-list-container .button-crud {
+    margin: 0 0.2rem;
+}
+
+@media screen and (max-width:992px) {
+    .account-list-container form {
+        flex-direction: column;
+        width: min-content;
+    }
+
+    .account-list-container .button-crud {
+        margin: 0.4rem 0rem;
     }
 }
 
-@media screen and (max-width:700px) {
-    .table-col-textarea {
-        max-width: 20rem;
+@media screen and (max-width:768px) {
+    .table-container .table {
+        font-size: 85%;
     }
 
-    .habitat-comment-form {
-        gap: 1rem;
+    .table form:not(.account-list-container form),
+    .table-p {
+        width: 30vw;
     }
 }
 
-@media screen and (max-width:424px) {
-    .table-col-textarea {
-        max-width: 10rem;
+@media screen and (max-width:630px) {
+
+    .table td,
+    .table th {
+        padding-left: 0.3rem;
+        padding-right: 0.3rem;
     }
 
-    .habitat-comment-form textarea {
-        width: 10rem;
-        height: 12rem;
+    .table-container .table {
+        font-size: 70%;
+        max-width: 95vw;
+    }
+
+    .table form textarea {
+        font-size: 95%;
+    }
+
+    .table form:not(.account-list-container form),
+    .table-p {
+        width: 40vw;
+        gap: 0rem
+    }
+
+}
+
+@media screen and (max-width:500px) {
+    .account-list-container form .button-crud {
+        padding-left: 1.15rem;
+        padding-right: 1.15rem;
+    }
+
+    .table .button-crud {
+        padding-left: 1.15rem;
+        padding-right: 1.15rem;
     }
 }
+
+@media screen and (max-width:360px) {
+
+    .table td:not(.animal-list td),
+    .table th:not(.animal-list td) {
+        max-width: 6.5rem;
+        overflow: auto;
+    }
+}
+
 
 
 
@@ -1360,13 +1389,21 @@ a {
 
 
 /* Filter */
-.filter form,
 .filter {
+    margin: 1rem
+}
+
+.filter-grid {
     display: flex;
     flex-direction: row;
     align-items: end;
     justify-content: center;
     gap: 3rem;
+}
+
+.filter-grid form {
+    padding: 0;
+    margin: 0;
 }
 
 .filter h5 {
@@ -1389,4 +1426,38 @@ a {
 
 #report-list-date-filter {
     width: max-content;
+}
+
+@media screen and (max-width:800px) {
+    .filter-grid {
+        display: grid;
+        grid-template: 1fr fit-content / 1fr 1fr 1fr;
+        row-gap: 1.5rem;
+        column-gap: 1.3rem;
+    }
+
+    .filter-grid div:nth-child(4),
+    .filter-grid>form:nth-child(3) {
+        grid-area: 2 / 2 / 3 / 4;
+        gap: 2rem;
+        align-self: center;
+        justify-self: center;
+        display: flex;
+        flex-direction: row;
+        gap: 2rem;
+    }
+}
+
+@media screen and (max-width:600px) {
+    .filter-grid {
+        grid-template: 1fr fit-content / 1fr 1fr;
+        row-gap: 1.4rem;
+    }
+
+    .filter-grid div:nth-child(4),
+    .filter-grid>form:nth-child(3) {
+        grid-area: 2 / 2 / 3 / 3;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
 }

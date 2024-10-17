@@ -8,7 +8,7 @@ ob_start();
 
     <!-- filter -->
     <div class="filter" data-sort="<?php echo $sort; ?>" data-animal-filter="<?php echo $animalId; ?>">
-        <form action="index.php?action=veterinarianReportList" method="post">
+        <form action="index.php?action=veterinarianReportList" method="post" class="filter-grid">
             <!-- Sort by -->
             <div class="input-container">
                 <label for="report-list-sort" class="label-input-form">Trier par :</label>
@@ -34,10 +34,12 @@ ob_start();
                     <?php endforeach ?>
                 </select>
             </div>
-            <!-- submit filter -->
-            <button type="submit">Valider</button>
-            <!-- reset filter -->
-            <button type="submit" name="clearFilter" value=true>Effacer filtre</button>
+            <div>
+                <!-- submit filter -->
+                <button type="submit">Valider</button>
+                <!-- reset filter -->
+                <button type="submit" name="clearFilter" value=true>Effacer filtre</button>
+            </div>
         </form>
         <script src="script/reportFilterScript.js"></script>
     </div>

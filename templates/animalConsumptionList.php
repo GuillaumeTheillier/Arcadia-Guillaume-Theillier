@@ -51,7 +51,6 @@ ob_start();
             <tbody class="table-group-divider">
                 <?php foreach ($consumptionList as $consumption) : ?>
                     <tr>
-
                         <td><?php echo $consumption['date']; ?></td>
                         <td><?php echo $consumption['foodType']; ?></td>
                         <td><?php echo $consumption['quantity']; ?></td>

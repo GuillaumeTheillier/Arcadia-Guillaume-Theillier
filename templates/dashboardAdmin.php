@@ -5,7 +5,6 @@ ob_start();
 
 <main>
         <h1 class="page-title"> Tableau de bord </h1>
-
         <!-- Alert -->
         <div class="alert-container">
                 <?php // Alert update schedule
@@ -22,12 +21,10 @@ ob_start();
                         </div>
                 <?php endif; ?>
         </div>
-
         <div class="dashboard-container">
-
                 <section class="dashboard-section">
                         <h4>Nombre de consultation des animaux</h4>
-                        <table class="table table-hover">
+                        <table class="table table-hover align-middle consult-animal">
                                 <thead>
                                         <th>Animal</th>
                                         <th>Nombre de visite</th>
@@ -42,7 +39,6 @@ ob_start();
                                 </tbody>
                         </table>
                 </section>
-
                 <section class="dashboard-section">
                         <h4>Listes des comptes</h4>
                         <table class="table table-hover">
@@ -61,7 +57,6 @@ ob_start();
                                                 $len = 5;
                                         } else $len = count($users);
                                         ?>
-
                                         <?php for ($i = 0; $i < $len; $i++) : ?>
                                                 <tr>
                                                         <td>
@@ -82,7 +77,6 @@ ob_start();
                         </table>
                         <button type="button"><a href="index.php?action=accountList">Voir tous les comptes</a></button>
                 </section>
-
                 <section class="dashboard-section">
                         <h4>Horaires</h4>
                         <form action="index.php?action=updateSchedule" method="post">
