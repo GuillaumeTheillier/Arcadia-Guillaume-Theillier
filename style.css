@@ -877,6 +877,10 @@ footer {
     padding-bottom: 2rem;
 }
 
+.infos-schedule-day {
+    text-align: left;
+}
+
 .infos-schedule td {
     padding-bottom: 1rem;
     font-size: 1.2rem;
@@ -951,7 +955,7 @@ footer {
 .dashboard-container {
     margin-bottom: 4rem;
     display: grid;
-    grid-template: 1fr / repeat(3, min-content);
+    grid-template: 1fr / repeat(3, fit-content);
     row-gap: 6rem;
     justify-content: center;
 }
@@ -973,6 +977,10 @@ footer {
 .dashboard-section:first-of-type {
     justify-self: center;
     grid-column: 1/4;
+}
+
+.dashboard-section:nth-of-type(2) {
+    height: min-content;
 }
 
 .dashboard-section:nth-of-type(3) {

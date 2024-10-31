@@ -1,5 +1,7 @@
 <?php
-//phpinfo();
+
+require_once('src/lib/functions.php');
+
 function sendContact()
 {
     $mail = $_POST['emailContact'];
@@ -8,7 +10,6 @@ function sendContact()
 
     //check if mail is valid format and 
     if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
-
         setcookie(
             'CONTACT_ERROR',
             'email invalide',
@@ -17,7 +18,6 @@ function sendContact()
                 'secure' => true,
                 'expires' => time() + 1
             ]
-
         );
     }
     //check if the title and description input are not only space
@@ -30,15 +30,11 @@ function sendContact()
                 'secure' => true,
                 'expires' => time() + 1
             ]
-
         );
     } else {
-
-        $to = 'guillaumethlr@gmail.com';
+        $to = 'contact@arcadia.fr';
         $header = 'FROM : ' . $mail;
-
         $success = mail($to, $title, $description, $header);
-
         setcookie(
             'CONTACT_SUCCESS',
             $success,
@@ -49,6 +45,5 @@ function sendContact()
             ]
         );
     }
-    //var_dump($success);
-    header('Location: index.php?action=contact');
+    redirectToUrl('index.php?action=contact');
 }

@@ -35,14 +35,20 @@ class RelationalDatabaseConnection
 class UnrelationalDatabaseConnection
 {
     private $client;
+
     public $scheduleCollection = null;
     public $animalCollection = null;
+
+    public function __construct()
+    {
+        $url = 'mongodb+srv://GuillaumeThlr:hFXIt9gQ4VUD86wt@guillaumetheillier.oj999.mongodb.net/?retryWrites=true&w=majority&appName=GuillaumeTheillier';
+        $this->client = new MongoDB\Client($url);
+    }
 
     function getScheduleConnection()
     {
         if ($this->scheduleCollection === null) {
             try {
-                $this->client = new MongoDB\Client();
                 $this->scheduleCollection = $this->client->arcadia->schedule;
             } catch (Exception $e) {
                 die('Erreur : ' . $e->getMessage());
@@ -55,7 +61,6 @@ class UnrelationalDatabaseConnection
     {
         if ($this->animalCollection === null) {
             try {
-                $this->client = new MongoDB\Client();
                 $this->animalCollection = $this->client->arcadia->animal_count_visit;
             } catch (Exception $e) {
                 die('Erreur : ' . $e->getMessage());

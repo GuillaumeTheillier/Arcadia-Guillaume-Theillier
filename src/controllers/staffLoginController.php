@@ -1,6 +1,4 @@
 <?php
-//Set on visitor by default
-//$_SESSION['ROLE_USER'] = 0;
 require_once('src/model/staffAccount.php');
 require_once('src/lib/functions.php');
 
@@ -15,7 +13,6 @@ function login()
         $username = htmlspecialchars($_POST['loginUsername']);
         $password = htmlspecialchars($_POST['loginPassword']);
 
-
         if (!filter_var($username, FILTER_VALIDATE_EMAIL)) {
             setcookie(
                 'LOGIN_ERROR',
@@ -28,7 +25,6 @@ function login()
             );
             redirectToUrl('index.php?action=staffLogin');
         } else {
-
             //Instanciate users class
             $login = new AccountRepository;
             if (!$login->usernameExist($username)) {
@@ -45,8 +41,6 @@ function login()
 
                 redirectToUrl('index.php?action=staffLogin');
             }
-
-
             if (!$user = $login->verifyPassword($username, $password)) {
                 //throw new Exception('Mot de passe incorrect');
                 setcookie(
@@ -61,7 +55,6 @@ function login()
 
                 redirectToUrl('index.php?action=staffLogin');
             }
-
             $_SESSION['LOGGED_USER'] = $user['username'];
             /*
                 0 = Visitor
@@ -70,7 +63,6 @@ function login()
                 3 = admin
             */
             $_SESSION['ROLE_USER'] = $user['role'];
-
             if ($user['role'] === 3) {
                 redirectToUrl('index.php?action=dashboard');
             } else redirectToUrl('index.php?action=animalList');
@@ -83,7 +75,6 @@ function logout()
     //Destroy current session with session variables
     session_unset();
     session_destroy();
-
     //Set a temporary cookie for notify user is correctly logout
     setcookie(
         'LOGOUT_MESSAGE',
@@ -94,6 +85,5 @@ function logout()
             'secure' => true
         ]
     );
-
     redirectToUrl('index.php');
 }

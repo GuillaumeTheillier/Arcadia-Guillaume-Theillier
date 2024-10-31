@@ -29,7 +29,7 @@ ob_start();
                 ?>
                     <tr>
                         <?php $dayEn = strtolower(date('l', 259200 + (86400 * $i))); ?>
-                        <td><?php echo $semaine[$i - 1] ?></td>
+                        <td class="infos-schedule-day"><?php echo $semaine[$i - 1] ?></td>
                         <td>
                             <?php echo $schedule[$dayEn]['ouverture'] . ' - ' . $schedule[$dayEn]['fermeture'] ?>
                         </td>

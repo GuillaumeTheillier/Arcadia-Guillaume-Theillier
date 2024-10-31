@@ -17,8 +17,9 @@ class AnimalsRepository
     /**
      * Get all data animals from database in a specific habitat.
      * 
-     *
-     * @return array Array of all data animal from the same habitat.
+     * @param int $id [optional] Select one animal with his id.
+     * @param string $filterType Sort animal.
+     * @return array Array of all data animal.
      */
     function getAllAnimal(int $id = null, string $filterType = null): array
     {
@@ -61,7 +62,7 @@ class AnimalsRepository
     /**
      * Get all data animals from database in a specific habitat.
      * 
-     * @param string $habitat Animals from the selected habitat parameter.
+     * @param int $habitat Animals from the selected habitat id parameter.
      * @return array Array of all data animal from the same habitat.
      */
     function getAllAnimalsInHabitat(int $habitat): array
@@ -177,6 +178,7 @@ class AnimalsRepository
     /**
      * Get all race name and id from database
      * 
+     * @return array All race.
      */
     function getRace(): array
     {
@@ -188,6 +190,12 @@ class AnimalsRepository
         return $races;
     }
 
+    /**
+     * Get ID for a specific race label.
+     * 
+     * @param string $label Race we want to get the id.
+     * @return int id of the race param.
+     */
     function getIdRace(string $label)
     {
         $statement = $this->relDbConnection->getConnection()->prepare('SELECT id FROM race WHERE label = :label');
@@ -209,6 +217,11 @@ class AnimalsRepository
         return $statement->execute([$race]);
     }
 
+    /**
+     * Get only animal name and id for all of this.
+     * 
+     * @return array Array of all animal name and id.
+     */
     function getAnimalName()
     {
         $statement = $this->relDbConnection->getConnection()->prepare('SELECT id, name FROM animals');
@@ -219,6 +232,12 @@ class AnimalsRepository
         return $animalList;
     }
 
+    /** 
+     * Get animal id for a specific animal name.
+     * 
+     * @param string $name
+     * @return int Animal id.
+     */
     function getAnimalId(string $name)
     {
         $statement = $this->relDbConnection->getConnection()->prepare('SELECT id FROM animals WHERE animals.name = ?');
@@ -228,9 +247,11 @@ class AnimalsRepository
     }
 
     /**
+     * Get all count visit for each animal from the nosql database.
      * 
+     * @return mixed Return an array of all count visit. If they are an error return FALSE.
      */
-    function getAnimalCountVisit()
+    function getAnimalCountVisit(): mixed
     {
         try {
             $animal = array();
@@ -238,7 +259,6 @@ class AnimalsRepository
             $result = $this->unrelDbConnection->getAnimalConnection()->find(
                 [],
                 [
-                    //'limit' => 5,
                     'projection' => [
                         '_id' => 0,
                         'animal_id' => 1,
