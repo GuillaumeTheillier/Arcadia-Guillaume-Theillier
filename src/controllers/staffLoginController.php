@@ -1,6 +1,6 @@
 <?php
-require_once('src/model/staffAccount.php');
-require_once('src/lib/functions.php');
+require_once(__DIR__ . '/../model/staffAccount.php');
+require_once(__DIR__ . '/../lib/functions.php');
 
 function staffLogin()
 {

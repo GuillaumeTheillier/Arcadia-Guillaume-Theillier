@@ -1,7 +1,7 @@
 <?php
 
-require_once('src/model/animals.php');
-require_once('src/model/foodConsumption.php');
+require_once(__DIR__ . '/../model/animals.php');
+require_once(__DIR__ . '/../model/foodConsumption.php');
 
 function animalConsumptionList()
 {

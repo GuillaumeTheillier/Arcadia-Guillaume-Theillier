@@ -1,5 +1,5 @@
 <?php
-require_once('src/model/habitats.php');
+require_once(__DIR__ . '/../model/habitats.php');
 
 function habitatComment()
 {

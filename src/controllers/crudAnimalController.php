@@ -1,7 +1,7 @@
 <?php
-require_once('src/model/animals.php');
-require_once('src/lib/image.php');
-require_once('src/lib/functions.php');
+require_once(__DIR__ . '/../model/animals.php');
+require_once(__DIR__ . '/../lib/image.php');
+require_once(__DIR__ . '/../lib/functions.php');
 require_once('addRaceController.php');
 
 function animalRepository()

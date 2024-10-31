@@ -1,6 +1,6 @@
 <?php
 
-require_once('src/model/animals.php');
+require_once(__DIR__ . '/../model/animals.php');
 
 /**
  * Create race in database. Check that the new race doesn't exist.

@@ -6,7 +6,7 @@ use Exception;
 use PDO;
 use MongoDB;
 
-require 'vendor/autoload.php';
+require __DIR__ . '/../../vendor/autoload.php';
 
 /**
  * Connection to SQL database.

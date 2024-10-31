@@ -1,6 +1,6 @@
 <?php
 
-require_once('src/model/animals.php');
+require_once(__DIR__ . '/../model/animals.php');
 
 function animal(int $animalId)
 {

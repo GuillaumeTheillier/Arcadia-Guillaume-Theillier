@@ -1,6 +1,6 @@
 <?php
 
-require_once('src/model/comment.php');
+require_once(__DIR__ . '/../model/comment.php');
 
 function addComment(array $input)
 {
