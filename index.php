@@ -4,14 +4,14 @@
 
 <head>
     <meta charset="utf-8" />
-    <?php require_once('../templates/head.php'); ?>
+    <?php require_once('templates/head.php'); ?>
     <title> <?php echo 'Arcadia'; ?> </title>
 </head>
 
 <body>
-    <?php require_once('../src/controllers/requireAllControllers.php'); ?>
+    <?php require_once('src/controllers/requireAllControllers.php'); ?>
 
-    <header><?php require_once(__DIR__ . '/../templates/header.php'); ?></header>
+    <header><?php require_once(__DIR__ . '/templates/header.php'); ?></header>
     <main>
         <?php
         if (isset($_GET['action']) && $_GET['action'] !== '') {
@@ -37,7 +37,7 @@
         }
         ?>
     </main>
-    <footer><?php require_once(__DIR__ . '/../templates/footer.php'); ?></footer>
+    <footer><?php require_once(__DIR__ . '/templates/footer.php'); ?></footer>
 </body>
 
 </html>

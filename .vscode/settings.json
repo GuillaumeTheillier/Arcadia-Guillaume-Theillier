@@ -1,4 +1,0 @@
-{
-    "appService.defaultWebAppToDeploy": "/subscriptions/3f75032f-4bf1-482b-9fb4-e1450594015c/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/Arcadia-Guillaume-Theillier",
-    "appService.deploySubpath": "."
-}

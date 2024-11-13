@@ -5,21 +5,19 @@
 <div id="carousel" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img src="../src\model\images\carousel\lions-1660044_1280.jpg" class="carousel-img" alt="Deux lions allongé">
+            <img src="src\model\images\carousel\lions-1660044_1280.jpg" class="carousel-img" alt="Deux lions allongé">
         </div>
         <div class="carousel-item">
-            <img src="..\src\model\images\carousel\animal-2475743_1280.jpg" class="carousel-img" alt="Un bébé gorille qui pose sa main sur une vitre">
+            <img src="src\model\images\carousel\animal-2475743_1280.jpg" class="carousel-img" alt="Un bébé gorille qui pose sa main sur une vitre">
         </div>
         <div class="carousel-item">
-            <img src="..\src\model\images\carousel\pexels-nilina-584186.jpg" class="carousel-img" alt="Deux éléphants l'un en face de l'autre">
+            <img src="src\model\images\carousel\pexels-nilina-584186.jpg" class="carousel-img" alt="Deux éléphants l'un en face de l'autre">
         </div>
         <div class="carousel-item">
-            <img src="..\src\model\images\carousel\tigre-allonge-parquet.jpg" class="carousel-img" alt="Un tigre allongé">
+            <img src="src\model\images\carousel\tigre-allonge-parquet.jpg" class="carousel-img" alt="Un tigre allongé">
         </div>
     </div>
 </div>
-<?php __DIR__ . '../src\model\images\carousel\lions-1660044_1280.jpg' ?>
-<?php echo (__DIR__ . '/../src\model\images\carousel'); ?>
 <!-- Welcome text -->
 <p class="welcome-text">
     Bienvenue au <br> zoo Arcadia
@@ -31,7 +29,7 @@
         Depuis 1960, Arcadia vous convie à partir en voyage avec toute la famille.
         Venez explorer une partie de la diversité biologique présente sur notre planète.
     </p>
-    <img src="../src/model\images\homepage\pexels-ricky-esquivel-1868861.jpg" alt="Un soigneur tenant un bébé crocodile dans ses mains">
+    <img src="src/model\images\homepage\pexels-ricky-esquivel-1868861.jpg" alt="Un soigneur tenant un bébé crocodile dans ses mains">
 </article>
 
 <!-- show the zoo's three habitat  -->
@@ -59,7 +57,7 @@
 
 <!-- second part of the zoo presentation -->
 <article class="homepage-presentation">
-    <img src="../src/model\images\homepage\plan-vertical-foret-soignes-soleil-qui-brille-travers-branches.jpg" alt="Un soigneur tenant un bébé crocodile dans ses mains">
+    <img src="src/model\images\homepage\plan-vertical-foret-soignes-soleil-qui-brille-travers-branches.jpg" alt="Un soigneur tenant un bébé crocodile dans ses mains">
     <p>
         Nous sommes situés en Bretagne près de la forêt de Brocéliande, terre de mythe et
         de légende. Vous serez accueillie par nos guides pour une visites du parc.

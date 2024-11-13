@@ -30,7 +30,8 @@ class RelationalDatabaseConnection
     {
         if ($this->database === null) {
             try {
-                $this->database = new PDO("mysql:host=$this->host;port=3306;dbname=$this->db_name;charset=utf8", $this->username, $this->password, $this->options);
+                //$this->database = new PDO("mysql:host=$this->host;port=3306;dbname=$this->db_name;charset=utf8", $this->username, $this->password, $this->options);
+                $this->database = new PDO('mysql:host=localhost;dbname=arcadia;charset=utf8', 'root', '');
             } catch (Exception $e) {
                 die('Erreur : ' . $e->getMessage());
             }
