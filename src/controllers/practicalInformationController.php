@@ -7,5 +7,5 @@ function practicalInformation()
 {
     $scheduleRepository = new ScheduleRepository;
     $schedule = $scheduleRepository->getSchedule();
-    require('templates/practicalInformation.php');
+    require(__DIR__ . '/../../templates/practicalInformation.php');
 }

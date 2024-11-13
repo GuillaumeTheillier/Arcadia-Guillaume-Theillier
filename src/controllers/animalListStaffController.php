@@ -25,7 +25,7 @@ function animalList()
             $filter['id'] = null;
             $animalList = $animalRepository->getAllAnimal();
         }
-        require('templates/animalListStaff.php');
+        require(__DIR__ . '/../../templates/animalListStaff.php');
     } else {
         redirectToUrl('index.php?action=homepage');
     }

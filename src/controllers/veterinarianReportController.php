@@ -82,9 +82,6 @@ function veterinarianReportList()
         $date = null;
         $animalId = null;
     }
-
-
-    // var_dump($animalId);
     $reportList = $reportRepository->getAllReport($sort, $animalId, $date);
-    require('templates/veterinarianReportList.php');
+    require(__DIR__ . '/../../templates/veterinarianReportList.php');
 }

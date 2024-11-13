@@ -14,12 +14,23 @@ require __DIR__ . '/../../vendor/autoload.php';
 class RelationalDatabaseConnection
 {
     public ?PDO $database = null;
+    private $host = 'arcadiamysqlserver.mysql.database.azure.com';
+    private $username = 'guillaumeTheillier';
+    private $password = 'eZm37AyZ6!_/5q';
+    private $db_name = 'arcadiadb';
+    private $options = array(
+        PDO::MYSQL_ATTR_SSL_CA => 'DigiCertGlobalRootG2.crt.pem',
+        //PDO::MYSQL_ATTR_SSL_CERT => 'DigiCertGlobalRootG2.crt.pem',
+        //PDO::MYSQL_ATTR_SSL_KEY => ,
+        PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false
+        //pdo::mysql_attr_publ
+    );
 
     function getConnection(): PDO
     {
         if ($this->database === null) {
             try {
-                $this->database = new PDO('mysql:host=localhost;dbname=arcadia;charset=utf8', 'root', '');
+                $this->database = new PDO("mysql:host=$this->host;port=3306;dbname=$this->db_name;charset=utf8", $this->username, $this->password, $this->options);
             } catch (Exception $e) {
                 die('Erreur : ' . $e->getMessage());
             }

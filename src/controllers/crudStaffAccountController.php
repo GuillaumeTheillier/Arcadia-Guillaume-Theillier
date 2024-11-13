@@ -37,7 +37,6 @@ function createStaffAccount()
     }
 
     $messagePassword = checkStrengthPassword($password);
-
     if ($messagePassword !== true) {
         setcookie(
             'CREATE_ACCOUNT_ERROR',
@@ -52,11 +51,9 @@ function createStaffAccount()
         redirectToUrl('index.php?action=accountList');
     }
 
-
     $accountRepository = new AccountRepository;
     $password = password_hash($password, PASSWORD_BCRYPT);
     $success = $accountRepository->createAccount($username, $firstName, $surname, $password, $role);
-
     setcookie(
         'CREATE_ACCOUNT_SUCCESS',
         $success,
@@ -66,7 +63,6 @@ function createStaffAccount()
             'expires' => time() + 1
         ]
     );
-
     redirectToUrl('index.php?action=accountList');
 }
 
@@ -137,7 +133,6 @@ function updateStaffAccount()
             'expires' => time() + 1
         ]
     );
-
     redirectToUrl('index.php?action=accountList');
 }
 
@@ -154,23 +149,19 @@ function checkStrengthPassword($password): string|bool
 
     $masque1 = "/[A-Z].*?[a-z]|[a-z].*?[A-Z]/";
     $masque2 = "/[a-zA-z].[0-9]|[0-9].[a-zA-z]/";
-
     if (preg_match($masque1, $password) === 0) {
         return 'Veuillez vérifier que le mot de passe possède au moins 1 majuscule, 1 minuscule et 1 chiffre.';
     }
     if (preg_match($masque2, $password) === 0) {
         return 'Veuillez vérifier que le mot de passe possède au moins 1 chiffre.';
     }
-
     return true;
 }
 
 function deleteStaffAccount()
 {
     $username = $_POST['username'];
-
     $accountRepository = new AccountRepository;
     $accountRepository->deleteAccount($username);
-
     redirectToUrl('index.php?action=accountList');
 }

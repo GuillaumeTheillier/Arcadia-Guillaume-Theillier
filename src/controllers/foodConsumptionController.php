@@ -5,38 +5,6 @@ function foodConsumptionRepository()
 {
     return $foodConsumptionRepository = new FoodConsumptionRepository;
 }
-/*
-function foodConsumptionForm()
-{
-    if (isset($_POST['animalId'])) {
-        $animalId = $_POST['animalId'];
-    } else if (isset($_COOKIE['ANIMAL_ID'])) {
-        $animalId =  $_COOKIE['ANIMAL_ID'];
-    } else {
-        setcookie(
-            'ADD_FOOD_ERROR',
-            'Une erreur est survenue.',
-            [
-                'expires' => time() + 1,
-                'httponly' => true,
-                'secure' => true
-            ]
-        );
-        //Redirect to the animal list page
-        redirectToUrl('index.php?action=animalList');
-    }
-    //Save animal id for few minutes if they are an error 
-    setcookie(
-        'ANIMAL_ID',
-        $animalId,
-        [
-            'expires' => time() + 300,
-            'httponly' => true,
-            'secure' => true
-        ]
-    );
-    require('templates/foodConsumptionForm.php');
-}*/
 
 function addFoodConsumption()
 {

@@ -7,5 +7,5 @@ function accountList()
     $accountRepository = new AccountRepository;
     $allAccount = $accountRepository->getAllUsers();
 
-    require('templates/accountList.php');
+    require(__DIR__ . '/../../templates/accountList.php');
 }

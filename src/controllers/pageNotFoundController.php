@@ -2,5 +2,5 @@
 
 function pageNotFound()
 {
-    require('templates/pageNotFound.php');
+    require(__DIR__ . '/../../templates/pageNotFound.php');
 }

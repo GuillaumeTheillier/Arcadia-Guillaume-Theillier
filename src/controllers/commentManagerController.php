@@ -8,7 +8,7 @@ function commentManager()
     $commentRepository = new CommentRepository;
     $allcomment = $commentRepository->getAll();
 
-    require('templates/commentManager.php');
+    require(__DIR__ . '/../../templates/commentManager.php');
 }
 
 function editVisibleComment()

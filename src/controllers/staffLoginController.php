@@ -4,7 +4,7 @@ require_once(__DIR__ . '/../lib/functions.php');
 
 function staffLogin()
 {
-    require('templates/staffLogin.php');
+    require(__DIR__ . '/../../templates/staffLogin.php');
 }
 
 function login()

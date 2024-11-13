@@ -16,5 +16,5 @@ function dashboard()
     //animal count visit
     $animalRepository = new AnimalsRepository;
     $animalVisit = $animalRepository->getAnimalCountVisit();
-    require('templates/dashboardAdmin.php');
+    require(__DIR__ . '/../../templates/dashboardAdmin.php');
 }

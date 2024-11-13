@@ -11,5 +11,5 @@ function animalConsumptionList()
     $foodConsumptionRepository = new FoodConsumptionRepository;
     $animal = $animalRepository->getAnimal($id);
     $consumptionList = $foodConsumptionRepository->getConsumption($id);
-    require('templates/animalConsumptionList.php');
+    require(__DIR__ . '/../../templates/animalConsumptionList.php');
 }
