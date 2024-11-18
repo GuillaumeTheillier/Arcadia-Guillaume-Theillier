@@ -1,36 +1,9 @@
 <div class="container-footer">
-    <article class="horaires-footer">
-        <h6>Horaires</h6>
-        <table>
-            <tr>
-                <th>Lundi</th>
-                <td>09:00 - 19:00</td>
-            </tr>
-            <tr>
-                <th>Mardi</th>
-                <td>09:00 - 19:00</td>
-            </tr>
-            <tr>
-                <th>Mercredi</th>
-                <td>09:00 - 19:00</td>
-            </tr>
-            <tr>
-                <th>Jeudi</th>
-                <td>09:00 - 19:00</td>
-            </tr>
-            <tr>
-                <th>Vendredi</th>
-                <td>09:00 - 19:00</td>
-            </tr>
-            <tr>
-                <th>Samedi</th>
-                <td>09:00 - 19:00</td>
-            </tr>
-            <tr>
-                <th>Dimanche</th>
-                <td>09:00 - 19:00</td>
-            </tr>
-        </table>
+    <article>
+        <a class="header-link" href="index.php?action=practicalInformation">Infos pratiques</a>
+    </article>
+    <article>
+        <a class="header-link" href="index.php?action=contact">Contact</a>
     </article>
 
     <article class="adresse-footer">
@@ -41,6 +14,4 @@
         </p>
     </article>
 </div>
-<p class="footer-arcaia-link">
-    <a style="color: white;" href="index.php?action=homepage">Arcadia</a>
-</p>
+<a class="mb-2 text-center" href="index.php?action=homepage">Arcadia</a>

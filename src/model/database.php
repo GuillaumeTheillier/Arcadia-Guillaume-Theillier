@@ -14,7 +14,7 @@ require __DIR__ . '/../../vendor/autoload.php';
 class RelationalDatabaseConnection
 {
     public ?PDO $database = null;
-    private $host = 'arcadiamysqlserver.mysql.database.azure.com';
+    /*private $host = 'arcadiamysqlserver.mysql.database.azure.com';
     private $username = 'guillaumeTheillier';
     private $password = 'eZm37AyZ6!_/5q';
     private $db_name = 'arcadiadb';
@@ -24,19 +24,23 @@ class RelationalDatabaseConnection
         //PDO::MYSQL_ATTR_SSL_KEY => ,
         PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false
         //pdo::mysql_attr_publ
-    );
+    );*/
+    private $url = 'mysql://avnadmin:AVNS_3CQtjdp1iaSKa4SCMNH@arcadiadb-guillaume-0b2b.j.aivencloud.com:21399/arcadia?ssl-mode=REQUIRED';
+
+    // build the DSN including SSL settings
+    //private $conn = 'mysql:host=' . $fields["host"] . ';port=' . $fields["port"] . ';dbname=defaultdb;sslmode=verify-ca;sslrootcert=ca.pem';
 
     function getConnection(): PDO
     {
         if ($this->database === null) {
+            $fields = parse_url($this->url);
             try {
-                //$this->database = new PDO("mysql:host=$this->host;port=3306;dbname=$this->db_name;charset=utf8", $this->username, $this->password, $this->options);
-                $this->database = new PDO('mysql:host=localhost;dbname=arcadia;charset=utf8', 'root', '');
+                $this->database = new PDO('mysql:host=' . $fields["host"] . ';port=' . $fields["port"] . ';dbname=arcadia;sslmode=verify-ca;sslrootcert=ca.pem', $fields["user"], $fields["pass"]);
+                //$this->database = new PDO('mysql:host=localhost;dbname=arcadia;charset=utf8', 'root', '');
             } catch (Exception $e) {
-                die('Erreur : ' . $e->getMessage());
+                echo "Error: " . $e->getMessage();
             }
         }
-
         return $this->database;
     }
 }

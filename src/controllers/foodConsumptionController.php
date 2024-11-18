@@ -1,5 +1,5 @@
 <?php
-require_once(__DIR__ . '/../model\foodConsumption.php');
+require_once(__DIR__ . '/../model/foodConsumption.php');
 
 function foodConsumptionRepository()
 {

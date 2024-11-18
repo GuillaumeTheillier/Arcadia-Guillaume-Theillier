@@ -1,4 +1,8 @@
-<?php session_start(); ?>
+<?php
+//  Use ob_start() and ob_end_flush to prevent the "headers already sent" error.
+ob_start();
+session_start();
+?>
 
 <html lang="fr">
 
@@ -41,3 +45,4 @@
 </body>
 
 </html>
+<?php ob_end_flush(); ?>

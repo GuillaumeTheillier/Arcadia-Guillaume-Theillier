@@ -73,7 +73,7 @@
 
     <?php if (isset($_COOKIE['COMMENT_SUCCESS'])) : ?>
         <div class="alert alert-success" role="alert">
-            Votre avis a bien été pris en compte. Il sera vérifier avant d'être afficher.
+            Votre avis a bien été pris en compte. Il sera vérifié avant d'être affiché.
             <button type='button' class="btn-close ms-auto" data-bs-dismiss='alert'></button>
         </div>
     <?php elseif (isset($_COOKIE['COMMENT_ERROR'])) : ?>
