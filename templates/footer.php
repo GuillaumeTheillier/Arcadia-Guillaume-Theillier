@@ -5,7 +5,6 @@
     <article>
         <a class="header-link" href="index.php?action=contact">Contact</a>
     </article>
-
     <article class="adresse-footer">
         <h6>Adresse</h6>
         <p>

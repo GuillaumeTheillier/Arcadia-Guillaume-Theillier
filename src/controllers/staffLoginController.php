@@ -13,10 +13,11 @@ function login()
         $username = htmlspecialchars($_POST['loginUsername']);
         $password = htmlspecialchars($_POST['loginPassword']);
 
+        //Check if it's a valid email in input
         if (!filter_var($username, FILTER_VALIDATE_EMAIL)) {
             setcookie(
                 'LOGIN_ERROR',
-                'Nom d\'utilisateur incorrect',
+                'Nom d\'utilisateur incorrect et/ou mot de passe incorrect',
                 [
                     'expires' => time() + 1,
                     'httponly' => true,
@@ -27,11 +28,11 @@ function login()
         } else {
             //Instanciate users class
             $login = new AccountRepository;
+            //Check if username exists
             if (!$login->usernameExist($username)) {
-                //throw new Exception('Ce nom d\'utilisateur n\'existe pas');
                 setcookie(
                     'LOGIN_ERROR',
-                    'Ce nom d\'utilisateur n\'existe pas',
+                    'Nom d\'utilisateur incorrect et/ou mot de passe incorrect',
                     [
                         'expires' => time() + 1,
                         'httponly' => true,
@@ -41,11 +42,12 @@ function login()
 
                 redirectToUrl('index.php?action=staffLogin');
             }
-            if (!$user = $login->verifyPassword($username, $password)) {
-                //throw new Exception('Mot de passe incorrect');
+            //Compare the hash of the password in database and the form.
+            $user = $login->verifyPassword($username, $password);
+            if (!$user) {
                 setcookie(
                     'LOGIN_ERROR',
-                    'Mot de passe incorrect',
+                    'Nom d\'utilisateur incorrect et/ou mot de passe incorrect',
                     [
                         'expires' => time() + 1,
                         'httponly' => true,
@@ -54,21 +56,23 @@ function login()
                 );
 
                 redirectToUrl('index.php?action=staffLogin');
-            }
-            $_SESSION['LOGGED_USER'] = $user['username'];
-            /*
-                0 = Visitor
+            } else {
+                $_SESSION['LOGGED_USER'] = $user['username'];
+                /*
                 1 = employee
                 2 = veterinarian
                 3 = admin
-            */
-            $_SESSION['ROLE_USER'] = $user['role'];
-            if ($user['role'] === 3) {
-                redirectToUrl('index.php?action=dashboard');
-            } else redirectToUrl('index.php?action=animalList');
+                */
+                $_SESSION['ROLE_USER'] = $user['role'];
+                if ($user['role'] === 3) {
+                    redirectToUrl('index.php?action=dashboard');
+                } else redirectToUrl('index.php?action=animalList');
+            }
         }
     }
 }
+
+
 
 function logout()
 {

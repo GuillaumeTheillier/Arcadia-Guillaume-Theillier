@@ -14,21 +14,7 @@ require __DIR__ . '/../../vendor/autoload.php';
 class RelationalDatabaseConnection
 {
     public ?PDO $database = null;
-    /*private $host = 'arcadiamysqlserver.mysql.database.azure.com';
-    private $username = 'guillaumeTheillier';
-    private $password = 'eZm37AyZ6!_/5q';
-    private $db_name = 'arcadiadb';
-    private $options = array(
-        PDO::MYSQL_ATTR_SSL_CA => 'DigiCertGlobalRootG2.crt.pem',
-        //PDO::MYSQL_ATTR_SSL_CERT => 'DigiCertGlobalRootG2.crt.pem',
-        //PDO::MYSQL_ATTR_SSL_KEY => ,
-        PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false
-        //pdo::mysql_attr_publ
-    );*/
     private $url = 'mysql://avnadmin:AVNS_3CQtjdp1iaSKa4SCMNH@arcadiadb-guillaume-0b2b.j.aivencloud.com:21399/arcadia?ssl-mode=REQUIRED';
-
-    // build the DSN including SSL settings
-    //private $conn = 'mysql:host=' . $fields["host"] . ';port=' . $fields["port"] . ';dbname=defaultdb;sslmode=verify-ca;sslrootcert=ca.pem';
 
     function getConnection(): PDO
     {
