@@ -1,13 +1,9 @@
-<?php
-$title = 'Espace du personnel';
-ob_start();
-?>
-
-<main class="login">
+<script>
+    document.title = 'Espace du personnel';
+</script>
+<div class="login">
     <h1 class="page-title">Espace du personnel</h1>
-
     <p class="login-info">Cette page est réservée à la connexion du personnel</p>
-
     <div class="alert-container">
         <?php if (isset($_COOKIE['LOGIN_ERROR'])) : ?>
             <div class="alert alert-danger" role="alert">
@@ -16,7 +12,6 @@ ob_start();
             </div>
         <?php endif; ?>
     </div>
-
     <form action="index.php?action=login" method="post" class="login-form">
         <div class="input-container">
             <label for="login-username" class="label-input-form">Nom d'utilisateur</label>
@@ -28,10 +23,4 @@ ob_start();
         </div>
         <button type="submit">Se connecter</button>
     </form>
-
-</main>
-
-<?php
-$content = ob_get_clean();
-require('layout.php');
-?>
+</div>

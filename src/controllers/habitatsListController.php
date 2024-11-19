@@ -1,6 +1,6 @@
 <?php
 
-require_once('src/model/habitats.php');
+require_once(__DIR__ . '/../model/habitats.php');
 
 function habitatsList()
 {
@@ -11,7 +11,7 @@ function habitatsList()
     $habitatsRepository = new HabitatsRepository;
     $habitats = $habitatsRepository->getAllHabitats();
 
-    require('templates/habitatsList.php');
+    require(__DIR__ . '/../../templates/habitatsList.php');
 }
 
 function updateHabitatForm(int $habitatId)
@@ -19,5 +19,5 @@ function updateHabitatForm(int $habitatId)
     $habitatRepository = new HabitatsRepository;
     $habitat = $habitatRepository->getHabitat($habitatId);
 
-    require('templates/updateHabitatForm.php');
+    require(__DIR__ . '/../../templates/updateHabitatForm.php');
 }

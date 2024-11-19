@@ -2,5 +2,5 @@
 
 function contact()
 {
-    require('templates/contact.php');
+    require(__DIR__ . '/../../templates/contact.php');
 }

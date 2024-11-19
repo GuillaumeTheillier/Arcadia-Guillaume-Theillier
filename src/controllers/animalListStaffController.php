@@ -1,7 +1,7 @@
 <?php
-require_once('src/model/animals.php');
-require_once('src/model/habitats.php');
-require_once('src/lib/functions.php');
+require_once(__DIR__ . '/../model/animals.php');
+require_once(__DIR__ . '/../model/habitats.php');
+require_once(__DIR__ . '/../lib/functions.php');
 
 function animalList()
 {
@@ -25,7 +25,7 @@ function animalList()
             $filter['id'] = null;
             $animalList = $animalRepository->getAllAnimal();
         }
-        require('templates/animalListStaff.php');
+        require(__DIR__ . '/../../templates/animalListStaff.php');
     } else {
         redirectToUrl('index.php?action=homepage');
     }

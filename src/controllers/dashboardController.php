@@ -1,9 +1,9 @@
 <?php
 
-require_once('src/model/staffAccount.php');
-require_once('src/model/schedule.php');
-require_once('src/model/animals.php');
-require_once('src\lib\functions.php');
+require_once(__DIR__ . '/../model/staffAccount.php');
+require_once(__DIR__ . '/../model/schedule.php');
+require_once(__DIR__ . '/../model/animals.php');
+require_once(__DIR__ . '/../lib/functions.php');
 
 function dashboard()
 {
@@ -16,5 +16,5 @@ function dashboard()
     //animal count visit
     $animalRepository = new AnimalsRepository;
     $animalVisit = $animalRepository->getAnimalCountVisit();
-    require('templates/dashboardAdmin.php');
+    require(__DIR__ . '/../../templates/dashboardAdmin.php');
 }

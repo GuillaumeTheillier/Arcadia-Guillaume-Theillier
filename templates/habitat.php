@@ -1,10 +1,7 @@
-<?php
-$title = $habitat['nom'];
-ob_start();
-?>
-
-<main class="habitat">
-
+<script>
+    document.title = <?php echo $habitat['nom']; ?>;
+</script>
+<div class="habitat">
     <h1 class="page-title">
         Habitat : <?php echo $habitat['nom']; ?>
     </h1>
@@ -91,9 +88,4 @@ ob_start();
             <?php endforeach ?>
         </div>
     <?php endif ?>
-</main>
-
-<?php
-$content = ob_get_clean();
-require('layout.php');
-?>
+</div>

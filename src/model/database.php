@@ -6,7 +6,7 @@ use Exception;
 use PDO;
 use MongoDB;
 
-require 'vendor/autoload.php';
+require __DIR__ . '/../../vendor/autoload.php';
 
 /**
  * Connection to SQL database.
@@ -14,17 +14,19 @@ require 'vendor/autoload.php';
 class RelationalDatabaseConnection
 {
     public ?PDO $database = null;
+    private $url = 'mysql://avnadmin:AVNS_3CQtjdp1iaSKa4SCMNH@arcadiadb-guillaume-0b2b.j.aivencloud.com:21399/arcadia?ssl-mode=REQUIRED';
 
     function getConnection(): PDO
     {
         if ($this->database === null) {
+            $fields = parse_url($this->url);
             try {
-                $this->database = new PDO('mysql:host=localhost;dbname=arcadia;charset=utf8', 'root', '');
+                $this->database = new PDO('mysql:host=' . $fields["host"] . ';port=' . $fields["port"] . ';dbname=arcadia;sslmode=verify-ca;sslrootcert=ca.pem', $fields["user"], $fields["pass"]);
+                //$this->database = new PDO('mysql:host=localhost;dbname=arcadia;charset=utf8', 'root', '');
             } catch (Exception $e) {
-                die('Erreur : ' . $e->getMessage());
+                echo "Error: " . $e->getMessage();
             }
         }
-
         return $this->database;
     }
 }

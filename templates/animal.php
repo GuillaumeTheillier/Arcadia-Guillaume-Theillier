@@ -1,9 +1,7 @@
-<?php
-$title = $animal['name'];
-ob_start();
-?>
-
-<main class="animal-container">
+<script>
+    document.title = <?php echo $animal['name'] ?>;
+</script>
+<div class="animal-container">
     <h1 class="page-title"><?php echo $animal['name'] ?></h1>
 
     <div class="animal-flex">
@@ -14,9 +12,4 @@ ob_start();
             <p class="animal-status">Etat de l'animal : <?php echo $animal['status'] ?></p>
         </div>
     </div>
-</main>
-
-<?php
-$content = ob_get_clean();
-require('layout.php');
-?>
+</div>

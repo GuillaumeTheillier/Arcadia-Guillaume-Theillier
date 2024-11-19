@@ -1,6 +1,6 @@
 <?php
 
-require_once('src/model/staffAccount.php');
+require_once(__DIR__ . '/../model/staffAccount.php');
 
 function updateAccount()
 {
@@ -9,5 +9,5 @@ function updateAccount()
     $accountRepository = new AccountRepository;
     $account = $accountRepository->getUser($username);
 
-    require('templates/updateAccount.php');
+    require(__DIR__ . '/../../templates/updateAccount.php');
 }

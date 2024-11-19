@@ -1,7 +1,7 @@
 <?php
-require_once('src/lib/functions.php');
-require_once('src/model/veterinarianReport.php');
-require_once('src/model/animals.php');
+require_once(__DIR__ . '/../lib/functions.php');
+require_once(__DIR__ . '/../model/veterinarianReport.php');
+require_once(__DIR__ . '/../model/animals.php');
 
 function veterinarianReport()
 {
@@ -82,9 +82,6 @@ function veterinarianReportList()
         $date = null;
         $animalId = null;
     }
-
-
-    // var_dump($animalId);
     $reportList = $reportRepository->getAllReport($sort, $animalId, $date);
-    require('templates/veterinarianReportList.php');
+    require(__DIR__ . '/../../templates/veterinarianReportList.php');
 }

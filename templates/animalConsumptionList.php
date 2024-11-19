@@ -1,10 +1,8 @@
-<?php
-$title = 'liste des consommations de nourriture de ?';
-ob_start();
-?>
-
-<main class="animal-container">
-    <h1 class="page-title"><?php echo $animal['name'] ?></h1>
+<script>
+    document.title = 'Liste des consommations de nourriture de ' + <?php echo $animal['name'] ?>;
+</script>
+<div class="animal-container">
+    <h1 class="page-title"><?php echo $animal['name']; ?></h1>
     <?php
     require('crudForm/addVeterinarianReportForm.php');
     require('crudForm/addHabitatComment.php');
@@ -60,9 +58,4 @@ ob_start();
         </table>
     </div>
     <script src="script\frameScript.js"></script>
-</main>
-
-<?php
-$content = ob_get_clean();
-require('layout.php');
-?>
+</div>

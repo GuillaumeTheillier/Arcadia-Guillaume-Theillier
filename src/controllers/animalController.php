@@ -1,6 +1,6 @@
 <?php
 
-require_once('src/model/animals.php');
+require_once(__DIR__ . '/../model/animals.php');
 
 function animal(int $animalId)
 {
@@ -22,7 +22,7 @@ function animal(int $animalId)
         if (!isset($_SESSION['LOGGED_USER'])) {
             $animalRepository->updateAnimalCountVisit($animalId);
         }
-        require('templates/animal.php');
+        require(__DIR__ . '/../../templates/animal.php');
     } catch (Error $e) {
         var_dump($e->getMessage());
     }
@@ -51,7 +51,7 @@ function updateAnimalForm(int $animalId)
                     'secure' => true
                 ]
             );
-            require('templates/updateAnimalForm.php');
+            require(__DIR__ . '/../../templates/updateAnimalForm.php');
         }
     } catch (Error $e) {
         var_dump($e->getMessage());

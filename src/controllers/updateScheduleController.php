@@ -1,7 +1,7 @@
 <?php
 
-require_once('src/model/schedule.php');
-require_once('src/lib/functions.php');
+require_once(__DIR__ . '/../model/schedule.php');
+require_once(__DIR__ . '/../lib/functions.php');
 
 function updateSchedule()
 {

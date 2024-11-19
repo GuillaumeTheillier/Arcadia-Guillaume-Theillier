@@ -1,9 +1,7 @@
-<?php
-$title = 'infos pratiques';
-ob_start();
-?>
-
-<main class="infos">
+<script>
+    document.title = 'Infos pratiques';
+</script>
+<div class="infos">
     <h1 class="page-title">Infos pratiques</h1>
 
     <p class="infos-location">
@@ -51,9 +49,4 @@ ob_start();
             Des emplacements pour les cars et camping-cars sont disponibles.
         </p>
     </div>
-</main>
-
-<?php
-$content = ob_get_clean();
-require(__DIR__ . '/layout.php');
-?>
+</div>

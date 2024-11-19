@@ -1,14 +1,14 @@
 <?php
 
-require_once('src/model/comment.php');
-require_once('src/lib/functions.php');
+require_once(__DIR__ . '/../model/comment.php');
+require_once(__DIR__ . '/../lib/functions.php');
 
 function commentManager()
 {
     $commentRepository = new CommentRepository;
     $allcomment = $commentRepository->getAll();
 
-    require('templates/commentManager.php');
+    require(__DIR__ . '/../../templates/commentManager.php');
 }
 
 function editVisibleComment()

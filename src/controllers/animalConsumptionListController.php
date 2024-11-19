@@ -1,7 +1,7 @@
 <?php
 
-require_once('src/model/animals.php');
-require_once('src/model/foodConsumption.php');
+require_once(__DIR__ . '/../model/animals.php');
+require_once(__DIR__ . '/../model/foodConsumption.php');
 
 function animalConsumptionList()
 {
@@ -11,5 +11,5 @@ function animalConsumptionList()
     $foodConsumptionRepository = new FoodConsumptionRepository;
     $animal = $animalRepository->getAnimal($id);
     $consumptionList = $foodConsumptionRepository->getConsumption($id);
-    require('templates/animalConsumptionList.php');
+    require(__DIR__ . '/../../templates/animalConsumptionList.php');
 }

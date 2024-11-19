@@ -1,6 +1,6 @@
 <?php
-require_once('src/model/animals.php');
-require_once('src/model/habitats.php');
+require_once(__DIR__ . '/../model/animals.php');
+require_once(__DIR__ . '/../model/habitats.php');
 
 function habitat(int $habitatTarget)
 {
@@ -33,7 +33,7 @@ function habitat(int $habitatTarget)
             $animalsRepository = new AnimalsRepository;
             $animals = $animalsRepository->getAllAnimalsInHabitat($habitatTarget);
         }
-        require('templates/habitat.php');
+        require(__DIR__ . '/../../templates/habitat.php');
     } catch (Error $e) {
         // Affiche page 'Une erreur est survenue'.
         var_dump($e->getMessage());
