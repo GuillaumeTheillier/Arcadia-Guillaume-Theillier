@@ -2,7 +2,7 @@
     document.title = 'Habitats';
 </script>
 <h1 class="page-title">Nos habitats</h1>
-<?php if (isset($_SESSION['LOGGED_USER']) && $_SESSION['ROLE_USER'] === 3) : ?>
+<?php if (isset($_SESSION['LOGGED_USER']) && $_SESSION['ROLE'] === 'ROLE_ADMIN') : ?>
     <!-- Display habitat for admin and employee -->
 
     <!--require frame for the form of habitat creation -->

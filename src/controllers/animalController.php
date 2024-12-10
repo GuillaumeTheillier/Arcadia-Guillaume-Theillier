@@ -32,7 +32,7 @@ function updateAnimalForm(int $animalId)
 {
     try {
         //Get data from database for habitat admin page 
-        if (isset($_SESSION['LOGGED_USER']) && $_SESSION['ROLE_USER'] === 3) {
+        if (isset($_SESSION['LOGGED_USER']) && $_SESSION['ROLE'] === 'ROLE_ADMIN') {
             //Get all necessary data for habitat
             $habitatRepository = new HabitatsRepository;
             $habitatList = $habitatRepository->getHabitatList();

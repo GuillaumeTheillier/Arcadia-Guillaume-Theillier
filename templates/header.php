@@ -9,11 +9,11 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <div class="navbar-nav">
                 <?php if (isset($_SESSION['LOGGED_USER'])) : ?>
-                    <?php $role = $_SESSION['ROLE_USER']; ?>
+                    <?php $role = $_SESSION['ROLE']; ?>
                     <?php
                     switch ($role):
                             //Employee
-                        case 1:
+                        case 'ROLE_EMPLOYEE':
                     ?>
                             <a class="header-link" href="index.php?action=animalList">Animaux</a>
                             <a class="header-link" href="index.php?action=services">Services</a>
@@ -22,7 +22,7 @@
                             <?php break; ?>
                         <?php
                             //Veterinarian
-                        case 2:
+                        case 'ROLE_VETERINARIAN':
                         ?>
                             <a class="header-link" href="index.php?action=animalList">Animaux</a>
                             <a class="header-link" href="index.php?action=habitatComment">Habitats</a>
@@ -30,7 +30,7 @@
                             <?php break; ?>
                         <?php
                             //Admin
-                        case 3:
+                        case 'ROLE_ADMIN':
                         ?>
                             <a class="header-link" href="index.php?action=dashboard">Tableau de bord</a>
                             <a class="header-link" href="index.php?action=veterinarianReportList">Compte rendu</a>

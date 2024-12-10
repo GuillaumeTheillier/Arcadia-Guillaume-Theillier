@@ -16,6 +16,7 @@ function habitatsList()
 
 function updateHabitatForm(int $habitatId)
 {
+    isGranted('ROLE_ADMIN');
     $habitatRepository = new HabitatsRepository;
     $habitat = $habitatRepository->getHabitat($habitatId);
 

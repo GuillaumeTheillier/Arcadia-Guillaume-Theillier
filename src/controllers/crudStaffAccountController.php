@@ -4,6 +4,7 @@ require_once(__DIR__ . '/../lib/functions.php');
 
 function createStaffAccount()
 {
+    isGranted('ROLE_ADMIN');
     $username = htmlspecialchars($_POST['username']);
     $surname = htmlspecialchars($_POST['surname']);
     $firstName = htmlspecialchars($_POST['firstName']);
@@ -71,6 +72,7 @@ function createStaffAccount()
  */
 function updateStaffAccount()
 {
+    isGranted('ROLE_ADMIN');
     $oldUsername = htmlspecialchars($_POST['oldUsername']);
     $newUsername = htmlspecialchars($_POST['newUsername']);
     $surname = htmlspecialchars($_POST['surname']);
@@ -160,6 +162,7 @@ function checkStrengthPassword($password): string|bool
 
 function deleteStaffAccount()
 {
+    isGranted('ROLE_ADMIN');
     $username = $_POST['username'];
     $accountRepository = new AccountRepository;
     $accountRepository->deleteAccount($username);

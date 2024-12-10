@@ -7,11 +7,12 @@
     </h1>
 
     <!-- Staff page -->
-    <?php if (isset($_SESSION['LOGGED_USER']) && $_SESSION['ROLE_USER'] === 3) : ?>
+    <?php if (isset($_SESSION['LOGGED_USER']) && $_SESSION['ROLE'] === 'ROLE_ADMIN') : ?>
         <!--require frame for the form of animal creation -->
         <?php require('crudForm/createAnimalForm.php'); ?>
 
         <p class="habitat-description"> <?php echo $habitat['description'] ?> </p>
+
         <div class="habitat-comment">
             <h5>Commentaire sur l'habitat</h5>
             <p><?php echo $habitat['comment'] ?></p>

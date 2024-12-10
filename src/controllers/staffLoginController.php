@@ -63,7 +63,18 @@ function login()
                 2 = veterinarian
                 3 = admin
                 */
-                $_SESSION['ROLE_USER'] = $user['role'];
+                switch ($user['role']) {
+                    case 3:
+                        $_SESSION['ROLE'] = 'ROLE_ADMIN';
+                        break;
+                    case 2:
+                        $_SESSION['ROLE'] = 'ROLE_VETERINARIAN';
+                        break;
+                    case 1:
+                        $_SESSION['ROLE'] = 'ROLE_EMPLOYEE';
+                        break;
+                }
+
                 if ($user['role'] === 3) {
                     redirectToUrl('index.php?action=dashboard');
                 } else redirectToUrl('index.php?action=animalList');

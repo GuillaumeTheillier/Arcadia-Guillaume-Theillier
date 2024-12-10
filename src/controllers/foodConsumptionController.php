@@ -8,6 +8,7 @@ function foodConsumptionRepository()
 
 function addFoodConsumption()
 {
+    isGranted('ROLE_EMPLOYEE');
     if (isset($_POST['foodDate']) && isset($_POST['foodType']) && isset($_POST['foodQuantity'])) {
         $username = $_SESSION['LOGGED_USER'];
         $animalId = $_POST['animalId'];

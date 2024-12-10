@@ -3,9 +3,9 @@
 </script>
 <h1 class="page-title">Liste des animaux</h1>
 <?php
-if ($_SESSION['ROLE_USER'] === 1) {
+if ($_SESSION['ROLE'] === 'ROLE_EMPLOYEE') {
     require('crudForm/addFoodConsumptionForm.php');
-} else if ($_SESSION['ROLE_USER'] === 2) {
+} else if ($_SESSION['ROLE'] === 'ROLE_VETERINARIAN') {
     require('crudForm/addVeterinarianReportForm.php');
 }
 ?>
@@ -88,7 +88,7 @@ if ($_SESSION['ROLE_USER'] === 1) {
         </thead>
         <tbody class="table-group-divider">
             <?php foreach ($animalList as $animal) : ?>
-                <?php if ($_SESSION['ROLE_USER'] === 1) : ?>
+                <?php if ($_SESSION['ROLE'] === 'ROLE_EMPLOYEE') : ?>
                     <tr>
                         <td><?php echo $animal['name']; ?></td>
                         <td><?php echo $animal['race']; ?></td>
@@ -97,7 +97,7 @@ if ($_SESSION['ROLE_USER'] === 1) {
                             <button type="button" data-animal-id="<?php echo $animal['id']; ?>" class="button-crud btn-open-frame">Ajouter une consommation</button>
                         </td>
                     </tr>
-                <?php elseif ($_SESSION['ROLE_USER'] === 2) : ?>
+                <?php elseif ($_SESSION['ROLE'] === 'ROLE_VETERINARIAN') : ?>
                     <tr>
                         <td class="click-row" onclick="document.location.href='index.php?action=animalConsumptionList&animal=<?php echo htmlspecialchars($animal['id']) ?>'"><?php echo $animal['name']; ?></td>
                         <td class="click-row race-col" onclick="document.location.href='index.php?action=animalConsumptionList&animal=<?php echo htmlspecialchars($animal['id']) ?>'"><?php echo $animal['race']; ?></td>

@@ -14,6 +14,7 @@ function animalRepository()
  */
 function createAnimal()
 {
+    isGranted('ROLE_ADMIN');
     $currentHabId = $_COOKIE['CURRENT_HABITAT_ID'];
     if (isset($_POST['createAnimalName']) && isset($_FILES['createAnimalImage']) && is_numeric($_POST['createAnimalHabitat'])) {
         $name = htmlspecialchars($_POST['createAnimalName']);
@@ -67,6 +68,7 @@ function createAnimal()
 
 function createRaceAnimal()
 {
+    isGranted('ROLE_ADMIN');
     if (isset($_POST['addRaceName'])) {
         $race = htmlspecialchars($_POST['addRaceName']);
 
@@ -85,6 +87,7 @@ function createRaceAnimal()
 
 function updateAnimal()
 {
+    isGranted('ROLE_ADMIN');
     $habitatId = $_COOKIE['CURRENT_HABITAT_ID'];
     $animalId = $_POST['updateAnimalId'];
     if (isset($_POST['updateAnimalName']) && is_numeric($_POST['updateAnimalHabitat'])) {
@@ -148,6 +151,7 @@ function updateAnimal()
 
 function deleteAnimal()
 {
+    isGranted('ROLE_ADMIN');
     $habitatId = $_COOKIE['CURRENT_HABITAT_ID'];
     try {
         $id = $_POST['animalId'];

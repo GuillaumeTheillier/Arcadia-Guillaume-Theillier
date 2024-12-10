@@ -10,6 +10,7 @@ function habitatRepository()
 
 function createHabitat()
 {
+    isGranted('ROLE_ADMIN');
     if (isset($_POST['createHabitatName']) && isset($_POST['createHabitatDescription'])) {
         $name = htmlspecialchars($_POST['createHabitatName']);
         $description = nl2br(htmlspecialchars($_POST['createHabitatDescription']));
@@ -47,6 +48,7 @@ function createHabitat()
 
 function deleteHabitat()
 {
+    isGranted('ROLE_ADMIN');
     $id = $_POST['habitatId'];
     try {
         $success = habitatRepository()->deleteHabitat($id);
@@ -76,6 +78,7 @@ function deleteHabitat()
 
 function updateHabitat()
 {
+    isGranted('ROLE_ADMIN');
     $habitatId = $_POST['updateHabitatId'];
     if (isset($_POST['updateHabitatName']) && isset($_POST['updateHabitatDescription'])) {
         $name = htmlspecialchars($_POST['updateHabitatName']);

@@ -11,6 +11,7 @@ function servicesRepository()
 
 function deleteService()
 {
+    isGranted('ROLE_ADMIN');
     $id = $_POST['deleteServiceId'];
 
     try {
@@ -42,6 +43,7 @@ function deleteService()
 
 function createService()
 {
+    isGranted('ROLE_ADMIN');
     if (isset($_POST['createServiceTitle']) && isset($_POST['createServiceDescription'])) {
 
         $title = htmlspecialchars($_POST['createServiceTitle']);
@@ -89,6 +91,8 @@ function createService()
 
 function updateService()
 {
+    isGranted('ROLE_ADMIN');
+    isGranted('ROLE_EMPLOYEE');
     if (isset($_POST['updateServiceId']) && isset($_POST['updateServiceTitle']) && isset($_POST['updateServiceDescription'])) {
 
         $id = (int)$_POST['updateServiceId'];

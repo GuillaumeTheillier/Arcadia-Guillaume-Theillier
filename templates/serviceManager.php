@@ -4,7 +4,7 @@
 <h1 class="page-title">Services</h1>
 <?php
 //require frame for the form of service creation
-if ($_SESSION['ROLE_USER'] === 3) {
+if ($_SESSION['ROLE'] === 'ROLE_ADMIN') {
     require('crudForm/createServiceForm.php');
 }
 ?>
@@ -36,7 +36,7 @@ if ($_SESSION['ROLE_USER'] === 3) {
     <?php endif; ?>
 </div>
 
-<?php if ($_SESSION['ROLE_USER'] === 3) : ?>
+<?php if ($_SESSION['ROLE'] === 'ROLE_ADMIN') : ?>
     <!-- Create Service is only for admin -->
     <div class="button-container">
         <button type="button" class="button-crud btn-open-frame">Ajouter un service</button>
@@ -66,7 +66,7 @@ if ($_SESSION['ROLE_USER'] === 3) {
         </div>
         <div class="service-form-button">
             <button type="submit" name="updateServiceId" value="<?php echo $service['id'] ?>" formaction="index.php?action=updateService">Enregister les modifications</button>
-            <?php if ($_SESSION['ROLE_USER'] === 3) : ?>
+            <?php if ($_SESSION['ROLE'] === 'ROLE_ADMIN') : ?>
                 <!-- Delete service is only for admin -->
                 <button type="submit" name="deleteServiceId" value="<?php echo $service['id'] ?>" formaction="index.php?action=deleteService">Supprimer ce service</button>
             <?php endif ?>

@@ -4,9 +4,11 @@ require_once(__DIR__ . '/../model/staffAccount.php');
 require_once(__DIR__ . '/../model/schedule.php');
 require_once(__DIR__ . '/../model/animals.php');
 require_once(__DIR__ . '/../lib/functions.php');
+require_once(__DIR__ . '/../lib/restrictAccess.php');
 
 function dashboard()
 {
+    isGranted('ROLE_ADMIN');
     //user list
     $usersRepository = new AccountRepository;
     $users = $usersRepository->getAllUsers();
