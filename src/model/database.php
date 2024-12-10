@@ -1,7 +1,8 @@
 <?php
-//SQL database connection
+
 namespace DatabaseConnection;
 
+use Dotenv\Dotenv;
 use Exception;
 use PDO;
 use MongoDB;
@@ -14,7 +15,14 @@ require __DIR__ . '/../../vendor/autoload.php';
 class RelationalDatabaseConnection
 {
     public ?PDO $database = null;
-    private $url = 'mysql://avnadmin:AVNS_3CQtjdp1iaSKa4SCMNH@arcadiadb-guillaume-0b2b.j.aivencloud.com:21399/arcadia?ssl-mode=REQUIRED';
+    private $url = null;
+
+    function __construct()
+    {
+        $dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
+        $dotenv->load();
+        $this->url = $_ENV['DATABASE_MYSQL_URL'];
+    }
 
     function getConnection(): PDO
     {
@@ -43,7 +51,9 @@ class UnrelationalDatabaseConnection
 
     public function __construct()
     {
-        $url = 'mongodb+srv://GuillaumeThlr:hFXIt9gQ4VUD86wt@guillaumetheillier.oj999.mongodb.net/?retryWrites=true&w=majority&appName=GuillaumeTheillier';
+        $dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
+        $dotenv->load();
+        $url = $_ENV['DATABASE_MONGODB_URL'];
         $this->client = new MongoDB\Client($url);
     }
 
